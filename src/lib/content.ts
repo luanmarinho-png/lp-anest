@@ -88,6 +88,11 @@ export type TrackPageContent = {
   itemsProof?: { label: string; items: string[] };
   items: NumberedItem[];
   highlight?: FeatureBlock;
+  /** CTA that closes the resources section. */
+  itemsCta?: string;
+  ctaNote?: string;
+  /** Sticky bar with the entry price, shown after the hero. */
+  offerBar?: { label: string; price: string; cta: string };
 };
 
 export const HOME_INTRO = {
@@ -254,6 +259,12 @@ export const HOME_CTA = {
 export const TRACKS: Record<string, TrackPageContent> = {
   "residentes-sba": {
     slug: "residentes-sba",
+    itemsCta: "Ver preparatórios para o meu ano",
+    offerBar: {
+      label: "Extensivo MedCof Anest",
+      price: "a partir de 12x R$ 249,75",
+      cta: "Ver preparatórios",
+    },
     eyebrow: "Residentes SBA",
     title: "Trilha para residentes SBA",
     lead: "O MedCof Anest entrega a estrutura exata que você precisa para alinhar seu conhecimento da sala cirúrgica ao formato exigido pelas provas da SBA. Sem o volume excessivo de materiais genéricos, direto ao ponto.",
@@ -396,6 +407,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   "residentes-mec": {
     slug: "residentes-mec",
+    itemsCta: "Ver preparatórios do TEA",
+    offerBar: {
+      label: "Preparatório para o TEA",
+      price: "a partir de 12x R$ 249,75",
+      cta: "Ver preparatórios",
+    },
     eyebrow: "Residentes MEC",
     title: "Trilha para residentes MEC",
     lead: "Conquiste o TEA ao longo da residência, sem deixar a preparação para o R3.",
@@ -575,6 +592,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   tea: {
     slug: "tea",
+    itemsCta: "Ver preparatórios do TEA",
+    offerBar: {
+      label: "Preparatório TEA",
+      price: "a partir de 12x R$ 249,75",
+      cta: "Ver preparatórios",
+    },
     eyebrow: "TEA",
     title:
       "A preparação exata para conquistar o Título de Especialista em Anestesiologia",
@@ -758,6 +781,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   tsa: {
     slug: "tsa",
+    itemsCta: "Ver preparatórios do TSA",
+    offerBar: {
+      label: "Preparatório TSA",
+      price: "a partir de 12x R$ 449,85",
+      cta: "Ver preparatórios",
+    },
     eyebrow: "TSA",
     title: "Com o método certo, estudar para o TSA fica simples",
     lead: "A preparação de alta densidade desenhada por anestesiologistas titulados dos maiores hospitais do país: o edital organizado na ordem certa, no recorte que a banca cobra e no ritmo que cabe na sua rotina.",

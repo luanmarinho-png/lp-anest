@@ -760,6 +760,8 @@ export function QBankShowcase() {
                   )}
                 </section>
 
+                {revealed || picked !== null ? (
+                  <>
                 <section className="question-block">
                   <p className="commentary-kicker">Resolução em vídeo</p>
                   <div ref={videoRef} className="question-video">
@@ -945,6 +947,8 @@ export function QBankShowcase() {
                     interscalene brachial plexus block.
                   </p>
                 </footer>
+                  </>
+                ) : null}
               </article>
             </div>
           </section>

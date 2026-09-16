@@ -17,6 +17,8 @@ import {
 } from "@/components/apple/chrome";
 import { SbaModels, type FunnelOption } from "@/components/sba-models";
 import { SectionReveal } from "@/components/section-reveal";
+import { SectionCta } from "@/components/section-cta";
+import { OfferBar } from "@/components/offer-bar";
 import { MecResourceRail } from "@/components/mec-resource-rail";
 import { ScrollPath } from "@/components/scroll-path";
 import { BentoMosaic } from "@/components/bento-mosaic";
@@ -69,6 +71,11 @@ export function AppleProductPage({
         proof={data.itemsProof}
       >
         <Items data={data} />
+        {data.offers?.length || data.modalities.length > 0 ? (
+          <SectionCta href={`#${modelsId}`} note={data.ctaNote}>
+            {data.itemsCta ?? "Ver preparatórios"}
+          </SectionCta>
+        ) : null}
       </AppleChapter>
     ) : null;
 
@@ -193,6 +200,16 @@ export function AppleProductPage({
         title="Estude com a plataforma mais completa de Anestesiologia"
         body="Fale com a coordenação técnica e inicie o cronograma desta trilha."
       />
+
+      {data.offerBar ? (
+        <OfferBar
+          label={data.offerBar.label}
+          price={data.offerBar.price}
+          href={`#${modelsId}`}
+          cta={data.offerBar.cta}
+          hideNear={`#${modelsId}`}
+        />
+      ) : null}
     </ProductShell>
   );
 }
