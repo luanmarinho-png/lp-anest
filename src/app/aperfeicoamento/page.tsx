@@ -36,8 +36,8 @@ export default function Page() {
       <AppleChapter
         id="metodo"
         eyebrow="Programa"
-        title="Ninguém aprende ultrassom assistindo vídeo"
-        body="Você já sabe a teoria. O que falta é a hora em que o probe está na sua mão, a imagem não aparece e tem alguém do lado para dizer o que corrigir. É isso que a gente faz aqui."
+        title="Técnica de verdade, no formato que cabe em você"
+        body="Cursos curtos e diretos nas frentes que mais mudam o resultado na sala, com professores que fazem isso todo dia."
       >
         <div className="story-pulse-grid">
           {PILLARS.map((pillar, index) => (

@@ -18,6 +18,9 @@ export function MecResourceRail({
 }) {
   const railRef = useRef<HTMLDivElement>(null);
   const pauseUntilRef = useRef(0);
+  // Posição acumulada em float: `scrollLeft` arredonda para inteiro, e o
+  // passo por quadro (~0,43px) some no arredondamento antes de virar 1px.
+  const posRef = useRef(0);
   const [selected, setSelected] =
     useState<NonNullable<NumberedItem["image"]> | null>(null);
 
@@ -36,11 +39,10 @@ export function MecResourceRail({
       const half = rail.scrollWidth / 2;
       if (half <= 0) return;
       if (rail.scrollLeft >= half || rail.scrollLeft < 0) {
-        const previousBehavior = rail.style.scrollBehavior;
-        rail.style.scrollBehavior = "auto";
-        rail.scrollLeft =
+        const next =
           rail.scrollLeft < 0 ? rail.scrollLeft + half : rail.scrollLeft - half;
-        rail.style.scrollBehavior = previousBehavior;
+        rail.scrollLeft = next;
+        posRef.current = next;
       }
     };
 
@@ -57,7 +59,10 @@ export function MecResourceRail({
       wrap();
 
       if (!paused) {
-        rail.scrollLeft += elapsed * 0.026;
+        posRef.current += elapsed * 0.026;
+        rail.scrollLeft = posRef.current;
+      } else {
+        posRef.current = rail.scrollLeft;
       }
 
       frame = requestAnimationFrame(advance);

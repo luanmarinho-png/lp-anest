@@ -81,6 +81,7 @@ export function SiteHeader() {
         ) : null}
       </header>
 
+      {theme.id === "tsaoral" ? null : (
       <div className="progress-shell sticky top-12 z-40" data-theme={theme.id}>
         <div className="reading-progress" aria-hidden="true">
           <span className="reading-progress-track" />
@@ -96,6 +97,7 @@ export function SiteHeader() {
           </span>
         </div>
       </div>
+      )}
     </>
   );
 }

@@ -42,6 +42,8 @@ export type Course = {
     lead: string;
     /** Brand lockup shown above the title. */
     logo?: { src: string; alt: string };
+    /** Date, place and seats, shown as chips above the lead. */
+    facts?: string[];
     /** Short list shown right under the lead, before the sections. */
     highlights?: string[];
     ctaLabel?: string;
@@ -148,7 +150,31 @@ export function CourseCatalog({
                 <p className="fase2-eyebrow">{open.detail.eyebrow}</p>
               )}
               {open.detail.logo ? null : <h2>{open.detail.title}</h2>}
-              <p>{open.detail.lead}</p>
+              {open.detail.facts?.length ? (
+                <p className="course-facts is-hero">
+                  {open.detail.facts.map((fact, index) => (
+                    <span key={fact}>
+                      {index === 0 ? (
+                        <CalendarDays
+                          className="size-4"
+                          strokeWidth={2.4}
+                          aria-hidden
+                        />
+                      ) : index === 1 ? (
+                        <MapPin
+                          className="size-4"
+                          strokeWidth={2.4}
+                          aria-hidden
+                        />
+                      ) : (
+                        <Users className="size-4" strokeWidth={2.4} aria-hidden />
+                      )}
+                      {fact}
+                    </span>
+                  ))}
+                </p>
+              ) : null}
+              <p className="course-detail-lead">{open.detail.lead}</p>
               {open.detail.highlights?.length ? (
                 <ul className="course-highlights">
                   {open.detail.highlights.map((highlight) => (
@@ -409,7 +435,7 @@ export function CourseCatalog({
               <section className="course-faculty">
                 <div className="course-schedule-head">
                   <p className="fase2-eyebrow">Corpo docente</p>
-                  <h3>Quem vai corrigir a sua mão</h3>
+                  <h3>Quem vai te ensinar</h3>
                 </div>
                 <div className="course-faculty-grid">
                   {open.detail.faculty.map((person) => (

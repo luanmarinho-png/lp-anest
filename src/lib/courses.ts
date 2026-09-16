@@ -4,13 +4,13 @@ import type { Testimonial } from "@/components/video-testimonials";
 export const PILLARS = [
   {
     n: "01",
-    title: "Você põe a mão no aparelho",
-    body: "Não adianta assistir aula de ultrassom e nunca segurar o probe. Aqui você escaneia, erra, corrige e sai fazendo.",
+    title: "Conteúdo de quem faz todo dia",
+    body: "Cada curso é construído por anestesiologistas que usam a técnica na rotina, nos maiores hospitais do país.",
   },
   {
     n: "02",
-    title: "Turma pequena, correção individual",
-    body: "Cada estação tem um coordenador olhando para poucos alunos. Ninguém passa o dia esperando a vez no fundo da sala.",
+    title: "Online, presencial ou os dois",
+    body: "Você escolhe o formato: estudar no seu ritmo, treinar com a mão no aparelho, ou combinar os dois no mesmo curso.",
   },
   {
     n: "03",
@@ -176,10 +176,16 @@ export const COURSES: Course[] = [
         src: "/images/anest-us/hands-on-anest-us-logo.png",
         alt: "Hands On Anest US",
       },
-      lead: "Ver a imagem na aula é uma coisa. Achar a estrutura sozinho, no modelo vivo, com o coordenador do lado corrigindo o seu posicionamento, é outra. É isso que acontece nesses dois dias.",
+      lead: "Ver a imagem na aula é uma coisa. Achar a estrutura sozinho, no modelo vivo, com o preceptor do lado corrigindo o seu posicionamento, é outra. É isso que acontece nesses dois dias.",
+      facts: [
+        "30 e 31 de janeiro de 2027",
+        "Pinheiros, São Paulo",
+        "25 vagas, de 5 a 8 por preceptor",
+      ],
       highlights: [
         "27 bloqueios e 5 usos práticos do ultrassom",
         "Escaneamento em modelo vivo e estações de agulhamento",
+        "Alimentação e estacionamento inclusos",
         "Todo o conteúdo do Anest US Online incluso",
       ],
       ctaLabel: "Quero minha vaga no Hands On",
@@ -267,9 +273,29 @@ export const COURSES: Course[] = [
         ],
       },
       testimonials: TESTIMONIALS,
+      video: {
+        src: "https://player.vimeo.com/video/1126957904?autoplay=0&loop=1&autopause=1&playsinline=1",
+        title: "Preview do Hands On Anest US",
+      },
+      proof: {
+        stat: "+100",
+        statLabel: "alunos já fizeram o treinamento presencial",
+        title: "Quem fez conta o que mudou",
+        quotes: [
+          {
+            text: "Foi um diferencial, porque na minha residência não tinha muita mão e agora eu aprendi.",
+            // TODO: trocar pelo nome real de quem disse.
+            author: "Aluno do Hands On Anest US",
+          },
+          {
+            text: "Mesmo depois de 10 anos de formado e sem nunca ter tido contato com ultrassom, o Dr. Lucas Rodrigues pegou na minha mão e me ensinou. Foi excelente, indico a todos.",
+            author: "Aluno do Hands On Anest US",
+          },
+        ],
+      },
       pricing: {
-        title: "Escolha como você quer fazer",
-        lead: "O Hands On já inclui todo o conteúdo online. Se você é aluno do Extensivo, fale com a equipe para a condição exclusiva.",
+        title: "Quanto custa o Hands On",
+        lead: "Dois dias de prática presencial, com o Anest US Online completo incluso.",
         plans: [
           {
             name: "Hands On Anest US",
@@ -278,20 +304,13 @@ export const COURSES: Course[] = [
             cash: "ou à vista por R$ 4.997,00",
             featured: true,
             bullets: [
+              "Turma de 25 alunos, de 5 a 8 por preceptor",
               "Dois dias de imersão presencial em São Paulo",
               "27 bloqueios e 5 usos práticos do ultrassom",
+              "Aparelhos de ultrassom de alta qualidade",
+              "Alimentação inclusa nos dois dias",
+              "Estacionamento no local, em Pinheiros",
               "Anest US Online incluso",
-              "Turma de 25 alunos",
-            ],
-          },
-          {
-            name: "Anest US Online",
-            installment: "R$ 208,08",
-            cash: "ou à vista por R$ 2.497,00",
-            bullets: [
-              "27 bloqueios guiados por ultrassom",
-              "5 usos práticos no perioperatório",
-              "Acesso quando e de onde quiser",
             ],
           },
           {
@@ -331,28 +350,37 @@ export const COURSES: Course[] = [
       },
       lead: "O ultrassom só ajuda quando você reconhece o que está na tela. O curso começa exatamente aí: você aprende a ler a imagem antes de agulhar.",
       ctaLabel: "Quero fazer o Anest US",
-      video: {
-        src: "https://player.vimeo.com/video/1126957904?autoplay=0&loop=1&autopause=1&playsinline=1",
-        title: "Preview MedCof Anest US",
-      },
-      proof: {
-        stat: "+100",
-        statLabel: "alunos já fizeram o treinamento presencial",
-        title: "Quem fez conta o que mudou",
-        quotes: [
+      curriculum: CURRICULUM,
+      sections: ANEST_US_SECTIONS,
+      pricing: {
+        title: "Quanto custa o Anest US Online",
+        lead: "Acesso ao curso completo, com os 27 bloqueios e os 5 usos práticos do ultrassom.",
+        plans: [
           {
-            text: "Foi um diferencial, porque na minha residência não tinha muita mão e agora eu aprendi.",
-            // TODO: trocar pelo nome real de quem disse.
-            author: "Aluno do Hands On Anest US",
+            name: "Anest US Online",
+            badge: "Curso completo",
+            installment: "R$ 208,08",
+            cash: "ou à vista por R$ 2.497,00",
+            featured: true,
+            bullets: [
+              "27 bloqueios guiados por ultrassom",
+              "5 usos práticos no perioperatório",
+              "Anatomia marcada na tela, bloqueio por bloqueio",
+              "Acesso quando e de onde quiser",
+            ],
           },
           {
-            text: "Mesmo depois de 10 anos de formado e sem nunca ter tido contato com ultrassom, o Dr. Lucas Rodrigues pegou na minha mão e me ensinou. Foi excelente, indico a todos.",
-            author: "Aluno do Hands On Anest US",
+            name: "Quer também a prática presencial?",
+            installment: "R$ 416,42",
+            cash: "ou à vista por R$ 4.997,00",
+            note: "O Hands On já inclui todo o conteúdo do Anest US Online.",
+            bullets: [
+              "Tudo do Anest US Online",
+              "Dois dias de imersão presencial em São Paulo",
+            ],
           },
         ],
       },
-      curriculum: CURRICULUM,
-      sections: ANEST_US_SECTIONS,
       faculty: FACULTY,
     },
   },

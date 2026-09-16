@@ -867,29 +867,29 @@ export const TRACKS: Record<string, TrackPageContent> = {
         cta: "Quero me inscrever",
       },
     ],
-    storyTitle: "O que muda na sua carreira quando o título sai",
+    storyTitle: "O TSA pode transformar a sua carreira",
     storyLead:
-      "São quatro coisas que mudam de verdade no seu dia a dia depois que o título sai.",
+      "Veja como ser mais reconhecido e ganhar mais com o TSA.",
     storyBody: [],
     storyPoints: [
       {
         n: "01",
-        title: "Você deixa de ser mais um currículo",
+        title: "Você se diferencia entre os pares",
         body: "Quando o serviço precisa escolher, o título coloca você na frente.",
       },
       {
         n: "02",
-        title: "As portas de chefia se abrem",
+        title: "Oportunidades surgem",
         body: "Chefia de serviço, coordenação de departamento e liderança hospitalar costumam pedir o título já no edital.",
       },
       {
         n: "03",
-        title: "Você passa a formar gente",
+        title: "Seja um formador de novos anestesistas",
         body: "Com o título você pode dar aula e ser preceptor de CET/SBA, formando os residentes que vêm depois de você.",
       },
       {
         n: "04",
-        title: "Você negocia de outro lugar",
+        title: "Ganhe mais",
         body: "Cooperativas e escalas de alta complexidade pagam mais para quem tem o título. Boa parte dessas vagas nem chega a abrir para quem não tem.",
       },
     ],

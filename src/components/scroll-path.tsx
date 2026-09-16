@@ -41,12 +41,13 @@ function buildCurve({ width, height, stops }: Box, variant: Variant) {
     prevY = y;
   });
 
-  // Tail: one last swing so the line leaves the section still winding.
+  // Tail: a short hook after the last stop, só para a linha não parar seca.
   const side = stops.length % 2 === 0 ? 1 : -1;
-  const dy = Math.max(height - prevY, 1);
-  d += ` C${cx + swing * side} ${prevY + dy * 0.4}, ${cx + swing * side} ${
-    height - dy * 0.2
-  }, ${cx} ${height}`;
+  const tail = Math.min(Math.max(height - prevY, 1), 160);
+  const endY = prevY + tail;
+  d += ` C${cx + swing * side * 0.45} ${prevY + tail * 0.45}, ${
+    cx + swing * side * 0.3
+  } ${endY - tail * 0.2}, ${cx} ${endY}`;
 
   return d;
 }
@@ -125,20 +126,30 @@ export function ScrollPath({
 
     let frame = 0;
 
+    // The drawn head follows the middle of the viewport, so the line is
+    // always where the reader is looking instead of racing ahead.
+    const lengthAtY = (target: number) => {
+      let low = 0;
+      let high = length;
+      for (let i = 0; i < 12; i += 1) {
+        const mid = (low + high) / 2;
+        if (line.getPointAtLength(mid).y < target) low = mid;
+        else high = mid;
+      }
+      return low;
+    };
+
     const paint = () => {
       frame = 0;
 
       const rect = track.getBoundingClientRect();
-      const start = window.innerHeight * 0.72;
-      const span = Math.max(rect.height + start - window.innerHeight * 0.34, 1);
-      const progress = Math.min(Math.max((start - rect.top) / span, 0), 1);
+      const focus = window.innerHeight * 0.58;
+      const head = Math.min(Math.max(focus - rect.top, 0), rect.height);
 
-      line.style.strokeDashoffset = `${length * (1 - progress)}`;
+      line.style.strokeDashoffset = `${length - lengthAtY(head)}`;
 
-      // Where the drawn head actually is, in track coordinates.
-      const head = line.getPointAtLength(length * progress).y;
       box.stops.forEach((y, index) => {
-        stops[index]?.classList.toggle("is-reached", head >= y - 24);
+        stops[index]?.classList.toggle("is-reached", head >= y - 170);
       });
     };
 

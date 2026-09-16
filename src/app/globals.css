@@ -1397,27 +1397,26 @@ li {
     box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Brilho vermelho discreto no topo do card, da marca. */
+/* Filete da marca no topo do card, em vez do brilho que sujava o fundo. */
 .apple-tile::before {
   position: absolute;
-  top: -6rem;
-  left: 50%;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 0;
-  width: 22rem;
-  height: 12rem;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(193, 39, 45, 0.16) 0%,
-    rgba(193, 39, 45, 0) 68%
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-600),
+    rgba(193, 39, 45, 0.25)
   );
   content: "";
-  opacity: 0.85;
+  opacity: 0;
   pointer-events: none;
-  transform: translateX(-50%);
   transition: opacity 0.35s ease;
 }
 
+.apple-tile.is-featured::before,
 .apple-tile > * {
   position: relative;
   z-index: 1;
@@ -2186,10 +2185,10 @@ li {
   position: relative;
   z-index: 2;
   display: grid;
-  min-height: 42rem;
-  max-width: 78rem;
+  min-height: 46rem;
+  max-width: 82rem;
   margin: 3rem auto 0;
-  grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 1.75fr);
+  grid-template-columns: minmax(13rem, 0.48fr) minmax(0, 2fr);
   gap: 1rem;
   border: 1px solid rgba(35, 35, 35, 0.08);
   border-radius: 2rem;
@@ -4055,7 +4054,9 @@ li {
   gap: 1rem;
   overflow-x: auto;
   padding: 0.15rem 0.15rem 1rem;
-  scroll-behavior: smooth;
+  /* Sem `scroll-behavior: smooth`: com ele, o incremento por frame do
+     autoscroll vira uma animação nova a cada quadro e o trilho trava.
+     Os botões animam via scrollBy({behavior:"smooth"}). */
   scrollbar-width: none;
 }
 
@@ -5453,9 +5454,40 @@ li {
 }
 
 /* Barra de evento: marca visualmente que o usuário saiu da página do TSA. */
+/* Barra do evento fixa no topo: some do fluxo e fica sempre acessível. */
 .event-bar {
+  position: sticky;
+  top: 0;
+  z-index: 45;
   background: linear-gradient(90deg, #1c1c1f, #37373c 70%);
   color: #fff;
+}
+
+/* Divisão suave entre a marca e a copy do hero. */
+[data-theme="tsaoral"] .event-logo {
+  position: relative;
+  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+[data-theme="tsaoral"] .event-logo::after {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  width: min(34rem, 72%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(35, 35, 35, 0.16) 30%,
+    rgba(35, 35, 35, 0.16) 70%,
+    transparent
+  );
+  content: "";
+  transform: translateX(50%);
+}
+
+[data-theme="tsaoral"] .apple-hero {
+  padding-top: clamp(2rem, 4vw, 3rem);
 }
 
 .event-bar-inner {
@@ -7210,5 +7242,85 @@ li {
 
   .course-proof .course-video {
     order: -1;
+  }
+}
+
+/* Chips de data, local e vagas no topo do curso. */
+.course-facts.is-hero {
+  margin-top: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.course-facts.is-hero span {
+  border: 1px solid rgba(35, 35, 35, 0.1);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.9rem;
+}
+
+.course-detail-lead {
+  margin-top: 1.1rem;
+}
+
+/* Com dois planos, os cards não precisam ocupar a largura toda. */
+.course-plans:has(article:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 54rem;
+  margin-inline: auto;
+}
+
+/* ── Sede do treinamento ──────────────────────────────────────────── */
+.venue {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.venue-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 24rem;
+  border-radius: 1.9rem;
+  background: #f5f5f7;
+  box-shadow: 0 18px 44px rgba(35, 35, 35, 0.12);
+}
+
+.venue-image {
+  object-fit: cover;
+}
+
+.venue-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  list-style: none;
+  text-align: left;
+}
+
+.venue-list li {
+  display: grid;
+  align-items: start;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.venue-list svg {
+  margin-top: 0.15rem;
+  color: var(--action-green);
+}
+
+@media (max-width: 900px) {
+  .venue {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-media {
+    min-height: 18rem;
   }
 }

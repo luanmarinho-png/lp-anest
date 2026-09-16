@@ -1,6 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { CalendarDays, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+  CheckCircle2,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { EventBack } from "@/components/event-back";
 import { ScrollPath } from "@/components/scroll-path";
 import {
@@ -96,6 +102,14 @@ const FACULTY = [
       "Membro do núcleo de anestesia cardiovascular da SAESP",
     ],
   },
+];
+
+const VENUE = [
+  "Salas de simulação realística",
+  "Equipamentos e monitores de última geração",
+  "Refeição no local nos dois dias",
+  "Estacionamento na sede",
+  "Pinheiros, região bem localizada de São Paulo",
 ];
 
 const INCLUDED = [
@@ -204,6 +218,34 @@ export default function Page() {
             <MapPin className="size-4" strokeWidth={2.2} aria-hidden />
             Treinamento Hands On presencial · Sede João Moura, São Paulo
           </p>
+        </div>
+      </AppleChapter>
+
+      <AppleChapter
+        id="sede"
+        eyebrow="A sede"
+        title="Estrutura completa para receber você"
+        body="Os dois dias acontecem na nossa sede em Pinheiros, montada para você chegar, treinar e não se preocupar com mais nada."
+      >
+        <div className="venue">
+          <div className="venue-media">
+            <Image
+              src="/images/sede/sede-joao-moura.jpg"
+              alt="Sede MedCof na Rua João Moura, em Pinheiros, São Paulo"
+              fill
+              sizes="(max-width: 900px) 92vw, 52vw"
+              quality={90}
+              className="venue-image"
+            />
+          </div>
+          <ul className="venue-list">
+            {VENUE.map((item) => (
+              <li key={item}>
+                <CheckCircle2 className="size-5" strokeWidth={2.2} aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </AppleChapter>
 
