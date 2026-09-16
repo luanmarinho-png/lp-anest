@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import type { NumberedItem } from "@/lib/content";
 
 type Box = { width: number; height: number; stops: number[] };
+type Variant = "serpentine" | "ladder";
 
 /**
  * Winding path that draws itself as the reader scrolls.
@@ -18,7 +19,13 @@ type Box = { width: number; height: number; stops: number[] };
  * Technique: SVG path drawing on scroll (getTotalLength + dashoffset),
  * with each stop sitting on a node of the curve.
  */
-function buildCurve({ width, height, stops }: Box) {
+function buildCurve({ width, height, stops }: Box, variant: Variant) {
+  if (variant === "ladder") {
+    // Trilho reto encostado à esquerda: os cards ficam ao lado dele.
+    const x = Math.min(width * 0.06, 42);
+    return `M${x} 0 L${x} ${height}`;
+  }
+
   const cx = width / 2;
   const swing = Math.min(width * 0.34, 230);
   if (stops.length === 0) return `M${cx} 0 L${cx} ${height}`;
@@ -50,6 +57,7 @@ export function ScrollPath({
   points,
   ctaHref,
   ctaLabel,
+  variant = "serpentine",
   id = "metodo",
 }: {
   title: string;
@@ -57,6 +65,8 @@ export function ScrollPath({
   points: NumberedItem[];
   ctaHref?: string;
   ctaLabel?: string;
+  /** "serpentine" serpenteia no centro; "ladder" corre reto na lateral. */
+  variant?: Variant;
   id?: string;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -147,10 +157,14 @@ export function ScrollPath({
     };
   }, [box]);
 
-  const curve = buildCurve(box);
+  const curve = buildCurve(box, variant);
 
   return (
-    <section ref={sectionRef} id={id} className="apple-section scroll-path">
+    <section
+      ref={sectionRef}
+      id={id}
+      className={`apple-section scroll-path is-${variant}`}
+    >
       <div className="scroll-path-inner">
         <div className="scroll-path-head">
           <h2 className="scroll-path-title">{title}</h2>

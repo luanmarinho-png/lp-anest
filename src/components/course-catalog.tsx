@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import {
   ArrowLeft,
@@ -10,7 +8,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import Link from "next/link";
 import { WHATSAPP_URL } from "@/lib/site";
 import {
   VideoTestimonials,
@@ -95,41 +93,35 @@ export type CourseSchedule = {
   }[];
 };
 
+/**
+ * Each course lives at its own URL (/aperfeicoamento/<id>), so campanhas
+ * can point straight at one course and the page stays shareable. The
+ * catalogue and the detail are the same component, picked by `openId`.
+ */
 export function CourseCatalog({
   courses,
   title,
   lead,
+  openId = null,
+  basePath = "/aperfeicoamento",
 }: {
   courses: Course[];
   title: string;
   lead: string;
+  openId?: string | null;
+  basePath?: string;
 }) {
-  const [openId, setOpenId] = useState<string | null>(null);
-  const anchorRef = useRef<HTMLDivElement>(null);
   const open = courses.find((course) => course.id === openId) ?? null;
-
-  const scrollToAnchor = () => {
-    requestAnimationFrame(() => {
-      anchorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  };
 
   return (
     <section id="cursos" className="apple-section">
-      <div ref={anchorRef} className="apple-module course-shell">
+      <div className="apple-module course-shell">
         {open?.detail ? (
           <article className="course-detail" key={open.id}>
-            <button
-              type="button"
-              className="fase2-back"
-              onClick={() => {
-                setOpenId(null);
-                scrollToAnchor();
-              }}
-            >
+            <Link href={basePath} className="fase2-back" scroll={false}>
               <ArrowLeft className="size-4" strokeWidth={2.4} aria-hidden />
               <span>Ver todos os cursos</span>
-            </button>
+            </Link>
 
             <header className="course-detail-head">
               {open.detail.logo ? (
@@ -437,13 +429,9 @@ export function CourseCatalog({
                     {soon ? (
                       <span className="course-cta is-disabled">Em breve</span>
                     ) : (
-                      <button
-                        type="button"
+                      <Link
+                        href={`${basePath}/${course.id}`}
                         className="course-cta"
-                        onClick={() => {
-                          setOpenId(course.id);
-                          scrollToAnchor();
-                        }}
                       >
                         Conhecer
                         <ArrowRight
@@ -451,7 +439,7 @@ export function CourseCatalog({
                           strokeWidth={2.4}
                           aria-hidden
                         />
-                      </button>
+                      </Link>
                     )}
                   </article>
                 );

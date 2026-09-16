@@ -161,6 +161,7 @@ export default function Page() {
         title="Saber conduzir a sala não é o mesmo que saber responder à banca"
         lead="Muito anestesiologista experiente escorrega aqui, confiando que a rotina do centro cirúrgico basta."
         points={DIAGNOSIS}
+        variant="ladder"
         ctaHref="#estrutura"
         ctaLabel="Ver como o treinamento funciona"
       />
