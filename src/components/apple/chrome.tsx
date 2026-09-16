@@ -51,11 +51,14 @@ export function AppleHero({
   kicker,
   title,
   lead,
+  professor,
   children,
 }: {
   kicker?: string;
   title: string;
   lead?: string;
+  /** Credential card pinned over the professor in the hero art. */
+  professor?: { name: string; role: string; credentials: string[] };
   children?: React.ReactNode;
 }) {
   return (
@@ -75,6 +78,18 @@ export function AppleHero({
           ) : null}
         </div>
         {children}
+
+        {professor ? (
+          <aside className="hero-credentials">
+            <p className="hero-credentials-name">{professor.name}</p>
+            <p className="hero-credentials-role">{professor.role}</p>
+            <ul>
+              {professor.credentials.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </aside>
+        ) : null}
       </section>
     </SectionReveal>
   );
@@ -86,6 +101,7 @@ export function AppleChapter({
   title,
   body,
   proof,
+  underline,
   children,
   alt,
 }: {
@@ -95,6 +111,8 @@ export function AppleChapter({
   body?: string;
   /** Short credibility line, shown as chips under the body. */
   proof?: { label: string; items: string[] };
+  /** Phrase inside `body` that gets the hand-drawn underline. */
+  underline?: string;
   children?: React.ReactNode;
   alt?: boolean;
 }) {
@@ -116,7 +134,7 @@ export function AppleChapter({
               </h2>
               {body ? (
                 <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-7 text-[var(--muted)] text-pretty sm:text-[19px]">
-                  {body}
+                  <Underlined text={body} phrase={underline} />
                 </p>
               ) : null}
               {proof ? (
@@ -137,6 +155,22 @@ export function AppleChapter({
         </div>
       </section>
     </SectionReveal>
+  );
+}
+
+/** Draws the underline under one phrase when the block scrolls in. */
+function Underlined({ text, phrase }: { text: string; phrase?: string }) {
+  if (!phrase) return <>{text}</>;
+
+  const at = text.indexOf(phrase);
+  if (at < 0) return <>{text}</>;
+
+  return (
+    <>
+      {text.slice(0, at)}
+      <span className="underline-sweep">{phrase}</span>
+      {text.slice(at + phrase.length)}
+    </>
   );
 }
 

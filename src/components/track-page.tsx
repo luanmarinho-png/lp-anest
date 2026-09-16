@@ -69,6 +69,7 @@ export function AppleProductPage({
         title={data.itemsTitle ?? "O que entra na trilha"}
         body={data.itemsLead}
         proof={data.itemsProof}
+        underline={data.itemsUnderline}
       >
         <Items data={data} />
         {data.offers?.length || data.modalities.length > 0 ? (
@@ -168,7 +169,12 @@ export function AppleProductPage({
 
   return (
     <ProductShell theme={theme}>
-      <AppleHero kicker={data.eyebrow} title={data.title} lead={data.lead}>
+      <AppleHero
+        kicker={data.eyebrow}
+        title={data.title}
+        lead={data.lead}
+        professor={data.heroProfessor}
+      >
         <AppleCtas
           primaryHref={`#${modelsId}`}
           primary={heroPrimary}

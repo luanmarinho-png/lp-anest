@@ -86,6 +86,7 @@ export type TrackPageContent = {
   itemsTitle?: string;
   itemsLead?: string;
   itemsProof?: { label: string; items: string[] };
+  itemsUnderline?: string;
   items: NumberedItem[];
   highlight?: FeatureBlock;
   /** CTA that closes the resources section. */
@@ -93,6 +94,8 @@ export type TrackPageContent = {
   ctaNote?: string;
   /** Sticky bar with the entry price, shown after the hero. */
   offerBar?: { label: string; price: string; cta: string };
+  /** Credential card over the professor in the hero. */
+  heroProfessor?: { name: string; role: string; credentials: string[] };
 };
 
 export const HOME_INTRO = {
@@ -259,6 +262,14 @@ export const HOME_CTA = {
 export const TRACKS: Record<string, TrackPageContent> = {
   "residentes-sba": {
     slug: "residentes-sba",
+    heroProfessor: {
+      name: "Dr. Bruce Sousa",
+      role: "Coordenador MedCof Anest",
+      credentials: [
+        "Anestesiologista pelo Hospital Sírio-Libanês",
+        "Preceptor de Residência Médica",
+      ],
+    },
     itemsCta: "Ver preparatórios para o meu ano",
     offerBar: {
       label: "Extensivo MedCof Anest",
@@ -354,6 +365,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     itemsTitle: "Tudo o que você precisa em um só lugar",
     itemsLead:
       "Desenvolvido por anestesiologistas formados pelos maiores centros de referência do país.",
+    itemsUnderline: "anestesiologistas formados pelos maiores centros de referência do país",
     itemsProof: {
       label: "Formação do corpo docente",
       items: ["H. Sírio-Libanês", "HAOC", "USP-SP", "IAMSPE"],
@@ -407,6 +419,14 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   "residentes-mec": {
     slug: "residentes-mec",
+    heroProfessor: {
+      name: "Dr. Luan Marinho",
+      role: "Coordenador MedCof Anest",
+      credentials: [
+        "Anestesiologista pelo Hospital Sírio-Libanês",
+        "Pós-graduação em Dor pelo H. Sírio-Libanês",
+      ],
+    },
     itemsCta: "Ver preparatórios do TEA",
     offerBar: {
       label: "Preparatório para o TEA",
@@ -592,6 +612,14 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   tea: {
     slug: "tea",
+    heroProfessor: {
+      name: "Dr. Gustavo Minas",
+      role: "Professor MedCof Anest",
+      credentials: [
+        "Título de Especialista em Anestesiologia (TEA)",
+        "Anestesiologista e professor da trilha TEA",
+      ],
+    },
     itemsCta: "Ver preparatórios do TEA",
     offerBar: {
       label: "Preparatório TEA",
@@ -781,6 +809,15 @@ export const TRACKS: Record<string, TrackPageContent> = {
   },
   tsa: {
     slug: "tsa",
+    heroProfessor: {
+      name: "Dr. Lucas Rodrigues",
+      role: "Coordenador MedCof Anest TSA",
+      credentials: [
+        "Título Superior de Anestesiologia (TSA/SBA)",
+        "Residência pelo Hospital Sírio-Libanês",
+        "Preceptor de Residência Médica CET/SBA",
+      ],
+    },
     itemsCta: "Ver preparatórios do TSA",
     offerBar: {
       label: "Preparatório TSA",

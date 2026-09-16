@@ -481,8 +481,8 @@ li {
 }
 
 [data-theme="tea"] .apple-hero::after {
-  background: url("/images/professors/alessandro-hq.png") right 1% bottom -7rem /
-    auto 92% no-repeat;
+  background: url("/images/professors/gustavo-minas-hq.png") right 2% bottom -3rem /
+    auto 84% no-repeat;
 }
 
 [data-theme="tsa"] .apple-hero::after {
@@ -2185,11 +2185,11 @@ li {
   position: relative;
   z-index: 2;
   display: grid;
-  min-height: 46rem;
-  max-width: 82rem;
+  min-height: 48rem;
+  max-width: 84rem;
   margin: 3rem auto 0;
-  grid-template-columns: minmax(13rem, 0.48fr) minmax(0, 2fr);
-  gap: 1rem;
+  grid-template-columns: minmax(12rem, 0.4fr) minmax(0, 2.3fr);
+  gap: 0.75rem;
   border: 1px solid rgba(35, 35, 35, 0.08);
   border-radius: 2rem;
   background: #fff;
@@ -7458,5 +7458,136 @@ li {
   .offer-bar {
     transition: opacity 0.2s ease;
     transform: none;
+  }
+}
+
+
+/* Cartão com as credenciais do professor, sobre a arte do hero.
+   Precisa ganhar de `.product-shell … .apple-hero > *`, que põe todos os
+   filhos do hero em `position: relative`. */
+.product-shell[data-theme] .apple-hero aside.hero-credentials {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  max-width: 19rem;
+  border: 1px solid rgba(35, 35, 35, 0.08);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 1rem 1.15rem;
+  box-shadow: 0 18px 44px rgba(35, 35, 35, 0.14);
+  text-align: left;
+  animation: hero-card-in 0.7s cubic-bezier(0.2, 0, 0, 1) 0.5s both;
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+/* O card acompanha o lado em que o professor está. */
+.product-shell[data-theme="sba"] .apple-hero aside.hero-credentials,
+.product-shell[data-theme="mec"] .apple-hero aside.hero-credentials,
+.product-shell[data-theme="tea"] .apple-hero aside.hero-credentials,
+.product-shell[data-theme="craft"] .apple-hero aside.hero-credentials {
+  right: clamp(1rem, 2.5vw, 2rem);
+  left: auto;
+}
+
+.product-shell[data-theme="tsa"] .apple-hero aside.hero-credentials {
+  left: clamp(1rem, 2.5vw, 2rem);
+  right: auto;
+}
+
+.hero-credentials-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.hero-credentials-role {
+  margin-top: 0.1rem;
+  color: var(--brand-600);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hero-credentials ul {
+  display: grid;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.hero-credentials li {
+  position: relative;
+  padding-left: 0.9rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.hero-credentials li::before {
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--brand-600);
+  content: "";
+}
+
+@keyframes hero-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-credentials {
+    display: none;
+  }
+}
+
+/* Sublinhado que é traçado quando a seção entra na tela. */
+.underline-sweep {
+  position: relative;
+  color: var(--ink);
+  font-weight: 600;
+  white-space: normal;
+  box-decoration-break: clone;
+  background-image: linear-gradient(
+    90deg,
+    rgba(193, 39, 45, 0.45),
+    rgba(193, 39, 45, 0.45)
+  );
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 0.32em;
+}
+
+.section-reveal.is-in .underline-sweep {
+  animation: underline-sweep 1.1s cubic-bezier(0.2, 0, 0, 1) 0.35s forwards;
+}
+
+@keyframes underline-sweep {
+  to {
+    background-size: 100% 0.32em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .underline-sweep {
+    background-size: 100% 0.32em;
+  }
+
+  .section-reveal.is-in .underline-sweep {
+    animation: none;
+  }
+
+  .hero-credentials {
+    animation: none;
   }
 }
