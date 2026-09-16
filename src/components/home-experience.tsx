@@ -44,7 +44,7 @@ const FEATURES = [
     kicker: "Videoaulas",
     title: "Aulas diretas, sem perder profundidade",
     body: "Conteúdo produzido por anestesiologistas, separado em blocos que cabem entre plantões, salas e revisões.",
-    image: "/images/features/aulas.png",
+    image: "/images/features/aulas-macbook.png",
   },
   {
     kicker: "Flashcards",
@@ -59,16 +59,16 @@ const FEATURES = [
     image: "/images/features/fichas-resumo-anest.jpg",
   },
   {
-    kicker: "Cronograma",
-    title: "Um plano de estudo que mostra o que vem agora",
-    body: "A preparação acompanha o calendário da SBA e distribui conteúdo, questões e revisões com previsibilidade.",
-    image: "/images/features/cronograma.png",
+    kicker: "Metodologia",
+    title: "Metodologia completa em cada aula",
+    body: "Além da aula, você recebe questões de nivelamento, flashcards e material didático para cada tema.",
+    image: "/images/features/metodologia-unidade.png",
   },
   {
     kicker: "Comentários",
     title: "Entenda a resposta e o raciocínio da banca",
     body: "Resoluções em texto e vídeo analisam cada alternativa para que você reconheça padrões e corrija lacunas.",
-    image: "/images/features/questoes.png",
+    image: "/images/features/questoes-comentadas-phones.png",
   },
   {
     kicker: "Inteligência artificial MedCof",
