@@ -14,6 +14,39 @@ export const metadata: Metadata = {
 
 const TRACKS: SecondPhaseTrack[] = [
   {
+    id: "tsa",
+    eyebrow: "Prova oral · TSA",
+    title: "TSA Oral",
+    teaser:
+      "Dois dias de treino presencial, com arguição simulada no modelo da banca e turma pequena.",
+    href: "/tsa-oral",
+    logo: {
+      src: "/images/tsa-oral/tsa-oral-logo.png",
+      alt: "Hands On MedCof Anest TSA Oral",
+    },
+    lead: "Na oral não adianta saber: tem que responder rápido, no formato certo e sem travar. Isso só vem com treino de verdade, presencial.",
+    advantages: [
+      {
+        title: "Dois dias de Hands On em São Paulo",
+        body: "Imersão na sede João Moura, com estações montadas exatamente no formato da SBA.",
+      },
+      {
+        title: "Arguição simulada com quem já foi banca",
+        body: "Preceptores titulados TSA conduzem a arguição como no dia real.",
+      },
+      {
+        title: "Feedback um a um",
+        body: "Turma pequena de propósito: cada participante ouve o que precisa corrigir na própria execução.",
+      },
+    ],
+    cta: { href: "/tsa-oral", label: "Conhecer o TSA Oral" },
+    note: "Turma com vagas limitadas · 17 e 18 de outubro.",
+    image: {
+      src: "/images/professors/rafael-3.png",
+      alt: "Rafael Romaro, preceptor titulado TSA da MedCof Anest",
+    },
+  },
+  {
     id: "tea",
     eyebrow: "Prova prática · TEA",
     title: "Segunda Fase TEA",
@@ -40,38 +73,6 @@ const TRACKS: SecondPhaseTrack[] = [
     image: {
       src: "/images/anest-home/mec-anesthesia-station-hq.png",
       alt: "Estação de anestesia em centro cirúrgico",
-    },
-  },
-  {
-    id: "tsa",
-    eyebrow: "Prova oral · TSA",
-    title: "TSA Oral",
-    teaser:
-      "Dois dias de treino presencial, com arguição simulada no modelo da banca e turma pequena.",
-    lead: "Na oral não adianta saber: tem que responder rápido, no formato certo e sem travar. Isso só vem com treino de verdade, presencial.",
-    logo: {
-      src: "/images/tsa-oral/tsa-oral-logo.png",
-      alt: "Hands On MedCof Anest TSA Oral",
-    },
-    advantages: [
-      {
-        title: "Dois dias de Hands On em São Paulo",
-        body: "Imersão na sede João Moura, com estações montadas exatamente no formato da SBA.",
-      },
-      {
-        title: "Arguição simulada com quem já foi banca",
-        body: "Preceptores titulados TSA conduzem a arguição como no dia real.",
-      },
-      {
-        title: "Feedback um a um",
-        body: "Turma pequena de propósito: cada participante ouve o que precisa corrigir na própria execução.",
-      },
-    ],
-    cta: { href: "/tsa-oral", label: "Conhecer o TSA Oral" },
-    note: "Turma com vagas limitadas · 17 e 18 de outubro.",
-    image: {
-      src: "/images/professors/rafael-3.png",
-      alt: "Rafael Romaro, preceptor titulado TSA da MedCof Anest",
     },
   },
 ];

@@ -1,9 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, MapPin, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarDays,
+  CheckCircle2,
+  MapPin,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { useRef, useState } from "react";
 import { WHATSAPP_URL } from "@/lib/site";
+import {
+  VideoTestimonials,
+  type Testimonial,
+} from "@/components/video-testimonials";
 
 export type CourseSection = {
   eyebrow: string;
@@ -37,6 +49,9 @@ export type Course = {
     /** Vimeo/YouTube embed shown right under the header. */
     video?: { src: string; title: string };
     curriculum?: CourseCurriculum;
+    /** Student videos, shown right after the header. */
+    testimonials?: Testimonial[];
+    pricing?: CoursePricing;
     schedule?: CourseSchedule;
     faculty?: {
       name: string;
@@ -45,6 +60,20 @@ export type Course = {
       image?: string;
     }[];
   };
+};
+
+export type CoursePricing = {
+  title: string;
+  lead: string;
+  plans: {
+    name: string;
+    badge?: string;
+    note?: string;
+    installment: string;
+    cash: string;
+    bullets: string[];
+    featured?: boolean;
+  }[];
 };
 
 export type CourseCurriculum = {
@@ -142,6 +171,16 @@ export function CourseCatalog({
                 <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
               </a>
             </header>
+
+            {open.detail.testimonials?.length ? (
+              <VideoTestimonials
+                variant="inline"
+                eyebrow="Depoimentos"
+                title="Quem já passou pelo Hands On"
+                lead="Alunos contando o que mudou na prática depois dos dois dias."
+                testimonials={open.detail.testimonials}
+              />
+            ) : null}
 
             {open.detail.video ? (
               <div className="course-video">
@@ -263,6 +302,61 @@ export function CourseCatalog({
                           </li>
                         ))}
                       </ol>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {open.detail.pricing ? (
+              <section className="course-pricing">
+                <div className="course-schedule-head">
+                  <p className="fase2-eyebrow">Investimento</p>
+                  <h3>{open.detail.pricing.title}</h3>
+                  <p>{open.detail.pricing.lead}</p>
+                </div>
+                <div className="course-plans">
+                  {open.detail.pricing.plans.map((plan) => (
+                    <article
+                      key={plan.name}
+                      className={plan.featured ? "is-featured" : ""}
+                    >
+                      {plan.badge ? (
+                        <p className="course-plan-badge">
+                          <Sparkles
+                            className="size-3.5"
+                            strokeWidth={2.4}
+                            aria-hidden
+                          />
+                          {plan.badge}
+                        </p>
+                      ) : null}
+                      <h4>{plan.name}</h4>
+                      <p className="course-plan-installment">
+                        <span>12x de</span> {plan.installment}
+                      </p>
+                      <p className="course-plan-cash">{plan.cash}</p>
+                      <ul>
+                        {plan.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                      {plan.note ? (
+                        <p className="course-plan-note">{plan.note}</p>
+                      ) : null}
+                      <a
+                        href={WHATSAPP_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="course-cta"
+                      >
+                        Quero me inscrever
+                        <ArrowRight
+                          className="size-4"
+                          strokeWidth={2.4}
+                          aria-hidden
+                        />
+                      </a>
                     </article>
                   ))}
                 </div>

@@ -18,6 +18,8 @@ export type SecondPhaseTrack = {
   logo?: { src: string; alt: string };
   image: { src: string; alt: string };
   soon?: boolean;
+  /** When set, the door navigates straight to this page. */
+  href?: string;
 };
 
 /**
@@ -131,14 +133,14 @@ export function SecondPhaseChooser({ tracks }: { tracks: SecondPhaseTrack[] }) {
                     )}
                   </span>
                   <span className="fase2-eyebrow">{track.eyebrow}</span>
-                  <strong>{track.title}</strong>
+                  {track.logo ? null : <strong>{track.title}</strong>}
                   <em>{track.teaser}</em>
                   <span className="fase2-door-cta">
                     {track.soon ? (
                       "Em breve"
                     ) : (
                       <>
-                        Ver o que está incluso
+                        Conhecer o curso
                         <ArrowRight
                           className="size-4"
                           strokeWidth={2.4}
@@ -155,6 +157,14 @@ export function SecondPhaseChooser({ tracks }: { tracks: SecondPhaseTrack[] }) {
                   <div key={track.id} className="fase2-door is-soon">
                     {body}
                   </div>
+                );
+              }
+
+              if (track.href) {
+                return (
+                  <Link key={track.id} href={track.href} className="fase2-door">
+                    {body}
+                  </Link>
                 );
               }
 

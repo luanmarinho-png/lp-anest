@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Play, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Play } from "lucide-react";
+import { useState } from "react";
 
 export type Testimonial = {
   id: string;
@@ -15,41 +15,42 @@ export type Testimonial = {
   poster?: string;
 };
 
+/**
+ * Student videos that play in place: clicking a card swaps its poster for
+ * the player, so nobody has to leave the page or close a dialog.
+ */
 export function VideoTestimonials({
   eyebrow,
   title,
   lead,
   testimonials,
+  variant = "section",
 }: {
   eyebrow: string;
   title: string;
   lead?: string;
   testimonials: Testimonial[];
+  /** "inline" drops the section chrome, for use inside another block. */
+  variant?: "section" | "inline";
 }) {
-  const [playing, setPlaying] = useState<Testimonial | null>(null);
-
-  useEffect(() => {
-    if (!playing) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setPlaying(null);
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", closeOnEscape);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [playing]);
+  const [playingId, setPlayingId] = useState<string | null>(null);
 
   if (testimonials.length === 0) return null;
 
+  const inline = variant === "inline";
+  const Shell = inline ? "div" : "section";
+
   return (
-    <section id="depoimentos" className="apple-section">
-      <div className="apple-module apple-module-alt testimonial-shell">
-        <div className="apple-module-content">
+    <Shell
+      id={inline ? undefined : "depoimentos"}
+      className={inline ? "course-testimonials" : "apple-section"}
+    >
+      <div
+        className={
+          inline ? "" : "apple-module apple-module-alt testimonial-shell"
+        }
+      >
+        <div className={inline ? "" : "apple-module-content"}>
           <div className="apple-stagger mx-auto max-w-5xl text-center">
             <p className="fase2-eyebrow">{eyebrow}</p>
             <h2 className="apple-chapter-title mx-auto mt-3 max-w-3xl">
@@ -63,66 +64,59 @@ export function VideoTestimonials({
           </div>
 
           <div className="testimonial-grid mx-auto mt-12 max-w-5xl">
-            {testimonials.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className="testimonial-card"
-                onClick={() => setPlaying(item)}
-                aria-label={`Ver o depoimento de ${item.name}`}
-              >
-                <span className="testimonial-media">
-                  {item.poster ? (
-                    <Image
-                      src={item.poster}
-                      alt=""
-                      fill
-                      sizes="(max-width: 900px) 88vw, 30vw"
-                      quality={90}
-                      className="testimonial-poster"
-                      aria-hidden
-                    />
+            {testimonials.map((item) => {
+              const isPlaying = playingId === item.id;
+
+              return (
+                <article key={item.id} className="testimonial-card">
+                  <div className="testimonial-media">
+                    {isPlaying ? (
+                      <video
+                        src={item.src}
+                        poster={item.poster}
+                        controls
+                        autoPlay
+                        playsInline
+                        onEnded={() => setPlayingId(null)}
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        className="testimonial-trigger"
+                        onClick={() => setPlayingId(item.id)}
+                        aria-label={`Assistir ao depoimento de ${item.name}`}
+                      >
+                        {item.poster ? (
+                          <Image
+                            src={item.poster}
+                            alt=""
+                            fill
+                            sizes="(max-width: 900px) 88vw, 30vw"
+                            quality={90}
+                            className="testimonial-poster"
+                            aria-hidden
+                          />
+                        ) : null}
+                        <span className="testimonial-play" aria-hidden>
+                          <Play className="size-5" strokeWidth={2.4} />
+                        </span>
+                      </button>
+                    )}
+                  </div>
+
+                  {item.quote ? (
+                    <p className="testimonial-quote">{item.quote}</p>
                   ) : null}
-                  <span className="testimonial-play" aria-hidden>
-                    <Play className="size-5" strokeWidth={2.4} />
-                  </span>
-                </span>
-                {item.quote ? (
-                  <p className="testimonial-quote">{item.quote}</p>
-                ) : null}
-                <p className="testimonial-name">
-                  <strong>{item.name}</strong>
-                  <span>{item.role}</span>
-                </p>
-              </button>
-            ))}
+                  <p className="testimonial-name">
+                    <strong>{item.name}</strong>
+                    <span>{item.role}</span>
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
-
-      {playing ? (
-        <div
-          className="testimonial-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Depoimento de ${playing.name}`}
-          onClick={() => setPlaying(null)}
-        >
-          <div
-            className="testimonial-player"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              aria-label="Fechar depoimento"
-              onClick={() => setPlaying(null)}
-            >
-              <X className="size-5" strokeWidth={2.2} aria-hidden />
-            </button>
-            <video src={playing.src} poster={playing.poster} controls autoPlay />
-          </div>
-        </div>
-      ) : null}
-    </section>
+    </Shell>
   );
 }

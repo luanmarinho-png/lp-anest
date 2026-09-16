@@ -7,10 +7,7 @@ import {
   ProductShell,
 } from "@/components/apple/chrome";
 import { CourseCatalog, type Course } from "@/components/course-catalog";
-import {
-  VideoTestimonials,
-  type Testimonial,
-} from "@/components/video-testimonials";
+import type { Testimonial } from "@/components/video-testimonials";
 import { WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -158,6 +155,30 @@ const ANEST_US_SECTIONS = [
   },
 ];
 
+const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "pablo",
+    name: "Pablo",
+    role: "Aluno do Hands On Anest US",
+    src: "/videos/depoimentos/pablo.mp4",
+    poster: "/images/anest-us/depoimento-pablo.jpg",
+  },
+  {
+    id: "sandra",
+    name: "Sandra",
+    role: "Aluna do Hands On Anest US",
+    src: "/videos/depoimentos/sandra.mp4",
+    poster: "/images/anest-us/depoimento-sandra.jpg",
+  },
+  {
+    id: "lucas",
+    name: "Lucas",
+    role: "Aluno do Hands On Anest US",
+    src: "/videos/depoimentos/lucas.mp4",
+    poster: "/images/anest-us/depoimento-lucas.jpg",
+  },
+];
+
 const COURSES: Course[] = [
   {
     id: "hands-on-anest-us",
@@ -270,6 +291,47 @@ const COURSES: Course[] = [
           },
         ],
       },
+      testimonials: TESTIMONIALS,
+      pricing: {
+        title: "Escolha como você quer fazer",
+        lead: "O Hands On já inclui todo o conteúdo online. Se você é aluno do Extensivo, fale com a equipe para a condição exclusiva.",
+        plans: [
+          {
+            name: "Hands On Anest US",
+            badge: "Online mais presencial",
+            installment: "R$ 416,42",
+            cash: "ou à vista por R$ 4.997,00",
+            featured: true,
+            bullets: [
+              "Dois dias de imersão presencial em São Paulo",
+              "27 bloqueios e 5 usos práticos do ultrassom",
+              "Anest US Online incluso",
+              "Turma de 25 alunos",
+            ],
+          },
+          {
+            name: "Anest US Online",
+            installment: "R$ 208,08",
+            cash: "ou à vista por R$ 2.497,00",
+            bullets: [
+              "27 bloqueios guiados por ultrassom",
+              "5 usos práticos no perioperatório",
+              "Acesso quando e de onde quiser",
+            ],
+          },
+          {
+            name: "Aluno do Extensivo MedCof Anest",
+            badge: "60% de desconto",
+            installment: "R$ 199,77",
+            cash: "ou à vista por R$ 1.997,00",
+            note: "Condição validada pela equipe comercial para alunos ativos ou novos inscritos no Extensivo.",
+            bullets: [
+              "Hands On Anest US completo",
+              "Exclusivo para aluno do Extensivo",
+            ],
+          },
+        ],
+      },
       faculty: FACULTY,
     },
   },
@@ -327,29 +389,6 @@ const COURSES: Course[] = [
   },
 ];
 
-const TESTIMONIALS: Testimonial[] = [
-  {
-    id: "pablo",
-    name: "Pablo",
-    role: "Aluno do Hands On Anest US",
-    src: "/videos/depoimentos/pablo.mp4",
-    poster: "/images/anest-us/depoimento-pablo.jpg",
-  },
-  {
-    id: "sandra",
-    name: "Sandra",
-    role: "Aluna do Hands On Anest US",
-    src: "/videos/depoimentos/sandra.mp4",
-    poster: "/images/anest-us/depoimento-sandra.jpg",
-  },
-  {
-    id: "lucas",
-    name: "Lucas",
-    role: "Aluno do Hands On Anest US",
-    src: "/videos/depoimentos/lucas.mp4",
-    poster: "/images/anest-us/depoimento-lucas.jpg",
-  },
-];
 
 export default function Page() {
   return (
@@ -393,13 +432,6 @@ export default function Page() {
         courses={COURSES}
         title="Todos os cursos de aperfeiçoamento"
         lead="O Hands On é o caminho completo: o conteúdo online mais dois dias escaneando em modelo vivo."
-      />
-
-      <VideoTestimonials
-        eyebrow="Depoimentos"
-        title="Quem já passou pelo Hands On"
-        lead="Alunos contando o que mudou na prática depois dos dois dias."
-        testimonials={TESTIMONIALS}
       />
 
       <GetCta
