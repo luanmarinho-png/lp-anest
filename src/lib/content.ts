@@ -266,7 +266,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
       name: "Dr. Bruce Sousa",
       role: "Coordenador MedCof Anest",
       credentials: [
-        "Anestesiologista pelo Hospital Sírio-Libanês",
+        "Anestesiologista pelo IAMSPE",
+        "Assistente no Hospital Sírio-Libanês",
         "Preceptor de Residência Médica",
       ],
     },
@@ -613,11 +614,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
   tea: {
     slug: "tea",
     heroProfessor: {
-      name: "Dr. Gustavo Minas",
-      role: "Professor MedCof Anest",
+      name: "Dr. Alessandro Silvestre",
+      role: "Coordenador MedCof Anest",
       credentials: [
         "Título de Especialista em Anestesiologia (TEA)",
-        "Anestesiologista e professor da trilha TEA",
+        "Anestesiologista pelo Hospital Alemão Oswaldo Cruz",
+        "Ex-preceptor de Residência Médica do H. Sírio-Libanês",
       ],
     },
     itemsCta: "Ver preparatórios do TEA",

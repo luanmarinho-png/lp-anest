@@ -147,14 +147,18 @@ export default function Page() {
       </div>
 
       <div className="event-logo">
-        <Image
-          src="/images/tsa-oral/tsa-oral-logo.png"
-          alt="Hands On MedCof Anest TSA Oral"
-          width={620}
-          height={222}
-          quality={100}
-          priority
-        />
+        {/* WebM com canal alpha: a vinheta roda sobre o fundo branco da
+            página, com a logo estática como fallback. */}
+        <video
+          className="event-intro"
+          poster="/images/tsa-oral/tsa-oral-logo.png"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source src="/videos/medcof-anest-intro.webm" type="video/webm" />
+        </video>
       </div>
 
       <AppleHero

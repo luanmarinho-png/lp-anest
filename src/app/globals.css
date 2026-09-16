@@ -481,8 +481,8 @@ li {
 }
 
 [data-theme="tea"] .apple-hero::after {
-  background: url("/images/professors/gustavo-minas-hq.png") right 2% bottom -3rem /
-    auto 84% no-repeat;
+  background: url("/images/professors/alessandro-hq.png") right 1% bottom -7rem /
+    auto 92% no-repeat;
 }
 
 [data-theme="tsa"] .apple-hero::after {
@@ -6772,9 +6772,19 @@ li {
   padding: clamp(2rem, 4vw, 3rem) 1.25rem 0;
 }
 
-.event-logo img {
+.event-logo img,
+.event-logo .event-intro {
   width: min(24rem, 74%);
   height: auto;
+}
+
+/* A vinheta roda uma vez e para na logo; o poster cobre os navegadores
+   que não reproduzem VP9 com alpha. */
+.event-intro {
+  display: block;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
 }
 
 
@@ -7468,16 +7478,18 @@ li {
 .product-shell[data-theme] .apple-hero aside.hero-credentials {
   position: absolute;
   z-index: 3;
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
-  max-width: 19rem;
-  border: 1px solid rgba(35, 35, 35, 0.08);
+  /* Baixo o bastante para não cobrir o rosto, sem encostar na borda. */
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  max-width: 18rem;
+  /* Cinza da marca em vez de branco translúcido: sobre o hero branco o
+     cartão precisa ter borda própria para não sumir. */
+  border: 1px solid rgba(35, 35, 35, 0.1);
   border-radius: 1.4rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: #f5f5f7;
   padding: 1rem 1.15rem;
-  box-shadow: 0 18px 44px rgba(35, 35, 35, 0.14);
+  box-shadow: 0 16px 40px rgba(35, 35, 35, 0.16);
   text-align: left;
   animation: hero-card-in 0.7s cubic-bezier(0.2, 0, 0, 1) 0.5s both;
-  backdrop-filter: saturate(180%) blur(10px);
 }
 
 /* O card acompanha o lado em que o professor está. */
@@ -7546,8 +7558,27 @@ li {
 }
 
 @media (max-width: 1023px) {
-  .hero-credentials {
+  .product-shell[data-theme] .apple-hero aside.hero-credentials {
+    position: static;
+    max-width: none;
+    margin: 1.5rem auto 0;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .hero-credentials ul {
     display: none;
+  }
+
+  .hero-credentials-name {
+    font-size: 0.95rem;
+  }
+
+  .hero-credentials-role {
+    font-size: 0.78rem;
   }
 }
 
@@ -7560,12 +7591,12 @@ li {
   box-decoration-break: clone;
   background-image: linear-gradient(
     90deg,
-    rgba(193, 39, 45, 0.45),
-    rgba(193, 39, 45, 0.45)
+    rgba(193, 39, 45, 0.85),
+    rgba(193, 39, 45, 0.85)
   );
   background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 0% 0.32em;
+  background-position: 0 92%;
+  background-size: 0% 0.14em;
 }
 
 .section-reveal.is-in .underline-sweep {
@@ -7574,13 +7605,13 @@ li {
 
 @keyframes underline-sweep {
   to {
-    background-size: 100% 0.32em;
+    background-size: 100% 0.14em;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .underline-sweep {
-    background-size: 100% 0.32em;
+    background-size: 100% 0.14em;
   }
 
   .section-reveal.is-in .underline-sweep {
