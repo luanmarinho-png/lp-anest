@@ -112,13 +112,12 @@ export const CURRICULUM = {
 export const ANEST_US_SECTIONS = [
   {
     eyebrow: "Como são as aulas",
-    title: "Você vê a mão, o probe e a tela ao mesmo tempo",
-    body: "Cada aula mostra o posicionamento real do probe no paciente lado a lado com a imagem que aparece no aparelho. E as estruturas entram marcadas com cor, para você fixar o mapa antes de treinar sem elas.",
+    title: "Aulas separadas por bloqueio",
+    body: "Vai fazer uma cirurgia de joelho? Aprenda de forma rápida só os bloqueios direcionados para esse procedimento.",
     bullets: [
-      "Gravadas no aparelho, com paciente real",
-      "Cada músculo e cada plano identificado na tela",
-      "Janela, plano e alvo de cada técnica",
-      "Treino com e sem as marcações",
+      "Gravações de mais de 25 bloqueios",
+      "Anatomia detalhada na tela para você fixar",
+      "Dicas de doses, agulhamento e macetes práticos",
     ],
     image: {
       src: "/images/anest-us/anest-us-aula-macbook.png",
@@ -335,6 +334,22 @@ export const COURSES: Course[] = [
       video: {
         src: "https://player.vimeo.com/video/1126957904?autoplay=0&loop=1&autopause=1&playsinline=1",
         title: "Preview MedCof Anest US",
+      },
+      proof: {
+        stat: "+100",
+        statLabel: "alunos já fizeram o treinamento presencial",
+        title: "Quem fez conta o que mudou",
+        quotes: [
+          {
+            text: "Foi um diferencial, porque na minha residência não tinha muita mão e agora eu aprendi.",
+            // TODO: trocar pelo nome real de quem disse.
+            author: "Aluno do Hands On Anest US",
+          },
+          {
+            text: "Mesmo depois de 10 anos de formado e sem nunca ter tido contato com ultrassom, o Dr. Lucas Rodrigues pegou na minha mão e me ensinou. Foi excelente, indico a todos.",
+            author: "Aluno do Hands On Anest US",
+          },
+        ],
       },
       curriculum: CURRICULUM,
       sections: ANEST_US_SECTIONS,

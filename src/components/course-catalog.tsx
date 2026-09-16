@@ -46,8 +46,9 @@ export type Course = {
     highlights?: string[];
     ctaLabel?: string;
     sections: CourseSection[];
-    /** Vimeo/YouTube embed shown right under the header. */
+    /** Vimeo/YouTube embed, shown inside the social proof block. */
     video?: { src: string; title: string };
+    proof?: CourseProof;
     curriculum?: CourseCurriculum;
     /** Student videos, shown right after the header. */
     testimonials?: Testimonial[];
@@ -60,6 +61,13 @@ export type Course = {
       image?: string;
     }[];
   };
+};
+
+export type CourseProof = {
+  stat: string;
+  statLabel: string;
+  title: string;
+  quotes: { text: string; author: string }[];
 };
 
 export type CoursePricing = {
@@ -176,19 +184,43 @@ export function CourseCatalog({
               />
             ) : null}
 
-            {open.detail.video ? (
-              <div className="course-video">
-                <div className="course-phone">
-                  <span className="course-phone-notch" aria-hidden />
-                  <iframe
-                    src={open.detail.video.src}
-                    title={open.detail.video.title}
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
+            {open.detail.proof || open.detail.video ? (
+              <section className="course-proof">
+                <div className="course-proof-copy">
+                  {open.detail.proof ? (
+                    <>
+                      <p className="course-proof-stat">
+                        {open.detail.proof.stat}
+                        <span>{open.detail.proof.statLabel}</span>
+                      </p>
+                      <h3>{open.detail.proof.title}</h3>
+                      <div className="course-quotes">
+                        {open.detail.proof.quotes.map((quote) => (
+                          <figure key={quote.text}>
+                            <blockquote>{quote.text}</blockquote>
+                            <figcaption>{quote.author}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </>
+                  ) : null}
                 </div>
-              </div>
+
+                {open.detail.video ? (
+                  <div className="course-video">
+                    <div className="course-phone">
+                      <span className="course-phone-notch" aria-hidden />
+                      <iframe
+                        src={open.detail.video.src}
+                        title={open.detail.video.title}
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ) : null}
+              </section>
             ) : null}
 
             {open.detail.curriculum ? (

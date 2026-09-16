@@ -6611,8 +6611,19 @@ li {
 
 /* Grade curricular em quatro blocos. */
 .course-curriculum {
-  padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-  border-top: 1px solid rgba(35, 35, 35, 0.08);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 0;
+  border-radius: 2rem;
+  background:
+    radial-gradient(
+        46rem 20rem at 50% 0%,
+        rgba(193, 39, 45, 0.09) 0%,
+        rgba(193, 39, 45, 0) 72%
+      )
+      no-repeat,
+    #f5f5f7;
+  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: 0 0 0 1px rgba(193, 39, 45, 0.14);
 }
 
 .course-curriculum-grid {
@@ -6624,8 +6635,9 @@ li {
 
 .course-curriculum-grid article {
   border-radius: 1.6rem;
-  background: #f5f5f7;
+  background: #fff;
   padding: clamp(1.4rem, 2vw, 1.8rem);
+  box-shadow: 0 0 0 1px rgba(35, 35, 35, 0.05);
   text-align: left;
 }
 
@@ -6757,7 +6769,8 @@ li {
 .course-plans {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  /* `stretch` iguala a altura; o CTA desce sozinho com o margin-top auto. */
+  align-items: stretch;
   margin-top: clamp(2rem, 4vw, 2.75rem);
   gap: 1.25rem;
 }
@@ -6826,10 +6839,20 @@ li {
 
 .course-plans ul {
   display: grid;
+  align-content: start;
   margin: 1.35rem 0 1.5rem;
   padding: 0;
   gap: 0.5rem;
   list-style: none;
+}
+
+/* Empurra o botão para a base, para os três alinharem. */
+.course-plans .course-cta {
+  margin-top: auto;
+}
+
+.course-plan-note {
+  margin-top: auto;
 }
 
 .course-plans li {
@@ -7105,5 +7128,87 @@ li {
 
   .course-section-overlay {
     width: 30%;
+  }
+}
+
+/* ── Prova social do curso ────────────────────────────────────────── */
+.course-proof {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  margin-top: clamp(1rem, 2vw, 2rem);
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.course-proof-stat {
+  display: flex;
+  flex-direction: column;
+  color: var(--brand-600);
+  font-size: clamp(3.2rem, 6vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.course-proof-stat span {
+  max-width: 22rem;
+  margin-top: 0.6rem;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.course-proof h3 {
+  margin-top: 2rem;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.course-quotes {
+  display: grid;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.course-quotes figure {
+  margin: 0;
+  border-left: 3px solid var(--brand-600);
+  border-radius: 0 1.2rem 1.2rem 0;
+  background: #f5f5f7;
+  padding: 1.1rem 1.3rem;
+}
+
+.course-quotes blockquote {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.course-quotes blockquote::before {
+  content: "“";
+}
+
+.course-quotes blockquote::after {
+  content: "”";
+}
+
+.course-quotes figcaption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .course-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .course-proof .course-video {
+    order: -1;
   }
 }
