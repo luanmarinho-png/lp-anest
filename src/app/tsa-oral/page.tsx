@@ -1,0 +1,293 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import {
+  ArrowLeft,
+  CalendarDays,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
+import {
+  AppleChapter,
+  AppleCtas,
+  AppleHero,
+  GetCta,
+  ProductShell,
+} from "@/components/apple/chrome";
+import { WHATSAPP_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "TSA Oral",
+  description:
+    "Treinamento presencial Hands On para a prova oral do TSA/SBA: estações no formato oficial, casos clínicos e feedback individualizado de preceptores titulados.",
+};
+
+const PHASES = [
+  {
+    n: "Fase 1",
+    title: "Base teórica e banco de questões",
+    when: "A partir de setembro",
+    body: "Conteúdo autoral, banco de questões e dois simulados online. Bônus: liberação de um bloco de aulas do Extensivo.",
+  },
+  {
+    n: "Fase 2",
+    title: "Blocos temáticos e casos clínicos",
+    when: "Outubro",
+    body: "Discussão semanal por Zoom e análise de casos no grupo VIP de WhatsApp, com foco em monitorização hemodinâmica, neuroanestesia, tórax, transplante e miscelânea.",
+  },
+  {
+    n: "Fase 3",
+    title: "Treinamento Hands On presencial",
+    when: "17 e 18 de outubro",
+    body: "Dois dias de imersão na sede João Moura (São Paulo), com estações montadas no formato da SBA, simulações reais e feedback individualizado de execução.",
+  },
+];
+
+const FACULTY = [
+  {
+    name: "Lucas Rodrigues",
+    role: "Coordenador MedCof Anest TSA",
+    image: "/images/professors/lucas-3.png",
+    credentials: [
+      "Título Superior em Anestesiologia (TSA/SBA)",
+      "Graduação em Medicina pelo Centro Universitário Christus (CE)",
+      "Residência em Anestesiologia pelo Hospital Sírio-Libanês",
+      "Preceptor e corresponsável de Residência Médica CET/SBA",
+    ],
+  },
+  {
+    name: "Juliano Coelho",
+    role: "Professor especialista TSA",
+    image: "/images/professors/juliano.png",
+    credentials: [
+      "Título Superior em Anestesiologia (TSA/SBA), aprovado na prova oral",
+      "Anestesiologista do SMA (Serviço Médico de Anestesia)",
+      "Residência em Anestesiologia pelo CET/SMA",
+      "Preceptor de Residência Médica do CET/SMA",
+    ],
+  },
+  {
+    name: "Rafael Romaro",
+    role: "Professor especialista TSA",
+    image: "/images/professors/rafael-3.png",
+    credentials: [
+      "Título Superior em Anestesiologia (TSA/SBA)",
+      "Anestesiologista pelo Hospital Sírio-Libanês (CET/SBA)",
+      "Ex-preceptor de Residência Médica do Hospital Sírio-Libanês",
+      "Membro do núcleo de anestesia cardiovascular da SAESP",
+    ],
+  },
+];
+
+const INCLUDED = [
+  "Banco de questões autorais",
+  "Discussões semanais do conteúdo programático",
+  "Análises de casos clínicos",
+  "Simulados autorais",
+  "Treinamento Hands On presencial na sede MedCof em São Paulo",
+  "Simulação realística de arguição oral no modelo oficial da banca",
+  "Feedback individualizado com anestesiologistas TSA",
+  "Acesso direto e contínuo aos preceptores",
+];
+
+export default function Page() {
+  return (
+    <ProductShell theme="tsaoral">
+      <div className="event-bar">
+        <div className="event-bar-inner">
+          <Link href="/tsa" className="event-back">
+            <ArrowLeft className="size-4" strokeWidth={2.4} aria-hidden />
+            Voltar para o TSA
+          </Link>
+          <p className="event-chips">
+            <span>
+              <CalendarDays className="size-4" strokeWidth={2.4} aria-hidden />
+              17 e 18 de outubro
+            </span>
+            <span>
+              <MapPin className="size-4" strokeWidth={2.4} aria-hidden />
+              Sede João Moura · São Paulo
+            </span>
+            <span className="is-alert">
+              <ShieldCheck className="size-4" strokeWidth={2.4} aria-hidden />
+              Vagas limitadas
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div className="event-logo">
+        <Image
+          src="/images/tsa-oral/tsa-oral-logo.png"
+          alt="Hands On MedCof Anest TSA Oral"
+          width={620}
+          height={222}
+          quality={100}
+          priority
+        />
+      </div>
+
+      <AppleHero
+        kicker="Turma presencial · Prova oral"
+        title="A prova oral não perdoa quem só sabe a teoria"
+        lead="Na prova oral o tempo é curto e o examinador está na sua frente. Não é mais aula teórica que resolve isso: é treino de verdade, com alguém te corrigindo enquanto você responde."
+      >
+        <AppleCtas
+          primaryHref={WHATSAPP_URL}
+          primary="Quero minha vaga"
+          secondaryHref="#estrutura"
+          secondary="Ver a estrutura"
+          external
+        />
+      </AppleHero>
+
+      <AppleChapter
+        id="diagnostico"
+        alt
+        eyebrow="O que derruba candidato"
+        title="Saber conduzir a sala não é o mesmo que saber responder à banca"
+        body="Muito anestesiologista experiente escorrega aqui, confiando que a rotina do centro cirúrgico basta. A banca quer resposta organizada do jeito dela, em temas que você quase não vê no dia a dia."
+      >
+        <div className="editorial-copy mx-auto max-w-3xl space-y-6 text-[17px] leading-8 text-[var(--muted)] sm:text-[18px]">
+          <p>
+            Saber a diretriz é metade do caminho. O que decide a aprovação é
+            como você organiza a resposta, quanto tempo leva para começar a
+            falar e o quanto você se segura quando o examinador insiste.
+          </p>
+          <p>
+            Foi para treinar exatamente isso que a gente montou esse
+            preparatório.
+          </p>
+        </div>
+      </AppleChapter>
+
+      <AppleChapter
+        id="estrutura"
+        eyebrow="Metodologia e estrutura oficial"
+        title="Como o treinamento funciona"
+        body="São três etapas que se completam, sem despejar conteúdo em cima de você."
+      >
+        <div className="story-pulse-grid">
+          {PHASES.map((phase, index) => (
+            <article
+              key={phase.n}
+              className={`story-pulse-card ${index === 2 ? "is-accent" : ""}`}
+              style={{ animationDelay: `${index * 120}ms` }}
+            >
+              <p>{phase.n}</p>
+              <h3>{phase.title}</h3>
+              <p className="tsa-oral-when">
+                <CalendarDays className="size-4" strokeWidth={2.2} aria-hidden />
+                {phase.when}
+              </p>
+              <p>{phase.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="tsa-oral-notice">
+          <p className="tsa-oral-notice-title">
+            <ShieldCheck className="size-5" strokeWidth={2.2} aria-hidden />
+            Vagas estritamente limitadas
+          </p>
+          <p>
+            Cada estação precisa de um professor titulado olhando só para você,
+            corrigindo na hora. É por isso que a turma é pequena: não dá para
+            fazer esse tipo de correção com sala cheia.
+          </p>
+          <p className="tsa-oral-notice-place">
+            <MapPin className="size-4" strokeWidth={2.2} aria-hidden />
+            Treinamento Hands On presencial · Sede João Moura, São Paulo
+          </p>
+        </div>
+      </AppleChapter>
+
+      <AppleChapter
+        id="investimento"
+        alt
+        eyebrow="Condição exclusiva"
+        title="Garanta sua vaga na turma"
+        body="Treino prático com preceptores titulados e turma pequena, para que cada um receba correção de verdade."
+      >
+        <div className="offer-grid mx-auto max-w-xl">
+          <article className="offer-card is-featured">
+            <p className="offer-recommended">
+              <Sparkles className="size-3.5" strokeWidth={2.2} aria-hidden />
+              Economize R$ 1.000
+            </p>
+            <p className="offer-badge is-access">
+              Treinamento prático + teórico integrado
+            </p>
+            <h3>Preparatório Completo TSA Oral</h3>
+            <p className="offer-equivalent">
+              Tudo o que você precisa para a prova prática, mais o aprofundamento
+              nas subespecialidades que a banca gosta de cobrar.
+            </p>
+            <div className="offer-price">
+              <p className="offer-from">De R$ 11.497,00</p>
+              <p className="offer-installment">
+                <span>12x de</span> R$ 1.050,05
+              </p>
+              <p className="offer-cash">ou à vista por R$ 10.497,00</p>
+            </div>
+            <p className="offer-note">
+              Garantia incondicional de 7 dias · vagas limitadas.
+            </p>
+            <ul>
+              {INCLUDED.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="apple-pill"
+            >
+              Garantir minha vaga
+            </a>
+          </article>
+        </div>
+      </AppleChapter>
+
+      <AppleChapter
+        id="docentes"
+        eyebrow="Corpo docente titulado TSA/SBA"
+        title="Quem vai te corrigir já sentou nessa cadeira"
+        body="Todos aqui passaram pela prova e sabem o que o examinador espera ouvir."
+      >
+        <div className="tsa-oral-faculty">
+          {FACULTY.map((person) => (
+            <article key={person.name} className="tsa-oral-teacher">
+              <div className="tsa-oral-teacher-media">
+                <Image
+                  src={person.image}
+                  alt={`${person.name}, ${person.role}`}
+                  fill
+                  sizes="(max-width: 700px) 86vw, 30vw"
+                  quality={100}
+                  className="tsa-oral-teacher-image"
+                  data-static-media
+                />
+              </div>
+              <p className="tsa-oral-teacher-tag">Titulação máxima TSA/SBA</p>
+              <h3>{person.name}</h3>
+              <p className="tsa-oral-teacher-role">{person.role}</p>
+              <ul>
+                {person.credentials.map((credential) => (
+                  <li key={credential}>{credential}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </AppleChapter>
+
+      <GetCta
+        title="Ainda na dúvida se a turma é para você?"
+        body="Fala com a nossa equipe. Em poucos minutos dá para saber se o treino presencial resolve o que está faltando na sua preparação."
+      />
+    </ProductShell>
+  );
+}

@@ -1,69 +1,115 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  AppShowcase,
+  FaqShowcase,
+  FeatureShowcase,
+  ProfessorsShowcase,
+  QBankShowcase,
+} from "@/components/home-experience";
+import {
+  AppleChapter,
+  AppleCtas,
+  AppleHero,
+  GetCta,
+  ProductShell,
+} from "@/components/apple/chrome";
+import {
+  HOME_CTA,
+  HOME_TRACKS,
+} from "@/lib/content";
+import { DOR_URL, WHATSAPP_URL } from "@/lib/site";
 
-export default function Home() {
+const TILES = [
+  {
+    href: "/residentes-sba",
+    tone: "red",
+  },
+  {
+    href: "/residentes-mec",
+    tone: "wine",
+  },
+  {
+    href: "/tea",
+    tone: "gray",
+  },
+  {
+    href: "/tsa",
+    tone: "wine",
+  },
+  {
+    href: "/aperfeicoamento",
+    tone: "red",
+  },
+  {
+    href: DOR_URL,
+    title: "Dor",
+    line: "Trilha em expansão.",
+    cta: "Conhecer",
+    tone: "gray",
+  },
+] as const;
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <ProductShell theme="store">
+      <AppleHero
+        title="Uma plataforma inteira desenvolvida para facilitar a sua aprovação"
+        lead="Questões comentadas, revisão espaçada, Preceptor IA e flashcards. Um ecossistema completo em um só painel, projetado para extrair o máximo rendimento de cada sessão de estudo na sua rotina médica."
+      >
+        <AppleCtas
+          primaryHref="#funcionalidades"
+          primary="Conhecer as funcionalidades"
+          secondaryHref={WHATSAPP_URL}
+          secondary="Falar com um especialista"
+          external
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      </AppleHero>
+
+      <FeatureShowcase />
+      <AppShowcase />
+      <QBankShowcase />
+      <ProfessorsShowcase />
+
+      <AppleChapter
+        id="trilhas"
+        alt
+        eyebrow="Trilhas"
+        title="Escolha a trilha do seu momento"
+        body="Comece pela etapa em que você está. Residentes SBA, Residentes MEC, TEA, TSA, aperfeiçoamento ou Dor."
+      >
+        <div className="track-products-grid">
+          {TILES.map((tile) => {
+            const track = HOME_TRACKS.find((t) => t.href === tile.href);
+            const title = "title" in tile ? tile.title : track?.title;
+            const line = "line" in tile ? tile.line : track?.description;
+            const cta = "cta" in tile ? tile.cta : track?.cta;
+            return (
+              <Link
+                key={tile.href}
+                href={tile.href}
+                target={tile.href.startsWith("http") ? "_blank" : undefined}
+                rel={tile.href.startsWith("http") ? "noreferrer" : undefined}
+                className={`track-product track-product--${tile.tone} track-product--${
+                  tile.href.startsWith("/") ? tile.href.slice(1) : "dor"
+                }`}
+              >
+                <div className="track-product-copy">
+                  <p className="track-product-eyebrow">MedCof Anest</p>
+                  <h3>{title}</h3>
+                  <p>{line}</p>
+                  <span className="track-product-cta">
+                    {cta}
+                    <span aria-hidden="true">›</span>
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </AppleChapter>
+
+      <FaqShowcase />
+      <GetCta title={HOME_CTA.title} body={HOME_CTA.body} />
+    </ProductShell>
   );
 }
