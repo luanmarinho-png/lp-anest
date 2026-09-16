@@ -5436,11 +5436,6 @@ li {
   --local: rgba(226, 226, 226, 0.9);
 }
 
-[data-theme="fase2"] .apple-hero::before,
-[data-theme="fase2"] .apple-hero::after {
-  display: none;
-}
-
 [data-theme="fase2"] .apple-hero {
   position: relative;
   overflow: hidden;
@@ -5460,22 +5455,77 @@ li {
     linear-gradient(180deg, #fff 0%, #fbf4f4 100%);
 }
 
-/* Ilustração da marca esmaecida atrás do texto. */
-[data-theme="fase2"] .apple-hero::before {
+/* A ilustração entra como line art e ganha cor sozinha: as duas versões
+   ficam empilhadas na lateral e trocam por crossfade na chegada. */
+[data-theme="fase2"] .apple-hero::before,
+[data-theme="fase2"] .apple-hero::after {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
   display: block;
-  background: url("/images/brand/segunda-fase-hero.png") center bottom -2rem /
-    auto 92% no-repeat;
+  width: min(46rem, 58%);
   content: "";
-  opacity: 0.1;
   pointer-events: none;
+  /* Some no lado do texto para não competir com a leitura. */
+  mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+}
+
+[data-theme="fase2"] .apple-hero::before {
+  background: url("/images/brand/segunda-fase-hero.png") right -4rem bottom
+    -1rem / auto 94% no-repeat;
+  animation: fase2-art-out 1.4s ease 0.7s both;
+}
+
+[data-theme="fase2"] .apple-hero::after {
+  background: url("/images/brand/segunda-fase-hero-color.png") right -4rem
+    bottom -1rem / auto 94% no-repeat;
+  opacity: 0;
+  animation: fase2-art-in 1.4s ease 0.7s both;
+}
+
+@keyframes fase2-art-out {
+  from {
+    opacity: 0.16;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fase2-art-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.22;
+  }
 }
 
 [data-theme="fase2"] .apple-hero > * {
   position: relative;
   z-index: 1;
+}
+
+/* Com a arte na lateral, o texto sai do centro para não brigar com ela. */
+@media (min-width: 1100px) {
+  [data-theme="fase2"] .apple-hero .apple-stagger,
+  [data-theme="fase2"] .apple-hero > div:not(.apple-stagger) {
+    transform: translateX(-11vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="fase2"] .apple-hero::before {
+    opacity: 0;
+    animation: none;
+  }
+
+  [data-theme="fase2"] .apple-hero::after {
+    opacity: 0.22;
+    animation: none;
+  }
 }
 
 .fase2-shell {
@@ -6676,5 +6726,43 @@ li {
 @media (max-width: 900px) {
   .course-plans {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: a arte desce para o rodapé do hero, abaixo dos botões. */
+@media (max-width: 767px) {
+  [data-theme="fase2"] .apple-hero {
+    padding-bottom: 15rem;
+  }
+
+  [data-theme="fase2"] .apple-hero::before,
+  [data-theme="fase2"] .apple-hero::after {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 14rem;
+    background-position: center bottom;
+    background-size: auto 100%;
+    mask-image: none;
+  }
+
+  @keyframes fase2-art-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes fase2-art-out {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 0;
+    }
   }
 }
