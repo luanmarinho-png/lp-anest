@@ -4,6 +4,7 @@ import {
   SecondPhaseChooser,
   type SecondPhaseTrack,
 } from "@/components/second-phase";
+import { OfferBar } from "@/components/offer-bar";
 import { WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -95,6 +96,14 @@ export default function Page() {
       </AppleHero>
 
       <SecondPhaseChooser tracks={TRACKS} />
+
+      <OfferBar
+        label="Segunda Fase"
+        price="TSA Oral com vagas limitadas"
+        href="#opcoes"
+        cta="Ver opções"
+        hideNear="#opcoes"
+      />
 
       <GetCta
         title="Não sabe qual das duas é a sua?"

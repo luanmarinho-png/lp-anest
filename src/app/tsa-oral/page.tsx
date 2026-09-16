@@ -8,6 +8,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { EventBack } from "@/components/event-back";
+import { EventIntro } from "@/components/event-intro";
+import { OfferBar } from "@/components/offer-bar";
 import { ScrollPath } from "@/components/scroll-path";
 import {
   AppleChapter,
@@ -147,18 +149,11 @@ export default function Page() {
       </div>
 
       <div className="event-logo">
-        {/* WebM com canal alpha: a vinheta roda sobre o fundo branco da
-            página, com a logo estática como fallback. */}
-        <video
-          className="event-intro"
+        <EventIntro
+          src="/videos/medcof-anest-intro.webm"
           poster="/images/tsa-oral/tsa-oral-logo.png"
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source src="/videos/medcof-anest-intro.webm" type="video/webm" />
-        </video>
+          alt="Hands On MedCof Anest TSA Oral"
+        />
       </div>
 
       <AppleHero
@@ -333,6 +328,14 @@ export default function Page() {
           ))}
         </div>
       </AppleChapter>
+
+      <OfferBar
+        label="Hands On TSA Oral"
+        price="12x de R$ 1.050,05"
+        href="#investimento"
+        cta="Garantir minha vaga"
+        hideNear="#investimento"
+      />
 
       <GetCta
         title="Ainda na dúvida se a turma é para você?"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GetCta, ProductShell } from "@/components/apple/chrome";
 import { CourseCatalog } from "@/components/course-catalog";
+import { OfferBar } from "@/components/offer-bar";
 import { COURSES } from "@/lib/courses";
 
 /** Uma URL por curso, para campanhas apontarem direto para ele. */
@@ -39,6 +40,18 @@ export default async function Page({
         openId={course.id}
         title="Todos os cursos de aperfeiçoamento"
         lead="O Hands On é o caminho completo: o conteúdo online mais dois dias escaneando em modelo vivo."
+      />
+
+      <OfferBar
+        label={course.name}
+        price={
+          course.id === "hands-on-anest-us"
+            ? "12x de R$ 416,42"
+            : "12x de R$ 208,08"
+        }
+        href="#cursos"
+        cta="Quero me inscrever"
+        hideNear=".course-pricing"
       />
 
       <GetCta

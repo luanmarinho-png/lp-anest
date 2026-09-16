@@ -4,18 +4,18 @@ import type { Testimonial } from "@/components/video-testimonials";
 export const PILLARS = [
   {
     n: "01",
-    title: "Conteúdo de quem faz todo dia",
-    body: "Cada curso é construído por anestesiologistas que usam a técnica na rotina, nos maiores hospitais do país.",
+    title: "Aprenda com quem faz todo dia",
+    body: "Quem grava cada curso usa a técnica na própria escala, nos maiores hospitais do país.",
   },
   {
     n: "02",
-    title: "Online, presencial ou os dois",
-    body: "Você escolhe o formato: estudar no seu ritmo, treinar com a mão no aparelho, ou combinar os dois no mesmo curso.",
+    title: "Estude do seu jeito",
+    body: "No seu ritmo pelo online, com a mão no aparelho no presencial, ou os dois juntos.",
   },
   {
     n: "03",
-    title: "O que você usa na escala de amanhã",
-    body: "Bloqueio que resolve, ultrassom que muda a conduta. Nada que fique bonito no certificado e inútil na sala.",
+    title: "Saia fazendo na próxima escala",
+    body: "O bloqueio que resolve a dor do seu paciente e o ultrassom que muda a sua conduta na hora.",
   },
 ];
 

@@ -614,12 +614,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
   tea: {
     slug: "tea",
     heroProfessor: {
-      name: "Dr. Alessandro Silvestre",
-      role: "Coordenador MedCof Anest",
+      name: "Dr. Rafael Romaro",
+      role: "Professor MedCof Anest",
       credentials: [
-        "Título de Especialista em Anestesiologia (TEA)",
-        "Anestesiologista pelo Hospital Alemão Oswaldo Cruz",
-        "Ex-preceptor de Residência Médica do H. Sírio-Libanês",
+        "Título Superior em Anestesiologia (TSA/SBA)",
+        "Anestesiologista pelo Hospital Sírio-Libanês (CET/SBA)",
+        "Membro do núcleo de anestesia cardiovascular da SAESP",
       ],
     },
     itemsCta: "Ver preparatórios do TEA",
