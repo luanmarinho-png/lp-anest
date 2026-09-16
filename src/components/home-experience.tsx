@@ -72,9 +72,9 @@ const FEATURES = [
   },
   {
     kicker: "Inteligência artificial MedCof",
-    title: "Pergunte e encontre a resposta na palma da sua mão",
-    body: "O CofBot consulta uma base confiável formada pelos comentários das questões e pelas transcrições das aulas MedCof para responder com rapidez e contexto.",
-    image: "/images/features/cofbot-hand-transparent.png",
+    title: "Pergunte e receba a resposta com a fonte junto",
+    body: "Busque um conteúdo específico e receba resposta confiável: em texto, em questões sobre o tema que você perguntou, ou no minuto e segundo exato da aula em que o professor aborda o assunto.",
+    image: "/images/features/cofbot-ia.png",
   },
 ] as const;
 
