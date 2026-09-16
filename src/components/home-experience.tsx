@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SectionReveal } from "@/components/section-reveal";
+import { SectionCta } from "@/components/section-cta";
 import { WHATSAPP_URL } from "@/lib/site";
 
 function AppleMark() {
@@ -374,13 +375,17 @@ export function FeatureShowcase() {
                       width={1240}
                       height={1240}
                       quality={100}
-                      sizes="(max-width: 900px) 96vw, 1200px"
+                      sizes="(max-width: 900px) 96vw, 1600px"
                       priority={index === 0}
                     />
                   </div>
                 ))}
               </div>
             </div>
+
+            <SectionCta href="#trilhas" note="Escolha pela sua prova e veja os preparatórios.">
+              Ver as trilhas e os preparatórios
+            </SectionCta>
           </div>
       </section>
     </SectionReveal>

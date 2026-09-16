@@ -17,7 +17,8 @@ import {
   HOME_CTA,
   HOME_TRACKS,
 } from "@/lib/content";
-import { DOR_URL, WHATSAPP_URL } from "@/lib/site";
+import { OfferBar } from "@/components/offer-bar";
+import { DOR_URL } from "@/lib/site";
 
 const TILES = [
   {
@@ -57,11 +58,10 @@ export default function HomePage() {
         lead="Questões comentadas, revisão espaçada, Preceptor IA e flashcards. Um ecossistema completo em um só painel, projetado para extrair o máximo rendimento de cada sessão de estudo na sua rotina médica."
       >
         <AppleCtas
-          primaryHref="#funcionalidades"
-          primary="Conhecer as funcionalidades"
-          secondaryHref={WHATSAPP_URL}
-          secondary="Falar com um especialista"
-          external
+          primaryHref="#trilhas"
+          primary="Escolher a minha trilha"
+          secondaryHref="#funcionalidades"
+          secondary="Conhecer as funcionalidades"
         />
       </AppleHero>
 
@@ -110,6 +110,14 @@ export default function HomePage() {
 
       <FaqShowcase />
       <GetCta title={HOME_CTA.title} body={HOME_CTA.body} />
+
+      <OfferBar
+        label="MedCof Anest"
+        price="Escolha a trilha da sua prova"
+        href="#trilhas"
+        cta="Ver trilhas"
+        hideNear="#trilhas"
+      />
     </ProductShell>
   );
 }
