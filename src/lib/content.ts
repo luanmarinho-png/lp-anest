@@ -870,7 +870,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
       {
         n: "01",
         title: "Você deixa de ser mais um currículo",
-        body: "Todo ano entra mais gente no mercado. Quando o serviço precisa escolher, o título é o que coloca você na frente.",
+        body: "Quando o serviço precisa escolher, o título coloca você na frente.",
       },
       {
         n: "02",

@@ -33,26 +33,29 @@ export function BentoMosaic({
       return;
     }
 
-    // Tiles that cross the fold together are staggered by their position on
-    // the row, so the mosaic assembles itself piece by piece.
+    // One at a time, in reading order: a tile only appears after the one
+    // before it, so the mosaic is assembled piece by piece as you scroll.
+    let next = 0;
+
+    const revealUpTo = (index: number) => {
+      while (next <= index && next < tiles.length) {
+        const tile = tiles[next];
+        tile.style.transitionDelay = "0ms";
+        tile.classList.add("is-in");
+        next += 1;
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const arriving = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => {
-            const ra = a.boundingClientRect;
-            const rb = b.boundingClientRect;
-            return ra.top - rb.top || ra.left - rb.left;
-          });
-
-        arriving.forEach((entry, order) => {
-          const tile = entry.target as HTMLElement;
-          tile.style.transitionDelay = `${order * 110}ms`;
-          tile.classList.add("is-in");
-          observer.unobserve(tile);
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = tiles.indexOf(entry.target as HTMLElement);
+          if (index >= 0) revealUpTo(index);
+          observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.2, rootMargin: "0px 0px -12% 0px" },
     );
 
     tiles.forEach((tile) => observer.observe(tile));

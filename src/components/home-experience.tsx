@@ -48,9 +48,9 @@ const FEATURES = [
   },
   {
     kicker: "Flashcards",
-    title: "Revisão ativa nos intervalos da rotina",
-    body: "Cards com repetição espaçada para fixar doses, classificações, protocolos e critérios de maior incidência.",
-    image: "/images/features/flashcards.png",
+    title: "Flashcards gerados por IA a partir das questões",
+    body: "O sistema cria os cards com base nos comentários das questões e agenda as revisões com algoritmo similar ao do Anki.",
+    image: "/images/features/flashcards-ia.png",
   },
   {
     kicker: "Fichas-resumo",

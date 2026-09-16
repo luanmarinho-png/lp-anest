@@ -1,13 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowLeft,
-  CalendarDays,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { CalendarDays, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { EventBack } from "@/components/event-back";
+import { ScrollPath } from "@/components/scroll-path";
 import {
   AppleChapter,
   AppleCtas,
@@ -22,6 +17,29 @@ export const metadata: Metadata = {
   description:
     "Treinamento presencial Hands On para a prova oral do TSA/SBA: estações no formato oficial, casos clínicos e feedback individualizado de preceptores titulados.",
 };
+
+const DIAGNOSIS = [
+  {
+    n: "01",
+    title: "A banca quer a resposta do jeito dela",
+    body: "Não basta acertar o conteúdo: é preciso organizar o raciocínio na ordem que o examinador espera ouvir.",
+  },
+  {
+    n: "02",
+    title: "O relógio joga contra você",
+    body: "O tempo entre a pergunta e o começo da sua resposta conta. Hesitar já custa ponto.",
+  },
+  {
+    n: "03",
+    title: "Caem temas que você quase não vê",
+    body: "Subespecialidades que não aparecem na sua rotina, cobradas com profundidade.",
+  },
+  {
+    n: "04",
+    title: "O examinador insiste para ver se você cede",
+    body: "Sustentar a conduta sob pressão é o que separa quem passa de quem trava.",
+  },
+];
 
 const PHASES = [
   {
@@ -96,10 +114,7 @@ export default function Page() {
     <ProductShell theme="tsaoral">
       <div className="event-bar">
         <div className="event-bar-inner">
-          <Link href="/tsa" className="event-back">
-            <ArrowLeft className="size-4" strokeWidth={2.4} aria-hidden />
-            Voltar para o TSA
-          </Link>
+          <EventBack fallback={{ href: "/", label: "Ver todas as trilhas" }} />
           <p className="event-chips">
             <span>
               <CalendarDays className="size-4" strokeWidth={2.4} aria-hidden />
@@ -129,7 +144,6 @@ export default function Page() {
       </div>
 
       <AppleHero
-        kicker="Turma presencial · Prova oral"
         title="A prova oral não perdoa quem só sabe a teoria"
         lead="Na prova oral o tempo é curto e o examinador está na sua frente. Não é mais aula teórica que resolve isso: é treino de verdade, com alguém te corrigindo enquanto você responde."
       >
@@ -142,25 +156,14 @@ export default function Page() {
         />
       </AppleHero>
 
-      <AppleChapter
+      <ScrollPath
         id="diagnostico"
-        alt
-        eyebrow="O que derruba candidato"
         title="Saber conduzir a sala não é o mesmo que saber responder à banca"
-        body="Muito anestesiologista experiente escorrega aqui, confiando que a rotina do centro cirúrgico basta. A banca quer resposta organizada do jeito dela, em temas que você quase não vê no dia a dia."
-      >
-        <div className="editorial-copy mx-auto max-w-3xl space-y-6 text-[17px] leading-8 text-[var(--muted)] sm:text-[18px]">
-          <p>
-            Saber a diretriz é metade do caminho. O que decide a aprovação é
-            como você organiza a resposta, quanto tempo leva para começar a
-            falar e o quanto você se segura quando o examinador insiste.
-          </p>
-          <p>
-            Foi para treinar exatamente isso que a gente montou esse
-            preparatório.
-          </p>
-        </div>
-      </AppleChapter>
+        lead="Muito anestesiologista experiente escorrega aqui, confiando que a rotina do centro cirúrgico basta."
+        points={DIAGNOSIS}
+        ctaHref="#estrutura"
+        ctaLabel="Ver como o treinamento funciona"
+      />
 
       <AppleChapter
         id="estrutura"
