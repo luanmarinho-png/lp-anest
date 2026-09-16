@@ -113,27 +113,18 @@ export const ANEST_US_SECTIONS = [
   {
     eyebrow: "Como são as aulas",
     title: "Você vê a mão, o probe e a tela ao mesmo tempo",
-    body: "Cada aula mostra o posicionamento real do probe no paciente lado a lado com a imagem que aparece no aparelho. Assim você entende por que a imagem muda quando a sua mão muda.",
+    body: "Cada aula mostra o posicionamento real do probe no paciente lado a lado com a imagem que aparece no aparelho. E as estruturas entram marcadas com cor, para você fixar o mapa antes de treinar sem elas.",
     bullets: [
       "Gravadas no aparelho, com paciente real",
-      "Estruturas nomeadas na hora em que aparecem",
-      "Do básico ao avançado, na ordem que faz sentido",
+      "Cada músculo e cada plano identificado na tela",
+      "Janela, plano e alvo de cada técnica",
+      "Treino com e sem as marcações",
     ],
     image: {
       src: "/images/anest-us/anest-us-aula-macbook.png",
       alt: "Aula do Anest US mostrando o posicionamento do probe e a imagem de ultrassom na tela",
     },
-  },
-  {
-    eyebrow: "Detalhe de cada bloqueio",
-    title: "Cada músculo e cada plano marcado com cor",
-    body: "A maior dificuldade de quem começa é separar um plano do outro na imagem em cinza. A gente pinta as estruturas para você fixar o mapa e saber todos os detalhes de cada bloqueio, e depois tira a cor para você treinar sozinho.",
-    bullets: [
-      "Cortes com as estruturas identificadas",
-      "Janela, plano e alvo de cada técnica",
-      "Treino com e sem as marcações",
-    ],
-    image: {
+    overlay: {
       src: "/images/anest-us/anest-us-anatomia-tablet.png",
       alt: "Corte de ultrassom com músculos identificados por cor no Anest US",
     },

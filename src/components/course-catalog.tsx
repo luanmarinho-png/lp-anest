@@ -23,6 +23,8 @@ export type CourseSection = {
   /** "cover" for photographs, "contain" for device mockups. */
   fit?: "cover" | "contain";
   image: { src: string; alt: string };
+  /** Second mockup, laid over the first one in the same section. */
+  overlay?: { src: string; alt: string };
 };
 
 export type Course = {
@@ -137,7 +139,7 @@ export function CourseCatalog({
               ) : (
                 <p className="fase2-eyebrow">{open.detail.eyebrow}</p>
               )}
-              <h2>{open.detail.title}</h2>
+              {open.detail.logo ? null : <h2>{open.detail.title}</h2>}
               <p>{open.detail.lead}</p>
               {open.detail.highlights?.length ? (
                 <ul className="course-highlights">
@@ -176,13 +178,16 @@ export function CourseCatalog({
 
             {open.detail.video ? (
               <div className="course-video">
-                <iframe
-                  src={open.detail.video.src}
-                  title={open.detail.video.title}
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                />
+                <div className="course-phone">
+                  <span className="course-phone-notch" aria-hidden />
+                  <iframe
+                    src={open.detail.video.src}
+                    title={open.detail.video.title}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
               </div>
             ) : null}
 
@@ -235,17 +240,30 @@ export function CourseCatalog({
                 </div>
 
                 <div
-                  className={`course-section-visual is-${section.fit ?? "contain"}`}
+                  className={`course-section-visual is-${section.fit ?? "contain"}${
+                    section.overlay ? " has-overlay" : ""
+                  }`}
                 >
                   <Image
                     src={section.image.src}
                     alt={section.image.alt}
                     fill
-                    sizes="(max-width: 900px) 92vw, 48vw"
+                    sizes="(max-width: 900px) 92vw, 52vw"
                     quality={100}
                     className="course-section-image"
                     data-static-media
                   />
+                  {section.overlay ? (
+                    <Image
+                      src={section.overlay.src}
+                      alt={section.overlay.alt}
+                      width={520}
+                      height={700}
+                      quality={100}
+                      className="course-section-overlay"
+                      data-static-media
+                    />
+                  ) : null}
                 </div>
               </section>
             ))}

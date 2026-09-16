@@ -85,6 +85,7 @@ export function AppleChapter({
   eyebrow,
   title,
   body,
+  proof,
   children,
   alt,
 }: {
@@ -92,6 +93,8 @@ export function AppleChapter({
   eyebrow?: string;
   title: string;
   body?: string;
+  /** Short credibility line, shown as chips under the body. */
+  proof?: { label: string; items: string[] };
   children?: React.ReactNode;
   alt?: boolean;
 }) {
@@ -115,6 +118,16 @@ export function AppleChapter({
                 <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-7 text-[var(--muted)] text-pretty sm:text-[19px]">
                   {body}
                 </p>
+              ) : null}
+              {proof ? (
+                <div className="proof-strip">
+                  <p>{proof.label}</p>
+                  <ul>
+                    {proof.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               ) : null}
             </div>
             {children ? (

@@ -85,6 +85,7 @@ export type TrackPageContent = {
   spotlight?: SpotlightBlock;
   itemsTitle?: string;
   itemsLead?: string;
+  itemsProof?: { label: string; items: string[] };
   items: NumberedItem[];
   highlight?: FeatureBlock;
 };
@@ -341,7 +342,11 @@ export const TRACKS: Record<string, TrackPageContent> = {
     storyBody: [],
     itemsTitle: "Tudo o que você precisa em um só lugar",
     itemsLead:
-      "Desenvolvido por anestesiologistas formados pelos maiores centros de referência (H. Sírio-Libanês, HAOC, USP-SP, IAMSPE).",
+      "Desenvolvido por anestesiologistas formados pelos maiores centros de referência do país.",
+    itemsProof: {
+      label: "Formação do corpo docente",
+      items: ["H. Sírio-Libanês", "HAOC", "USP-SP", "IAMSPE"],
+    },
     items: [
       {
         n: "01",

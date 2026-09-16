@@ -41,10 +41,22 @@ function AndroidMark() {
 
 const FEATURES = [
   {
+    kicker: "Metodologia",
+    title: "Metodologia completa em cada aula",
+    body: "Além da aula, você recebe questões de nivelamento, flashcards e material didático para cada tema.",
+    image: "/images/features/metodologia-unidade.png",
+  },
+  {
     kicker: "Videoaulas",
     title: "Aulas diretas, sem perder profundidade",
     body: "Conteúdo produzido por anestesiologistas, separado em blocos que cabem entre plantões, salas e revisões.",
     image: "/images/features/aulas-macbook.png",
+  },
+  {
+    kicker: "Banco de questões",
+    title: "Entenda a resposta e o raciocínio da banca",
+    body: "Resoluções em texto e vídeo analisam cada alternativa para que você reconheça padrões e corrija lacunas.",
+    image: "/images/features/questoes-comentadas-phones.png",
   },
   {
     kicker: "Flashcards",
@@ -57,18 +69,6 @@ const FEATURES = [
     title: "Revise nos intervalos do plantão",
     body: "Material direcionado para otimizar o estudo durante o plantão, com os pontos essenciais organizados para consultas e revisões rápidas.",
     image: "/images/features/fichas-resumo-anest.jpg",
-  },
-  {
-    kicker: "Metodologia",
-    title: "Metodologia completa em cada aula",
-    body: "Além da aula, você recebe questões de nivelamento, flashcards e material didático para cada tema.",
-    image: "/images/features/metodologia-unidade.png",
-  },
-  {
-    kicker: "Banco de questões",
-    title: "Entenda a resposta e o raciocínio da banca",
-    body: "Resoluções em texto e vídeo analisam cada alternativa para que você reconheça padrões e corrija lacunas.",
-    image: "/images/features/questoes-comentadas-phones.png",
   },
   {
     kicker: "Inteligência artificial MedCof",
@@ -450,6 +450,10 @@ export function AppShowcase() {
 export function QBankShowcase() {
   const [questionOpen, setQuestionOpen] = useState(false);
   const [videoAutoplay, setVideoAutoplay] = useState(false);
+  // O gabarito só aparece depois que o leitor se compromete com uma
+  // alternativa, ou quando ele desiste e pede para ver.
+  const [picked, setPicked] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState(false);
   const [questionCount, setQuestionCount] = useState(1);
   const [flashcardCount, setFlashcardCount] = useState(1);
   const [compactCount, setCompactCount] = useState(false);
@@ -463,6 +467,8 @@ export function QBankShowcase() {
 
   const closeQuestion = useCallback(() => {
     setQuestionOpen(false);
+    setPicked(null);
+    setRevealed(false);
     setVideoAutoplay(false);
   }, []);
 
@@ -691,13 +697,67 @@ export function QBankShowcase() {
                 <section className="question-block">
                   <p className="commentary-kicker">Alternativas</p>
                   <div className="question-alternatives">
-                    {QUESTION_OPTIONS.map((option) => (
-                      <div key={option.letter} className="question-alternative">
-                        <span>{option.letter}</span>
-                        <p>{option.statement}</p>
-                      </div>
-                    ))}
+                    {QUESTION_OPTIONS.map((option) => {
+                      const chosen = picked === option.letter;
+                      const showResult = revealed || picked !== null;
+                      const state = !showResult
+                        ? ""
+                        : option.correct
+                          ? " is-correct"
+                          : chosen
+                            ? " is-wrong"
+                            : " is-dimmed";
+
+                      return (
+                        <button
+                          key={option.letter}
+                          type="button"
+                          className={`question-alternative${chosen ? " is-picked" : ""}${state}`}
+                          aria-pressed={chosen}
+                          disabled={showResult}
+                          onClick={() => setPicked(option.letter)}
+                        >
+                          <span>{option.letter}</span>
+                          <p>{option.statement}</p>
+                          {showResult ? (
+                            <em className="question-alternative-tag">
+                              {option.correct
+                                ? "Correta"
+                                : chosen
+                                  ? "Sua resposta"
+                                  : ""}
+                            </em>
+                          ) : null}
+                        </button>
+                      );
+                    })}
                   </div>
+
+                  {revealed || picked !== null ? (
+                    <p
+                      className={`question-verdict${
+                        picked !== null &&
+                        QUESTION_OPTIONS.find((o) => o.letter === picked)?.correct
+                          ? " is-right"
+                          : ""
+                      }`}
+                    >
+                      {picked === null
+                        ? "Gabarito: alternativa C."
+                        : QUESTION_OPTIONS.find((o) => o.letter === picked)
+                              ?.correct
+                          ? "Você acertou. A resposta é a alternativa C."
+                          : "Não é essa. A resposta é a alternativa C."}
+                    </p>
+                  ) : (
+                    <button
+                      type="button"
+                      className="question-reveal"
+                      onClick={() => setRevealed(true)}
+                    >
+                      Ver o gabarito
+                    </button>
+                  )}
                 </section>
 
                 <section className="question-block">

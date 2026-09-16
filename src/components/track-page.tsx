@@ -66,6 +66,7 @@ export function AppleProductPage({
         alt={data.flow !== "items-story-models"}
         title={data.itemsTitle ?? "O que entra na trilha"}
         body={data.itemsLead}
+        proof={data.itemsProof}
       >
         <Items data={data} />
       </AppleChapter>
