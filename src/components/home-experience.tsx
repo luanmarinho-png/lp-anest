@@ -65,7 +65,7 @@ const FEATURES = [
     image: "/images/features/metodologia-unidade.png",
   },
   {
-    kicker: "Comentários",
+    kicker: "Banco de questões",
     title: "Entenda a resposta e o raciocínio da banca",
     body: "Resoluções em texto e vídeo analisam cada alternativa para que você reconheça padrões e corrija lacunas.",
     image: "/images/features/questoes-comentadas-phones.png",
@@ -372,7 +372,9 @@ export function FeatureShowcase() {
                       src={feature.image}
                       alt={`${feature.kicker} na plataforma MedCof`}
                       width={1240}
-                      height={900}
+                      height={1240}
+                      quality={100}
+                      sizes="(max-width: 900px) 96vw, 1200px"
                       priority={index === 0}
                     />
                   </div>
