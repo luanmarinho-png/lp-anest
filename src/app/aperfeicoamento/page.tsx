@@ -245,7 +245,7 @@ const COURSES: Course[] = [
               {
                 time: "16:15",
                 title: "Membros superiores, parte 2",
-                body: "Infraclavicular, axilar e bloqueios distais de nervo ulnar, radial e mediano.",
+                body: "Os grupos invertem: infraclavicular, axilar e bloqueios distais de nervo ulnar, radial e mediano.",
               },
             ],
           },
@@ -254,22 +254,17 @@ const COURSES: Course[] = [
             date: "Domingo, 31 de janeiro de 2027",
             hours: "07h às 18h",
             blocks: [
-              { time: "07:00", title: "Café da manhã" },
+              { time: "08:00", title: "Coffee break e recepção" },
               {
-                time: "08:00",
-                title: "Membros inferiores",
-                body: "Bloqueios de plexo lombar e sacral, em rodízio entre os grupos.",
+                time: "09:00",
+                title: "Membros inferiores e parede torácica",
+                body: "Grupo A: PENG, femoral, canal dos adutores, IPACK e ciático por via poplítea. Grupo B: ESP, plano transverso do tórax e pecto intercostal, PECS, SAM, quadrado lombar, ílio inguinal e ílio hipogástrico, TAPs e bainha dos retos.",
               },
               { time: "12:30", title: "Almoço" },
               {
-                time: "13:30",
-                title: "Parede abdominal e tronco",
-                body: "Bloqueios de parede, com as janelas e os planos de cada técnica.",
-              },
-              {
-                time: "16:15",
-                title: "Neuroeixo guiado por ultrassom",
-                body: "Identificação de nível e planos antes da punção.",
+                time: "14:00",
+                title: "Troca de estações",
+                body: "Os grupos invertem: quem fez membros inferiores passa para parede torácica e abdominal, e vice-versa.",
               },
             ],
           },
