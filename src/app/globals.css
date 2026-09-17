@@ -2191,7 +2191,7 @@ li {
   min-height: 48rem;
   max-width: 84rem;
   margin: 3rem auto 0;
-  grid-template-columns: minmax(12rem, 0.4fr) minmax(0, 2.3fr);
+  grid-template-columns: minmax(16rem, 0.62fr) minmax(0, 2.1fr);
   gap: 0.75rem;
   border: 1px solid rgba(35, 35, 35, 0.08);
   border-radius: 2rem;
@@ -2361,8 +2361,8 @@ li {
    imagem estoura o quadro. Limitar pelos dois eixos faz o mockup caber
    inteiro, seja ele retrato ou paisagem. */
 .feature-frame img {
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -6275,8 +6275,19 @@ li {
 }
 
 /* Logo do curso no topo do detalhe. */
+/* A marca ganha faixa própria: junto com chips, lead e bullets o
+   cabeçalho ficava carregado demais. */
+.course-brand {
+  display: grid;
+  place-items: center;
+  margin: 0 clamp(-2.5rem, -3vw, -1.25rem) clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(35, 35, 35, 0.08);
+  background: #f7f7f9;
+  padding: clamp(2.5rem, 5vw, 4rem) 1.25rem;
+}
+
 .course-logo {
-  width: min(22rem, 70%);
+  width: min(34rem, 88%);
   height: auto;
   margin-inline: auto;
 }
@@ -7235,14 +7246,16 @@ li {
   border-left: 3px solid var(--brand-600);
   border-radius: 0 1.2rem 1.2rem 0;
   background: #f5f5f7;
-  padding: 1.1rem 1.3rem;
+  padding: 1.4rem 1.6rem;
 }
 
 .course-quotes blockquote {
   margin: 0;
   color: var(--ink);
-  font-size: 1.0625rem;
-  line-height: 1.55;
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
 }
 
 .course-quotes blockquote::before {
@@ -7254,9 +7267,9 @@ li {
 }
 
 .course-quotes figcaption {
-  margin-top: 0.6rem;
-  color: var(--muted);
-  font-size: 0.875rem;
+  margin-top: 0.8rem;
+  color: var(--brand-600);
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
@@ -7638,4 +7651,18 @@ li {
   .hero-credentials {
     animation: none;
   }
+}
+
+
+/* O hero do TSA Oral entra quando a vinheta acaba. Sem JS o atributo
+   nunca é setado e o hero aparece normalmente. */
+html[data-intro="playing"] [data-theme="tsaoral"] .apple-hero,
+html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-theme="tsaoral"] .apple-hero,
+[data-theme="tsaoral"] .event-bar {
+  transition: opacity 0.7s ease 0.15s;
 }

@@ -30,14 +30,25 @@ export function EventIntro({
       return;
     }
 
+    // Marca o documento enquanto a vinheta roda: o CSS segura o hero até
+    // ela terminar. Marcar pelo JS deixa o hero visível sem script.
+    document.documentElement.dataset.intro = "playing";
     video.playbackRate = rate;
+
     // Some browsers reset the rate when the stream is ready.
     const apply = () => {
       video.playbackRate = rate;
     };
     video.addEventListener("loadedmetadata", apply);
-    return () => video.removeEventListener("loadedmetadata", apply);
+    return () => {
+      video.removeEventListener("loadedmetadata", apply);
+      delete document.documentElement.dataset.intro;
+    };
   }, [rate]);
+
+  useEffect(() => {
+    if (done) delete document.documentElement.dataset.intro;
+  }, [done]);
 
   return (
     <div className={`event-intro-stage${done ? " is-done" : ""}`}>

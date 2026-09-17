@@ -135,18 +135,22 @@ export function CourseCatalog({
               <span>Ver todos os cursos</span>
             </Link>
 
-            <header className="course-detail-head">
-              {open.detail.logo ? (
+            {open.detail.logo ? (
+              <div className="course-brand">
                 <Image
                   src={open.detail.logo.src}
                   alt={open.detail.logo.alt}
-                  width={520}
-                  height={293}
+                  width={900}
+                  height={507}
                   quality={100}
                   className="course-logo"
                   priority
                 />
-              ) : (
+              </div>
+            ) : null}
+
+            <header className="course-detail-head">
+              {open.detail.logo ? null : (
                 <p className="fase2-eyebrow">{open.detail.eyebrow}</p>
               )}
               {open.detail.logo ? null : <h2>{open.detail.title}</h2>}

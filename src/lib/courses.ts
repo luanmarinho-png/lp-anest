@@ -192,7 +192,7 @@ export const COURSES: Course[] = [
       sections: [
         {
           eyebrow: "O dia presencial",
-          title: "Você escaneia até achar a estrutura sem pensar",
+          title: "Aprenda, repita sem pressa e com o preceptor ao lado",
           body: "A turma é dividida em grupos pequenos e todo mundo passa pelas estações com o aparelho na mão. O coordenador corrige a técnica, o posicionamento do probe e te ensina como fazer na prática.",
           bullets: [
             "Modelo vivo em todas as estações",
@@ -284,12 +284,11 @@ export const COURSES: Course[] = [
         quotes: [
           {
             text: "Foi um diferencial, porque na minha residência não tinha muita mão e agora eu aprendi.",
-            // TODO: trocar pelo nome real de quem disse.
-            author: "Aluno do Hands On Anest US",
+            author: "Lucas, aluno do Hands On Anest US",
           },
           {
             text: "Mesmo depois de 10 anos de formado e sem nunca ter tido contato com ultrassom, o Dr. Lucas Rodrigues pegou na minha mão e me ensinou. Foi excelente, indico a todos.",
-            author: "Aluno do Hands On Anest US",
+            author: "Pablo, aluno do Hands On Anest US",
           },
         ],
       },
