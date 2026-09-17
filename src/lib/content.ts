@@ -40,7 +40,7 @@ export type NumberedItem = {
   /** Short competitive tag highlighted on the card. */
   badge?: string;
   /** Tile weight in the bento mosaic. */
-  size?: "hero" | "wide" | "tall";
+  size?: "hero" | "wide" | "tall" | "full";
   image?: ItemImage;
   /** Two or more portraits shown side by side instead of a single image. */
   images?: ItemImage[];
@@ -1008,12 +1008,6 @@ export const TRACKS: Record<string, TrackPageContent> = {
       },
       {
         n: "04",
-        size: "wide",
-        title: "Simulados autorais todo mês",
-        body: "Questões objetivas e discursivas autorais, feitas por especialistas titulados TSA.",
-      },
-      {
-        n: "05",
         size: "tall",
         title: "Conteúdo direcionado para facilitar o seu estudo",
         body: "Cada aula vem com questões de nivelamento, flashcards e material de apoio, na ordem certa.",
@@ -1021,6 +1015,12 @@ export const TRACKS: Record<string, TrackPageContent> = {
           src: "/images/features/metodologia-unidade.png",
           alt: "Conteúdos da unidade didática na plataforma MedCof Anest",
         },
+      },
+      {
+        n: "05",
+        size: "full",
+        title: "Simulados autorais todo mês",
+        body: "Questões objetivas e discursivas autorais, feitas por especialistas titulados TSA.",
       },
       {
         n: "06",

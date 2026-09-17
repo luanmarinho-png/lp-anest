@@ -5096,6 +5096,32 @@ li {
   grid-column: span 2;
 }
 
+/* Faixa de largura total: título de um lado, texto do outro. Fecha uma
+   linha inteira, então as peças de duas linhas que vêm depois caem
+   lado a lado, sem degrau. */
+.bento-tile.is-full {
+  grid-column: span 4;
+  min-height: 0;
+  justify-content: center;
+}
+
+.bento-tile.is-full .bento-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0.5rem clamp(1.5rem, 4vw, 3.5rem);
+  align-items: end;
+}
+
+.bento-tile.is-full .bento-n {
+  grid-column: 1 / -1;
+}
+
+.bento-tile.is-full .bento-body {
+  margin-top: 0;
+  max-width: none;
+  padding-bottom: 0.3rem;
+}
+
 .bento-copy {
   position: relative;
   z-index: 1;
@@ -5157,6 +5183,7 @@ li {
 /* Peças de uma linha são só texto: o contraste entre tile visual e tile
    de texto é o que dá ritmo ao mosaico. */
 .bento-tile.is-wide .bento-media,
+.bento-tile.is-full .bento-media,
 .bento-tile.is-plain .bento-media {
   display: none;
 }
@@ -5230,10 +5257,19 @@ li {
   .bento-tile,
   .bento-tile.is-hero,
   .bento-tile.is-wide,
+  .bento-tile.is-full,
   .bento-tile.is-tall,
   .bento-tile.is-plain {
     grid-row: auto;
     grid-column: span 2;
+  }
+
+  .bento-tile.is-full .bento-copy {
+    display: block;
+  }
+
+  .bento-tile.is-full .bento-body {
+    margin-top: 0.85rem;
   }
 
   .bento-media,
@@ -7869,8 +7905,8 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 
 .scroll-path-scene {
   position: relative;
-  /* Cada passo ganha 40svh de rolagem com o palco preso. */
-  height: calc(100svh + var(--steps, 4) * 40svh);
+  /* Cada passo ganha 55svh de rolagem com o palco preso. */
+  height: calc(100svh + var(--steps, 4) * 55svh);
 }
 
 .scroll-path-stage {
@@ -7889,27 +7925,19 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
   margin-inline: auto;
 }
 
-.scroll-path.is-pinned .scroll-path-title {
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
-}
-
-.scroll-path.is-pinned .scroll-path-lead {
-  margin-top: 0.8rem;
-}
-
 .scroll-path-board {
   display: grid;
-  max-width: 50rem;
-  margin: clamp(1.75rem, 3.5vw, 2.75rem) auto 0;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  gap: clamp(0.75rem, 2.5vw, 2rem);
+  max-width: 58rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
   align-items: stretch;
 }
 
 .scroll-path-spine {
   position: relative;
   display: grid;
-  min-height: 15rem;
+  min-height: 22rem;
   align-content: space-between;
   justify-items: center;
 }
@@ -7920,9 +7948,9 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 
 .scroll-path-spine .scroll-path-dot {
   cursor: pointer;
-  width: 2.9rem;
-  height: 2.9rem;
-  font-size: 0.85rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  font-size: 0.95rem;
   font-family: inherit;
 }
 
@@ -7953,9 +7981,9 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 .scroll-path-slide {
   grid-area: 1 / 1;
   border: 1px solid rgba(35, 35, 35, 0.08);
-  border-radius: 1.75rem;
+  border-radius: 2rem;
   background: #fff;
-  padding: clamp(1.4rem, 2.4vw, 2.1rem);
+  padding: clamp(1.75rem, 3.2vw, 3rem);
   box-shadow: 0 18px 44px rgba(35, 35, 35, 0.07);
   opacity: 0;
   visibility: hidden;
@@ -7985,8 +8013,8 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 }
 
 .scroll-path-slide h3 {
-  margin-top: 0.5rem;
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  margin-top: 0.6rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
   font-weight: 800;
   line-height: 1.16;
   letter-spacing: -0.03em;
@@ -7994,9 +8022,9 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 }
 
 .scroll-path-slide p:not(.scroll-path-slide-step) {
-  margin-top: 0.75rem;
+  margin-top: 0.9rem;
   color: var(--muted);
-  font-size: 1.0625rem;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
   line-height: 1.6;
   text-wrap: pretty;
 }
@@ -8007,7 +8035,7 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 
 @media (max-width: 700px) {
   .scroll-path-scene {
-    height: calc(100svh + var(--steps, 4) * 36svh);
+    height: calc(100svh + var(--steps, 4) * 45svh);
   }
 
   .scroll-path-stage {
@@ -8020,7 +8048,7 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
   }
 
   .scroll-path-spine {
-    min-height: 13rem;
+    min-height: 15rem;
   }
 
   .scroll-path-spine .scroll-path-dot {
