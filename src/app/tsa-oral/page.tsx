@@ -39,13 +39,13 @@ const DIAGNOSIS = [
   },
   {
     n: "03",
-    title: "Caem temas que você quase não vê",
+    title: "Caem temas complexos que você precisa dominar",
     body: "Subespecialidades que não aparecem na sua rotina, cobradas com profundidade.",
   },
   {
     n: "04",
-    title: "O examinador insiste para ver se você cede",
-    body: "Sustentar a conduta sob pressão é o que separa quem passa de quem trava.",
+    title: "Você responde sob pressão",
+    body: "O examinador insiste para ver se você cede. Sustentar a conduta é o que separa quem passa de quem trava.",
   },
 ];
 
@@ -171,8 +171,8 @@ export default function Page() {
 
       <ScrollPath
         id="diagnostico"
-        title="Saber conduzir a sala não é o mesmo que saber responder à banca"
-        lead="Muito anestesiologista experiente escorrega aqui, confiando que a rotina do centro cirúrgico basta."
+        title="Muita gente boa reprova na oral. A gente sabe ensinar essa prova."
+        lead="Não é falta de conhecimento. É falta de treino no formato que a banca cobra."
         points={DIAGNOSIS}
         variant="ladder"
         ctaHref="#estrutura"
@@ -183,7 +183,7 @@ export default function Page() {
         id="estrutura"
         eyebrow="Metodologia e estrutura oficial"
         title="Como o treinamento funciona"
-        body="São três etapas que se completam, sem despejar conteúdo em cima de você."
+        body="São três etapas que se completam, da base teórica até os dois dias presenciais."
       >
         <div className="story-pulse-grid">
           {PHASES.map((phase, index) => (
