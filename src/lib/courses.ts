@@ -132,22 +132,22 @@ export const ANEST_US_SECTIONS = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    id: "pablo",
-    name: "Pablo",
-    role: "Aluno do Hands On Anest US",
-    src: "/videos/depoimentos/pablo.mp4",
-    poster: "/images/anest-us/depoimento-pablo.jpg",
-  },
-  {
     id: "sandra",
-    name: "Sandra",
+    name: "Dra. Sandra",
     role: "Aluna do Hands On Anest US",
     src: "/videos/depoimentos/sandra.mp4",
     poster: "/images/anest-us/depoimento-sandra.jpg",
   },
   {
+    id: "pablo",
+    name: "Dr. Pablo",
+    role: "Aluno do Hands On Anest US",
+    src: "/videos/depoimentos/pablo.mp4",
+    poster: "/images/anest-us/depoimento-pablo.jpg",
+  },
+  {
     id: "lucas",
-    name: "Lucas",
+    name: "Dr. Lucas",
     role: "Aluno do Hands On Anest US",
     src: "/videos/depoimentos/lucas.mp4",
     poster: "/images/anest-us/depoimento-lucas.jpg",
@@ -280,16 +280,18 @@ export const COURSES: Course[] = [
       },
       proof: {
         stat: "+100",
+        statValue: 100,
+        statPrefix: "+",
         statLabel: "alunos já fizeram o treinamento presencial",
         title: "Quem fez conta o que mudou",
         quotes: [
           {
             text: "Foi um diferencial, porque na minha residência não tinha muita mão e agora eu aprendi.",
-            author: "Lucas, aluno do Hands On Anest US",
+            author: "Dr. Lucas, aluno do Hands On Anest US",
           },
           {
             text: "Mesmo depois de 10 anos de formado e sem nunca ter tido contato com ultrassom, o Dr. Lucas Rodrigues pegou na minha mão e me ensinou. Foi excelente, indico a todos.",
-            author: "Pablo, aluno do Hands On Anest US",
+            author: "Dr. Pablo, aluno do Hands On Anest US",
           },
         ],
       },

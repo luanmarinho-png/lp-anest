@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
+import { CountUp } from "@/components/count-up";
 import { WHATSAPP_URL } from "@/lib/site";
 import {
   VideoTestimonials,
@@ -68,6 +69,9 @@ export type Course = {
 };
 
 export type CourseProof = {
+  /** Número que o contador anima; `stat` é o texto exibido sem JS. */
+  statValue?: number;
+  statPrefix?: string;
   stat: string;
   statLabel: string;
   title: string;
@@ -265,7 +269,14 @@ export function CourseCatalog({
                   {open.detail.proof ? (
                     <>
                       <p className="course-proof-stat">
-                        {open.detail.proof.stat}
+                        {open.detail.proof.statValue ? (
+                          <CountUp
+                            to={open.detail.proof.statValue}
+                            prefix={open.detail.proof.statPrefix ?? ""}
+                          />
+                        ) : (
+                          open.detail.proof.stat
+                        )}
                         <span>{open.detail.proof.statLabel}</span>
                       </p>
                       <h3>{open.detail.proof.title}</h3>

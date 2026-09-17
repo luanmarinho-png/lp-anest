@@ -257,6 +257,8 @@ li {
   text-align: center;
 }
 
+/* A arte entra desenhando e depois recua: mesma leitura do hero da
+   Segunda Fase, onde o traço ganha presença e some. */
 [data-theme="store"] .apple-hero::after {
   position: absolute;
   z-index: 0;
@@ -267,6 +269,34 @@ li {
   opacity: 0.1;
   pointer-events: none;
   mask-image: linear-gradient(90deg, transparent 48%, #000 78%);
+  animation: store-art-settle 3.2s cubic-bezier(0.2, 0, 0, 1) 0.2s both;
+}
+
+@keyframes store-art-settle {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.26;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes store-art-settle-mirror {
+  0% {
+    opacity: 0;
+    transform: scaleX(-1);
+  }
+  35% {
+    opacity: 0.22;
+    transform: scaleX(-1);
+  }
+  100% {
+    opacity: 0.08;
+    transform: scaleX(-1);
+  }
 }
 
 [data-theme="store"] .apple-hero::before {
@@ -280,6 +310,14 @@ li {
   pointer-events: none;
   mask-image: linear-gradient(90deg, transparent 48%, #000 78%);
   transform: scaleX(-1);
+  animation: store-art-settle-mirror 3.2s cubic-bezier(0.2, 0, 0, 1) 0.45s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="store"] .apple-hero::before,
+  [data-theme="store"] .apple-hero::after {
+    animation: none;
+  }
 }
 
 [data-theme="store"] .apple-hero > * {
