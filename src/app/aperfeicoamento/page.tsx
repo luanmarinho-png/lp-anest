@@ -48,7 +48,7 @@ export default function Page() {
         id="metodo"
         eyebrow="Programa"
         title="Se destaque no centro cirúrgico"
-        body="Cursos curtos e diretos nas frentes que mudam o desfecho dos pacientes, com professores que fazem isso todo dia."
+        body="Cursos curtos e diretos nos temas que mudam o desfecho dos pacientes, com professores que fazem isso todo dia."
       >
         <div className="story-pulse-grid">
           {PILLARS.map((pillar, index) => (
@@ -64,9 +64,7 @@ export default function Page() {
           ))}
         </div>
 
-        <SectionCta href="#cursos" note="Comece pelo Anest US, online ou com o Hands On presencial.">
-          Ver os cursos
-        </SectionCta>
+        <SectionCta href="#cursos">Ver os cursos</SectionCta>
       </AppleChapter>
 
       <CourseCatalog

@@ -5,17 +5,17 @@ export const PILLARS = [
   {
     n: "01",
     title: "Aprenda com quem faz todo dia",
-    body: "Quem grava cada curso usa a técnica na própria escala, nos maiores hospitais do país.",
+    body: "Quem grava cada curso usa a técnica no dia a dia, nos maiores hospitais do país.",
   },
   {
     n: "02",
-    title: "Estude do seu jeito",
-    body: "No seu ritmo pelo online, com a mão no aparelho no presencial, ou os dois juntos.",
+    title: "Se destaque no centro cirúrgico",
+    body: "Os temas que colocam você à frente na sala, e não apenas mais um certificado na parede.",
   },
   {
     n: "03",
-    title: "Saia fazendo na próxima escala",
-    body: "O bloqueio que resolve a dor do seu paciente e o ultrassom que muda a sua conduta na hora.",
+    title: "Seja um anestesista diferenciado",
+    body: "Domine técnicas que poucos dominam e vire a referência que o serviço chama quando o caso é difícil.",
   },
 ];
 

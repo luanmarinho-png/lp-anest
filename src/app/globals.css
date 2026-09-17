@@ -7656,8 +7656,14 @@ li {
 
 /* O hero do TSA Oral entra quando a vinheta acaba. Sem JS o atributo
    nunca é setado e o hero aparece normalmente. */
+/* Enquanto a vinheta roda o hero some do fluxo: só esconder deixaria um
+   bloco branco embaixo da marca. */
 html[data-intro="playing"] [data-theme="tsaoral"] .apple-hero,
 html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
+  height: 0;
+  min-height: 0;
+  padding-block: 0;
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
 }
