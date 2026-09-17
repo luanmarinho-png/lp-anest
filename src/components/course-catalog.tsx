@@ -89,6 +89,8 @@ export type CoursePricing = {
     cash: string;
     bullets: string[];
     featured?: boolean;
+    /** Link to a bullet that deserves its own page, e.g. a course included in the plan. */
+    secondaryCta?: { label: string; href: string };
   }[];
 };
 
@@ -472,6 +474,15 @@ export function CourseCatalog({
                       {plan.note ? (
                         <p className="course-plan-note">{plan.note}</p>
                       ) : null}
+                      {plan.secondaryCta ? (
+                        <Link
+                          href={plan.secondaryCta.href}
+                          className="course-plan-secondary"
+                        >
+                          {plan.secondaryCta.label}
+                          <ArrowRight className="size-3.5" strokeWidth={2.4} aria-hidden />
+                        </Link>
+                      ) : null}
                       <a
                         href={WHATSAPP_URL}
                         target="_blank"
@@ -549,7 +560,7 @@ export function CourseCatalog({
                     }`}
                   >
                     {course.featured ? (
-                      <p className="course-flag">Mais completo</p>
+                      <p className="course-flag">Recomendado</p>
                     ) : null}
                     <p className="course-status">
                       {course.statusLabel ??

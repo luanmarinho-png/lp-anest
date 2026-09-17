@@ -221,6 +221,21 @@ export const COURSES: Course[] = [
             alt: "Turma reduzida do Hands On Anest US em volta da maca durante o escaneamento",
           },
         },
+        {
+          eyebrow: "A sede",
+          title: "Estrutura completa para você só se preocupar em escanear",
+          body: "Os dois dias acontecem na nossa sede em Pinheiros, montada para receber a turma com conforto, dos aparelhos de ultrassom à alimentação.",
+          bullets: [
+            "Aparelhos de ultrassom de várias marcas",
+            "Alimentação e estacionamento inclusos nos dois dias",
+            "Pinheiros, região bem localizada de São Paulo",
+          ],
+          fit: "cover",
+          image: {
+            src: "/images/anest-us/anest-us-hands-on-sede.jpg",
+            alt: "Sede MedCof em Pinheiros, São Paulo, onde acontece o Hands On Anest US",
+          },
+        },
       ],
       schedule: {
         title: "Como são os dois dias",
@@ -314,6 +329,10 @@ export const COURSES: Course[] = [
               "Estacionamento no local, em Pinheiros",
               "Anest US Online incluso",
             ],
+            secondaryCta: {
+              label: "Saiba mais sobre o Anest US Online",
+              href: "/aperfeicoamento/anest-us-online",
+            },
           },
           {
             name: "Aluno do Extensivo MedCof Anest",

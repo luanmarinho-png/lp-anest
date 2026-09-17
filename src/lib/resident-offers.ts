@@ -79,7 +79,7 @@ function residencyAnnualOffers(
 ): OfferCard[] {
   return [
     {
-      badge: "Mais completo",
+      badge: "",
       title: `MedCof Anest ${year} (Anual) - Elite`,
       equivalent: "",
       fromPrice: prices.eliteFrom,
@@ -193,7 +193,7 @@ export const RESIDENT_OFFERS: Record<ResidentYear, ResidentOfferGroup[]> = {
       description: "Preparação direcionada para o TSA + QBank completo.",
       offers: [
         {
-          badge: "Mais completo",
+          badge: "",
           title: "MedCof Anest TSA Elite",
           equivalent: "",
           fromPrice: "De R$ 14.497,00",

@@ -122,7 +122,10 @@ export function BentoMosaic({
             </div>
 
             {item.images?.length ? (
-              <div className="bento-media is-duo">
+              <div
+                className="bento-media is-duo"
+                style={{ gridTemplateColumns: `repeat(${item.images.length}, minmax(0, 1fr))` }}
+              >
                 {item.images.map((portrait) => (
                   <button
                     key={portrait.src}
@@ -134,7 +137,7 @@ export function BentoMosaic({
                       src={portrait.src}
                       alt={portrait.alt}
                       fill
-                      sizes="(max-width: 700px) 45vw, 22vw"
+                      sizes="(max-width: 700px) 30vw, 15vw"
                       quality={100}
                       className="bento-image"
                       data-static-media
@@ -157,6 +160,14 @@ export function BentoMosaic({
                   sizes="(max-width: 700px) 88vw, 44vw"
                   quality={100}
                   className="bento-image"
+                  style={
+                    item.image.position || item.image.fit
+                      ? {
+                          objectPosition: item.image.position,
+                          objectFit: item.image.fit,
+                        }
+                      : undefined
+                  }
                   data-static-media
                 />
               </button>

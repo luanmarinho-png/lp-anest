@@ -31,7 +31,15 @@ export type OfferCard = {
   cta: string;
 };
 
-export type ItemImage = { src: string; alt: string; caption?: string };
+export type ItemImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+  /** CSS object-position override, for images that need a different crop anchor. */
+  position?: string;
+  /** CSS object-fit override, for images that should crop (cover) instead of the tile default. */
+  fit?: "cover" | "contain";
+};
 
 export type NumberedItem = {
   n: string;
@@ -405,7 +413,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     ],
     highlight: {
       kicker: "Treino no padrão SBA",
-      title: "Provas comentadas. Simulados que preparam para o dia da prova.",
+      title: "Provas antigas da SBA, todas comentadas em texto e vídeo-comentário.",
       body: "Resolva as provas da SBA com comentários completos e treine com simulados autorais que reproduzem o raciocínio, o ritmo e o nível de exigência da avaliação.",
       bullets: [
         "Provas da SBA comentadas em texto e vídeo",
@@ -436,7 +444,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     },
     eyebrow: "Residentes MEC",
     title: "Trilha para residentes MEC",
-    lead: "Conquiste o TEA ao longo da residência, sem deixar a preparação para o R3.",
+    lead: "Conquiste o TEA ao longo da residência, sem deixar a preparação apenas para a última hora.",
     heroMobile: "/bg-mec-2.png",
     heroDesktop: "/bg-mec-1.png",
     flow: "story-items-models",
@@ -631,7 +639,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     },
     eyebrow: "TEA",
     title:
-      "A preparação exata para conquistar o Título de Especialista em Anestesiologia",
+      "A preparação direcionada para conquistar o Título de Especialista em Anestesiologia",
     heroMobile: "/bg-sba-mac-2.png",
     heroDesktop: "/bg-sba-mac-1.png",
     flow: "story-items-models",
@@ -959,7 +967,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
       },
       {
         n: "04",
-        title: "Ganhe mais",
+        title: "Seja melhor remunerado",
         body: "Cooperativas e escalas de alta complexidade pagam mais para quem tem o título. Boa parte dessas vagas nem chega a abrir para quem não tem.",
       },
     ],
@@ -974,8 +982,10 @@ export const TRACKS: Record<string, TrackPageContent> = {
         title: "Aulas que partem do caso clínico",
         body: "Discussão baseada em casos clínicos e aprofundamento pelas principais referências: Miller e Barash.",
         image: {
-          src: "/images/anest-home/mec-aulas-plataforma.jpg",
-          alt: "Aula de anestesiologia na plataforma MedCof Anest",
+          src: "/images/anest-home/tsa-aulas-caso-clinico.png",
+          alt: "Aula de anestesiologia sobre absorvedores de CO2 na plataforma MedCof Anest",
+          fit: "cover",
+          position: "center 30%",
         },
       },
       {
@@ -984,15 +994,15 @@ export const TRACKS: Record<string, TrackPageContent> = {
         title: "Aula base e aula de aprofundamento",
         body: "A aula base dá os fundamentos do assunto. A de aprofundamento detalha o recorte que o TSA cobra: ECMO, eco-TE, ROTEM e bloqueios guiados por ultrassom.",
         image: {
-          src: "/images/features/aulas-macbook.png",
-          alt: "Aula de anestesiologia na plataforma MedCof Anest",
+          src: "/images/anest-home/tsa-aprofundamento-veia-cava.png",
+          alt: "Aula de aprofundamento sobre POCUS de veia cava inferior na plataforma MedCof Anest",
         },
       },
       {
         n: "03",
         size: "hero",
         title: "Quem ensina já tem o título",
-        body: "Rafael Romaro e Lucas Rodrigues são titulados TSA e ex-preceptores do Sírio-Libanês.",
+        body: "Rafael Romaro, Lucas Rodrigues e Juliano Coelho são titulados TSA e ex-preceptores de residência médica.",
         images: [
           {
             src: "/images/professors/rafael-3.png",
@@ -1004,6 +1014,11 @@ export const TRACKS: Record<string, TrackPageContent> = {
             alt: "Lucas Rodrigues, coordenador TSA da MedCof Anest",
             caption: "Lucas Rodrigues",
           },
+          {
+            src: "/images/professors/juliano.png",
+            alt: "Juliano Coelho, professor titulado TSA da MedCof Anest",
+            caption: "Juliano Coelho",
+          },
         ],
       },
       {
@@ -1014,6 +1029,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
         image: {
           src: "/images/features/metodologia-unidade.png",
           alt: "Conteúdos da unidade didática na plataforma MedCof Anest",
+          fit: "cover",
+          position: "center 12%",
         },
       },
       {
@@ -1030,6 +1047,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
         image: {
           src: "/images/anest-home/app-mobile-medcof-clean-transparent.png",
           alt: "Aplicativo MedCof Anest com as aulas baixadas no celular",
+          fit: "cover",
+          position: "center 15%",
         },
       },
       {

@@ -263,12 +263,18 @@ li {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: url("/images/brand/hero-anesthesiologist-lineart.png") right
+  background: url("/images/brand/hero-test-ether-dome.jpg") right
     center / auto 100% no-repeat;
   content: "";
-  opacity: 0.1;
+  opacity: 0.4;
   pointer-events: none;
-  mask-image: linear-gradient(90deg, transparent 48%, #000 78%);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 30%,
+    rgba(0, 0, 0, 0.12) 48%,
+    rgba(0, 0, 0, 0.45) 65%,
+    #000 92%
+  );
   animation: store-art-settle 3.2s cubic-bezier(0.2, 0, 0, 1) 0.2s both;
 }
 
@@ -277,44 +283,14 @@ li {
     opacity: 0;
   }
   35% {
-    opacity: 0.26;
+    opacity: 0.55;
   }
   100% {
-    opacity: 0.1;
+    opacity: 0.4;
   }
-}
-
-@keyframes store-art-settle-mirror {
-  0% {
-    opacity: 0;
-    transform: scaleX(-1);
-  }
-  35% {
-    opacity: 0.22;
-    transform: scaleX(-1);
-  }
-  100% {
-    opacity: 0.08;
-    transform: scaleX(-1);
-  }
-}
-
-[data-theme="store"] .apple-hero::before {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  background: url("/images/brand/hero-anesthesiologist-lineart.png") right
-    center / auto 100% no-repeat;
-  content: "";
-  opacity: 0.08;
-  pointer-events: none;
-  mask-image: linear-gradient(90deg, transparent 48%, #000 78%);
-  transform: scaleX(-1);
-  animation: store-art-settle-mirror 3.2s cubic-bezier(0.2, 0, 0, 1) 0.45s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-theme="store"] .apple-hero::before,
   [data-theme="store"] .apple-hero::after {
     animation: none;
   }
@@ -1240,13 +1216,49 @@ li {
 }
 
 .offer-card.is-featured {
+  padding-top: 2.5rem;
   background:
     radial-gradient(circle at 100% 0%, rgba(193, 39, 45, 0.1), transparent 32%),
     #fff;
   box-shadow:
     0 0 0 2px var(--brand-600),
-    0 22px 48px rgba(193, 39, 45, 0.15);
-  transform: translateY(-0.35rem);
+    0 0 0 8px rgba(193, 39, 45, 0.07),
+    0 26px 56px rgba(193, 39, 45, 0.2);
+  transform: translateY(-0.6rem);
+}
+
+/* A grade abre espaço em cima para o selo que sai do card. */
+.offer-grid:has(.offer-card.is-featured) {
+  padding-top: 2.4rem;
+}
+
+/* Selo do laringoscópio: círculo branco montado na borda superior do
+   card recomendado, o mesmo desenho do marcador de leitura do topo. */
+.offer-seal {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  display: grid;
+  width: 3.75rem;
+  height: 3.75rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 0 0 2px var(--brand-600),
+    0 10px 24px rgba(102, 5, 5, 0.18);
+  transform: translate(-50%, -50%);
+}
+
+.offer-seal img {
+  width: 1.7rem;
+  height: auto;
+  object-fit: contain;
+}
+
+.offer-card.is-featured .offer-recommended {
+  align-self: center;
 }
 
 .offer-recommended {
@@ -1254,11 +1266,14 @@ li {
   width: fit-content;
   align-items: center;
   gap: 0.35rem;
-  margin-bottom: 0.65rem;
-  color: var(--brand-600);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  margin-bottom: 0.9rem;
+  border-radius: 999px;
+  background: var(--brand-600);
+  padding: 0.35rem 0.75rem;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -1932,7 +1947,10 @@ li {
 }
 
 .track-product--residentes-mec {
-  background-image: url("/bg-mec-1.png");
+  background:
+    url("/images/professors/mec-coordinators-transparent.png") center bottom -1rem /
+      auto 78% no-repeat,
+    #f3f3f5;
 }
 
 .track-product--tea,
@@ -3787,6 +3805,9 @@ li {
   }
 
   .feature-viewer {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 1;
     min-height: 22rem;
     grid-row: 1;
   }
@@ -5229,7 +5250,7 @@ li {
   overflow: hidden;
   border: 0;
   border-radius: 1.1rem;
-  background: #f5f5f7;
+  background: #fff;
   cursor: zoom-in;
   padding: 0;
 }
@@ -6812,9 +6833,36 @@ video.course-logo {
 
 @media (max-width: 900px) {
   .course-days,
-  .course-faculty-grid,
-  .testimonial-grid {
+  .course-faculty-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Depoimentos viram carrossel no mobile: a lista empilhada exigia rolar
+     a tela inteira para ver o segundo card. */
+  .testimonial-grid {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    gap: 1rem;
+    margin-inline: -1.25rem;
+    padding: 0 1.25rem 0.5rem;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .testimonial-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonial-card {
+    width: 82vw;
+    min-width: 82vw;
+    scroll-snap-align: start;
+  }
+
+  .testimonial-card:hover {
+    transform: none;
   }
 }
 
@@ -7173,6 +7221,21 @@ video.course-logo {
   line-height: 1.45;
 }
 
+.course-plan-secondary {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1.1rem;
+  color: var(--brand-600);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.course-plan-secondary:hover {
+  text-decoration: underline;
+}
+
 .course-plans .course-cta {
   align-self: stretch;
   justify-content: center;
@@ -7432,20 +7495,25 @@ video.course-logo {
 
 .course-proof-stat {
   display: flex;
+  width: fit-content;
   flex-direction: column;
+  padding: 1.5rem 1.85rem;
+  border-radius: 1.6rem;
+  background: linear-gradient(160deg, rgba(193, 39, 45, 0.1), rgba(193, 39, 45, 0.02));
+  box-shadow: 0 0 0 1px rgba(193, 39, 45, 0.14);
   color: var(--brand-600);
-  font-size: clamp(3.2rem, 6vw, 4.6rem);
+  font-size: clamp(3.8rem, 7.5vw, 5.4rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
 .course-proof-stat span {
-  max-width: 22rem;
-  margin-top: 0.6rem;
+  max-width: 20rem;
+  margin-top: 0.7rem;
   color: var(--ink);
   font-size: 1.0625rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 

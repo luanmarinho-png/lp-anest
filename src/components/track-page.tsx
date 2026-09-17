@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Suspense } from "react";
 import { CheckCircle2, FileCheck2, TimerReset } from "lucide-react";
 import type {
   FeatureBlock,
@@ -130,23 +131,25 @@ export function AppleProductPage({
   const modelsChapter =
     data.modalities.length > 0 ? (
       data.offers?.length ? (
-        <SbaModels
-          id={modelsId}
-          directOffers={data.slug === "tea" || data.slug === "tsa" ? data.offers : undefined}
-          directTitle={
-            data.slug === "tea"
-              ? "Preparatório TEA (Residências MEC)"
-              : data.slug === "tsa"
-                ? "Qual etapa do TSA você vai enfrentar?"
+        <Suspense fallback={null}>
+          <SbaModels
+            id={modelsId}
+            directOffers={data.slug === "tea" || data.slug === "tsa" ? data.offers : undefined}
+            directTitle={
+              data.slug === "tea"
+                ? "Preparatório TEA (Residências MEC)"
+                : data.slug === "tsa"
+                  ? "Qual etapa do TSA você vai enfrentar?"
+                  : undefined
+            }
+            funnel={data.slug === "tsa" ? TSA_FUNNEL : undefined}
+            funnelLead={
+              data.slug === "tsa"
+                ? "A prova do TSA tem etapas distintas. Escolha a sua e veja só o que interessa para ela."
                 : undefined
-          }
-          funnel={data.slug === "tsa" ? TSA_FUNNEL : undefined}
-          funnelLead={
-            data.slug === "tsa"
-              ? "A prova do TSA tem etapas distintas. Escolha a sua e veja só o que interessa para ela."
-              : undefined
-          }
-        />
+            }
+          />
+        </Suspense>
       ) : (
         <AppleChapter
           id={modelsId}

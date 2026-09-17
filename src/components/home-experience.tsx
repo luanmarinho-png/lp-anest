@@ -160,6 +160,26 @@ const PROFESSORS = [
     ],
   },
   {
+    name: "Dr. Juliano Coelho",
+    role: "Professor MedCof Anest · TSA",
+    image: "/images/professors/juliano.png",
+    credentials: [
+      "Título Superior em Anestesiologia (TSA/SBA), aprovado na prova oral",
+      "Anestesiologista do SMA (Serviço Médico de Anestesia)",
+      "Preceptor de Residência Médica do CET/SMA",
+    ],
+  },
+  {
+    name: "Dr. Bruce Werner",
+    role: "Professor MedCof Anest · TEA",
+    image: "/images/professors/bruce-sf.png",
+    credentials: [
+      "Anestesiologista pelo IAMSPE",
+      "Título de Especialista em Anestesiologia, TEA/SBA",
+      "Assistente de residência médica CET/SBA",
+    ],
+  },
+  {
     name: "Dr. Gustavo Torres",
     role: "Professor MedCof Anest · TSA",
     image: "/images/professors/gustavonew2.png",
@@ -227,16 +247,6 @@ const PROFESSORS = [
       "Anestesiologista pelo Hospital Alemão Oswaldo Cruz",
       "Título de Especialista em Anestesiologia, TEA/SBA",
       "Preceptora da Residência Médica do Hospital Sírio-Libanês",
-    ],
-  },
-  {
-    name: "Dr. Bruce Werner",
-    role: "Professor MedCof Anest · TEA",
-    image: "/images/professors/bruce-sf.png",
-    credentials: [
-      "Anestesiologista pelo IAMSPE",
-      "Título de Especialista em Anestesiologia, TEA/SBA",
-      "Assistente de residência médica CET/SBA",
     ],
   },
 ] as const;

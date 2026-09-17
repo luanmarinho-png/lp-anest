@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowLeft, BadgeCheck, GraduationCap, Sparkles } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { OfferCard } from "@/lib/content";
 import {
   RESIDENT_OFFERS,
@@ -93,6 +94,27 @@ export function SbaModels({
         ?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   };
+
+  const searchParams = useSearchParams();
+
+  // Permite abrir direto no Extensivo ou no Intensivo via link de anúncio,
+  // ex.: /tsa?plano=intensivo, pulando a etapa de escolha do funil.
+  useEffect(() => {
+    if (!usesFunnel || picked) return;
+    const plano = searchParams.get("plano");
+    if (!plano) return;
+    const wantedMode: OfferMode = plano === "intensivo" ? "intensivo" : "extensivo";
+    const option = funnel?.find(
+      (item) => !item.href && (item.mode ?? "extensivo") === wantedMode,
+    );
+    if (!option) return;
+    setMode(wantedMode);
+    setPicked(option);
+    scrollToModels();
+    // scrollToModels e picked ficam de fora de propósito: só deve rodar
+    // quando a URL ou o funil mudam, não a cada re-render de state local.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, usesFunnel, funnel]);
 
   let stage: ReactNode;
 
@@ -360,16 +382,28 @@ function OfferTile({ offer }: { offer: OfferCard }) {
   return (
     <article className={`offer-card ${offer.featured ? "is-featured" : ""}`}>
       {offer.featured ? (
-        <p className="offer-recommended">
-          <Sparkles className="size-3.5" strokeWidth={2.2} aria-hidden />
-          Recomendado
+        <>
+          <span className="offer-seal" aria-hidden>
+            <Image
+              src="/images/brand/laryngoscope.png"
+              alt=""
+              width={48}
+              height={62}
+            />
+          </span>
+          <p className="offer-recommended">
+            <Sparkles className="size-3.5" strokeWidth={2.2} aria-hidden />
+            Recomendado
+          </p>
+        </>
+      ) : null}
+      {offer.badge ? (
+        <p
+          className={`offer-badge ${offer.badge.toLowerCase().startsWith("acesso") ? "is-access" : ""}`}
+        >
+          {offer.badge}
         </p>
       ) : null}
-      <p
-        className={`offer-badge ${offer.badge.toLowerCase().startsWith("acesso") ? "is-access" : ""}`}
-      >
-        {offer.badge}
-      </p>
       <h3>{offer.title}</h3>
       {offer.equivalent ? (
         <p className="offer-equivalent">{offer.equivalent}</p>

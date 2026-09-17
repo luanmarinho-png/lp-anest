@@ -74,7 +74,7 @@ export default function HomePage() {
         id="trilhas"
         alt
         eyebrow="Trilhas"
-        title="Escolha a trilha do seu momento"
+        title="Escolha o preparatório adequado para o seu momento na anestesiologia"
         body="Comece pela etapa em que você está. Residentes SBA, Residentes MEC, TEA, TSA, aperfeiçoamento ou Dor."
       >
         <div className="track-products-grid">

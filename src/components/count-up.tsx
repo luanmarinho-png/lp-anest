@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
 export function CountUp({
   to,
   prefix = "",
-  duration = 1600,
+  duration = 2200,
 }: {
   to: number;
   prefix?: string;
