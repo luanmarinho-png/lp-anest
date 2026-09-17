@@ -5469,6 +5469,7 @@ li {
 /* Divisão suave entre a marca e a copy do hero. */
 [data-theme="tsaoral"] .event-logo {
   position: relative;
+  border-bottom: 1px solid rgba(35, 35, 35, 0.05);
   padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
@@ -6778,11 +6779,12 @@ li {
   margin-bottom: 1.2rem;
 }
 
-/* Marca do evento acima do hero do TSA Oral. */
+/* Marca do evento acima do hero do TSA Oral, sobre um off-white que
+   separa a faixa do branco puro da página. */
 .event-logo {
   display: grid;
   place-items: center;
-  background: #fff;
+  background: #faf9f8;
   padding: clamp(2rem, 4vw, 3rem) 1.25rem 0;
 }
 
