@@ -6292,9 +6292,16 @@ li {
 }
 
 .course-logo {
+  display: block;
   width: min(34rem, 88%);
   height: auto;
   margin-inline: auto;
+}
+
+/* Como vídeo a marca mantém o quadro 16:9 do arquivo. */
+video.course-logo {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
 }
 
 /* Estrutura do curso: dois dias lado a lado. */

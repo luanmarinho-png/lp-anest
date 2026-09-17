@@ -174,6 +174,7 @@ export const COURSES: Course[] = [
         "Dois dias de imersão para você saber tudo de anestesia regional e US na anestesia",
       logo: {
         src: "/images/anest-us/hands-on-anest-us-logo.png",
+        video: "/videos/hands-on-anest-us-logo.webm",
         alt: "Hands On Anest US",
       },
       lead: "Ver a imagem na aula é uma coisa. Achar a estrutura sozinho, no modelo vivo, com o preceptor do lado corrigindo o seu posicionamento, é outra. É isso que acontece nesses dois dias.",
@@ -345,6 +346,7 @@ export const COURSES: Course[] = [
       title: "Dominando a ultrassonografia e os bloqueios",
       logo: {
         src: "/images/anest-us/anest-us-logo.png",
+        video: "/videos/anest-us-logo.webm",
         alt: "MedCof Anest US",
       },
       lead: "O ultrassom só ajuda quando você reconhece o que está na tela. O curso começa exatamente aí: você aprende a ler a imagem antes de agulhar.",

@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
+import { BrandMark } from "@/components/brand-mark";
 import { WHATSAPP_URL } from "@/lib/site";
 import {
   VideoTestimonials,
@@ -40,8 +41,9 @@ export type Course = {
     eyebrow: string;
     title: string;
     lead: string;
-    /** Brand lockup shown above the title. */
-    logo?: { src: string; alt: string };
+    /** Brand lockup shown above the title; `video` anima e `src` é o
+        fallback estático. */
+    logo?: { src: string; alt: string; video?: string };
     /** Date, place and seats, shown as chips above the lead. */
     facts?: string[];
     /** Short list shown right under the lead, before the sections. */
@@ -137,15 +139,24 @@ export function CourseCatalog({
 
             {open.detail.logo ? (
               <div className="course-brand">
-                <Image
-                  src={open.detail.logo.src}
-                  alt={open.detail.logo.alt}
-                  width={900}
-                  height={507}
-                  quality={100}
-                  className="course-logo"
-                  priority
-                />
+                {open.detail.logo.video ? (
+                  <BrandMark
+                    video={open.detail.logo.video}
+                    image={open.detail.logo.src}
+                    alt={open.detail.logo.alt}
+                    className="course-logo"
+                  />
+                ) : (
+                  <Image
+                    src={open.detail.logo.src}
+                    alt={open.detail.logo.alt}
+                    width={900}
+                    height={507}
+                    quality={100}
+                    className="course-logo"
+                    priority
+                  />
+                )}
               </div>
             ) : null}
 
