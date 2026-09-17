@@ -5,17 +5,17 @@ export const PILLARS = [
   {
     n: "01",
     title: "Aprenda com quem faz todo dia",
-    body: "Quem grava cada curso usa a técnica no dia a dia, nos maiores hospitais do país.",
+    body: "Quem vai te ensinar treina anestesiologistas todos os dias nos maiores hospitais do Brasil.",
   },
   {
     n: "02",
     title: "Se destaque no centro cirúrgico",
-    body: "Os temas que colocam você à frente na sala, e não apenas mais um certificado na parede.",
+    body: "Você sai fazendo o que antes dependia de chamar alguém mais experiente.",
   },
   {
     n: "03",
     title: "Seja um anestesista diferenciado",
-    body: "Domine técnicas que poucos dominam e vire a referência que o serviço chama quando o caso é difícil.",
+    body: "Poucos anestesiologistas dominam essas técnicas. Quem domina é quem o serviço chama nos casos difíceis.",
   },
 ];
 
