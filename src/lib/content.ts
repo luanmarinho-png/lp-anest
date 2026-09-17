@@ -263,7 +263,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
   "residentes-sba": {
     slug: "residentes-sba",
     heroProfessor: {
-      name: "Dr. Bruce Sousa",
+      name: "Dr. Bruce Werner",
       role: "Coordenador MedCof Anest",
       credentials: [
         "Anestesiologista pelo IAMSPE",
@@ -981,11 +981,11 @@ export const TRACKS: Record<string, TrackPageContent> = {
       {
         n: "02",
         size: "tall",
-        title: "Aprofundamento no nível do TSA",
-        body: "ECMO, eco-TE, ROTEM e bloqueios guiados por ultrassom.",
+        title: "Aula base e aula de aprofundamento",
+        body: "A aula base dá os fundamentos do assunto. A de aprofundamento detalha o recorte que o TSA cobra: ECMO, eco-TE, ROTEM e bloqueios guiados por ultrassom.",
         image: {
-          src: "/images/anest-home/mockup-aperfeicoamento-current-qbank-anest-v3.png",
-          alt: "Módulo de aprofundamento da plataforma MedCof Anest",
+          src: "/images/features/aulas-macbook.png",
+          alt: "Aula de anestesiologia na plataforma MedCof Anest",
         },
       },
       {

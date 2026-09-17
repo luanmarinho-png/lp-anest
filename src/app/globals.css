@@ -4973,7 +4973,9 @@ li {
   border-radius: 1.9rem;
   background: #fff;
   padding: clamp(1.9rem, 2.6vw, 2.75rem);
-  box-shadow: 0 1px 2px rgba(35, 35, 35, 0.05);
+  box-shadow:
+    0 1px 2px rgba(35, 35, 35, 0.06),
+    0 16px 36px rgba(35, 35, 35, 0.12);
   opacity: 0;
   text-align: left;
   transform: translateY(30px) scale(0.965);
@@ -5029,7 +5031,9 @@ li {
 }
 
 .bento-tile:hover {
-  box-shadow: 0 18px 44px rgba(35, 35, 35, 0.09);
+  box-shadow:
+    0 1px 2px rgba(35, 35, 35, 0.08),
+    0 26px 56px rgba(35, 35, 35, 0.18);
 }
 
 /* Pesos do mosaico. */
@@ -5098,7 +5102,7 @@ li {
   margin: 1.75rem clamp(-2.75rem, -2.6vw, -1.9rem)
     clamp(-2.75rem, -2.6vw, -1.9rem);
   border: 0;
-  background: #f5f5f7;
+  background: transparent;
   cursor: zoom-in;
   padding: 0;
 }
@@ -5125,6 +5129,19 @@ li {
   object-fit: cover;
   object-position: top center;
   transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Mockups de aparelho aparecem inteiros; fotos continuam preenchendo. */
+.bento-tile.is-hero .bento-image,
+.bento-tile.is-tall .bento-image {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.bento-tile.is-hero .bento-media.is-duo .bento-image,
+.bento-tile.is-tall .bento-media.is-duo .bento-image {
+  object-fit: cover;
+  object-position: top center;
 }
 
 .bento-media:hover .bento-image {
