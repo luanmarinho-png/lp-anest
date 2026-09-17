@@ -83,7 +83,7 @@ export default function Page() {
     <ProductShell theme="fase2">
       <AppleHero
         kicker="Segunda Fase"
-        title="A parte da prova que ninguém treina direito"
+        title="Com o treino certo, a segunda fase deixa de ser o seu problema"
         lead="A primeira fase se resolve estudando. A segunda se resolve treinando, de preferência antes de você estar na frente do avaliador."
       >
         <AppleCtas
