@@ -6295,33 +6295,67 @@ li {
   padding: clamp(1.5rem, 3vw, 2.5rem) 1.25rem clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* Filetes verticais da marca nas bordas da faixa, em degradê. */
+/* Filetes laterais que deslizam devagar, para a faixa não ficar parada. */
 .course-brand::before,
 .course-brand::after {
   position: absolute;
-  top: 12%;
-  bottom: 12%;
+  top: 0;
+  bottom: 0;
   width: 2px;
   content: "";
   pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(193, 39, 45, 0) 0%,
+    rgba(193, 39, 45, 0.7) 22%,
+    rgba(193, 39, 45, 0) 45%,
+    rgba(193, 39, 45, 0.35) 68%,
+    rgba(193, 39, 45, 0) 100%
+  );
+  background-size: 100% 220%;
+  animation: brand-rule 7s ease-in-out infinite alternate;
 }
 
 .course-brand::before {
   left: clamp(1.5rem, 6vw, 5rem);
-  background: linear-gradient(
-    180deg,
-    rgba(193, 39, 45, 0),
-    rgba(193, 39, 45, 0.55) 50%,
-    rgba(193, 39, 45, 0)
-  );
 }
 
 .course-brand::after {
   right: clamp(1.5rem, 6vw, 5rem);
+  animation-direction: alternate-reverse;
+}
+
+@keyframes brand-rule {
+  from {
+    background-position: 0 0%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-brand::before,
+  .course-brand::after {
+    animation: none;
+  }
+}
+
+/* A marca fecha com um traço vermelho e a copy segue no mesmo hero. */
+.course-brand {
+  border-bottom: 0;
+}
+
+.course-brand-rule {
+  display: block;
+  width: min(22rem, 60%);
+  height: 3px;
+  margin: clamp(1.25rem, 2.5vw, 2rem) auto 0;
+  border-radius: 999px;
   background: linear-gradient(
-    180deg,
+    90deg,
     rgba(193, 39, 45, 0),
-    rgba(193, 39, 45, 0.55) 50%,
+    var(--brand-600) 50%,
     rgba(193, 39, 45, 0)
   );
 }

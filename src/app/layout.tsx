@@ -11,6 +11,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lp-anest.vercel.app"),
   title: {
     default: "MedCof Anest | Preparatório TEA e TSA",
     template: "%s · MedCof Anest",

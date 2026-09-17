@@ -157,6 +157,7 @@ export function CourseCatalog({
                     priority
                   />
                 )}
+                <span className="course-brand-rule" aria-hidden />
               </div>
             ) : null}
 

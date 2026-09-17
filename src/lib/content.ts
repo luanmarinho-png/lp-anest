@@ -553,8 +553,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
     },
     itemsTitle: "Como vamos te ajudar nessa jornada",
     itemsLead:
-      "Desenvolvido por anestesiologistas formados pelos maiores centros de referência (H. Sírio-Libanês e HAOC), o MedCof Anest foi desenhado para caber na janela real de estudo do residente.",
-    itemsUnderline: "caber na janela real de estudo do residente",
+      "Desenvolvido por anestesiologistas formados pelos maiores centros de referência (H. Sírio-Libanês e HAOC), o MedCof Anest foi desenhado para encaixar na rotina de plantões durante a residência.",
+    itemsUnderline: "encaixar na rotina de plantões durante a residência",
     items: [
       {
         n: "01",
@@ -1014,9 +1014,13 @@ export const TRACKS: Record<string, TrackPageContent> = {
       },
       {
         n: "05",
-        size: "wide",
-        title: "Material filtrado pelo que mais cai",
-        body: "Fichas e mapas construídos a partir da incidência real das últimas provas.",
+        size: "tall",
+        title: "Conteúdo direcionado para facilitar o seu estudo",
+        body: "Cada aula vem com questões de nivelamento, flashcards e material de apoio, na ordem certa.",
+        image: {
+          src: "/images/features/metodologia-unidade.png",
+          alt: "Conteúdos da unidade didática na plataforma MedCof Anest",
+        },
       },
       {
         n: "06",
@@ -1024,8 +1028,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
         title: "Baixe as aulas e estude offline",
         body: "No aplicativo para iOS e Android você baixa as aulas e assiste no plantão sem sinal.",
         image: {
-          src: "/images/anest-home/mockup-flashcards-real-platform-anest-v2.png",
-          alt: "Flashcards da plataforma MedCof Anest no celular",
+          src: "/images/anest-home/app-mobile-medcof-clean-transparent.png",
+          alt: "Aplicativo MedCof Anest com as aulas baixadas no celular",
         },
       },
       {
