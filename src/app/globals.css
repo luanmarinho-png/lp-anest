@@ -6291,58 +6291,71 @@ li {
   margin: 0 clamp(-2.5rem, -3vw, -1.25rem) clamp(1.25rem, 2.5vw, 2rem);
   border-bottom: 1px solid rgba(35, 35, 35, 0.07);
   background: #f7f7f9;
-  min-height: clamp(20rem, 42vh, 27rem);
-  padding: clamp(1.5rem, 3vw, 2.5rem) 1.25rem clamp(1.25rem, 2.5vw, 2rem);
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 1.25rem clamp(2rem, 4vw, 3rem);
 }
 
-/* Filetes laterais que deslizam devagar, para a faixa não ficar parada. */
-.course-brand::before,
-.course-brand::after {
+/* Anéis que ecoam o "O" da marca: dois arcos vermelhos girando devagar
+   nas bordas da faixa, no lugar de filetes retos. */
+.course-brand-ring {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  content: "";
+  top: 50%;
+  z-index: 0;
+  width: clamp(18rem, 26vw, 30rem);
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-top-color: rgba(193, 39, 45, 0.55);
+  border-right-color: rgba(193, 39, 45, 0.18);
+  border-radius: 50%;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(193, 39, 45, 0) 0%,
-    rgba(193, 39, 45, 0.7) 22%,
-    rgba(193, 39, 45, 0) 45%,
-    rgba(193, 39, 45, 0.35) 68%,
-    rgba(193, 39, 45, 0) 100%
-  );
-  background-size: 100% 220%;
-  animation: brand-rule 7s ease-in-out infinite alternate;
+  animation: brand-ring 26s linear infinite;
 }
 
-.course-brand::before {
-  left: clamp(1.5rem, 6vw, 5rem);
+.course-brand-ring.is-left {
+  left: clamp(-9rem, -8vw, -4rem);
+  translate: 0 -50%;
 }
 
-.course-brand::after {
-  right: clamp(1.5rem, 6vw, 5rem);
-  animation-direction: alternate-reverse;
+.course-brand-ring.is-right {
+  right: clamp(-9rem, -8vw, -4rem);
+  translate: 0 -50%;
+  animation-direction: reverse;
+  animation-duration: 34s;
 }
 
-@keyframes brand-rule {
-  from {
-    background-position: 0 0%;
-  }
+/* Um segundo arco, mais fino, dá profundidade ao giro. */
+.course-brand-ring::after {
+  position: absolute;
+  inset: clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid transparent;
+  border-bottom-color: rgba(193, 39, 45, 0.3);
+  border-radius: 50%;
+  content: "";
+}
+
+@keyframes brand-ring {
   to {
-    background-position: 0 100%;
+    rotate: 1turn;
   }
+}
+
+.course-brand-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .course-brand::before,
-  .course-brand::after {
+  .course-brand-ring {
     animation: none;
   }
 }
 
-/* A marca fecha com um traço vermelho e a copy segue no mesmo hero. */
+/* A marca fecha com um traço vermelho e a copy segue logo abaixo. */
 .course-brand {
+  overflow: hidden;
   border-bottom: 0;
 }
 
@@ -6350,7 +6363,7 @@ li {
   display: block;
   width: min(22rem, 60%);
   height: 3px;
-  margin: clamp(1.25rem, 2.5vw, 2rem) auto 0;
+  margin: clamp(1.25rem, 2.5vw, 2rem) auto clamp(1.5rem, 3vw, 2.25rem);
   border-radius: 999px;
   background: linear-gradient(
     90deg,

@@ -137,91 +137,117 @@ export function CourseCatalog({
               <span>Ver todos os cursos</span>
             </Link>
 
-            {open.detail.logo ? (
-              <div className="course-brand">
-                {open.detail.logo.video ? (
-                  <BrandMark
-                    video={open.detail.logo.video}
-                    image={open.detail.logo.src}
-                    alt={open.detail.logo.alt}
-                    className="course-logo"
-                  />
-                ) : (
-                  <Image
-                    src={open.detail.logo.src}
-                    alt={open.detail.logo.alt}
-                    width={900}
-                    height={507}
-                    quality={100}
-                    className="course-logo"
-                    priority
-                  />
-                )}
-                <span className="course-brand-rule" aria-hidden />
-              </div>
-            ) : null}
-
-            <header className="course-detail-head">
-              {open.detail.logo ? null : (
-                <p className="fase2-eyebrow">{open.detail.eyebrow}</p>
-              )}
-              {open.detail.logo ? null : <h2>{open.detail.title}</h2>}
-              {open.detail.facts?.length ? (
-                <p className="course-facts is-hero">
-                  {open.detail.facts.map((fact, index) => (
-                    <span key={fact}>
-                      {index === 0 ? (
-                        <CalendarDays
-                          className="size-4"
-                          strokeWidth={2.4}
-                          aria-hidden
-                        />
-                      ) : index === 1 ? (
-                        <MapPin
-                          className="size-4"
-                          strokeWidth={2.4}
-                          aria-hidden
-                        />
-                      ) : (
-                        <Users className="size-4" strokeWidth={2.4} aria-hidden />
-                      )}
-                      {fact}
-                    </span>
-                  ))}
-                </p>
-              ) : null}
-              <p className="course-detail-lead">{open.detail.lead}</p>
-              {open.detail.highlights?.length ? (
-                <ul className="course-highlights">
-                  {open.detail.highlights.map((highlight) => (
-                    <li key={highlight}>
-                      <CheckCircle2
+            {(() => {
+              const detail = open.detail!;
+              // O cabeçalho vive dentro da faixa da marca, separado por um
+              // traço: fora dela a copy ficava longe demais da logo.
+              const head = (
+                <header className="course-detail-head">
+                  {detail.logo ? null : (
+                    <p className="fase2-eyebrow">{detail.eyebrow}</p>
+                  )}
+                  {detail.logo ? null : <h2>{detail.title}</h2>}
+                  {detail.facts?.length ? (
+                    <p className="course-facts is-hero">
+                      {detail.facts.map((fact, index) => (
+                        <span key={fact}>
+                          {index === 0 ? (
+                            <CalendarDays
+                              className="size-4"
+                              strokeWidth={2.4}
+                              aria-hidden
+                            />
+                          ) : index === 1 ? (
+                            <MapPin
+                              className="size-4"
+                              strokeWidth={2.4}
+                              aria-hidden
+                            />
+                          ) : (
+                            <Users
+                              className="size-4"
+                              strokeWidth={2.4}
+                              aria-hidden
+                            />
+                          )}
+                          {fact}
+                        </span>
+                      ))}
+                    </p>
+                  ) : null}
+                  <p className="course-detail-lead">{detail.lead}</p>
+                  {detail.highlights?.length ? (
+                    <ul className="course-highlights">
+                      {detail.highlights.map((highlight) => (
+                        <li key={highlight}>
+                          <CheckCircle2
+                            className="size-4"
+                            strokeWidth={2.4}
+                            aria-hidden
+                          />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {detail.pricing ? (
+                    <a href="#investimento" className="fase2-cta">
+                      {detail.ctaLabel ?? "Quero me inscrever"}
+                      <ArrowRight
                         className="size-4"
                         strokeWidth={2.4}
                         aria-hidden
                       />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              {open.detail.pricing ? (
-                <a href="#investimento" className="fase2-cta">
-                  {open.detail.ctaLabel ?? "Quero me inscrever"}
-                  <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
-                </a>
-              ) : (
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="fase2-cta"
-                >
-                  {open.detail.ctaLabel ?? "Quero me inscrever"}
-                  <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
-                </a>
-              )}
-            </header>
+                    </a>
+                  ) : (
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="fase2-cta"
+                    >
+                      {detail.ctaLabel ?? "Quero me inscrever"}
+                      <ArrowRight
+                        className="size-4"
+                        strokeWidth={2.4}
+                        aria-hidden
+                      />
+                    </a>
+                  )}
+                </header>
+              );
+
+              if (!detail.logo) return head;
+
+              return (
+                <div className="course-brand">
+                  <span className="course-brand-ring is-left" aria-hidden />
+                  <span className="course-brand-ring is-right" aria-hidden />
+                  <div className="course-brand-inner">
+                    {detail.logo.video ? (
+                      <BrandMark
+                        video={detail.logo.video}
+                        image={detail.logo.src}
+                        alt={detail.logo.alt}
+                        className="course-logo"
+                      />
+                    ) : (
+                      <Image
+                        src={detail.logo.src}
+                        alt={detail.logo.alt}
+                        width={900}
+                        height={507}
+                        quality={100}
+                        className="course-logo"
+                        priority
+                      />
+                    )}
+                    <span className="course-brand-rule" aria-hidden />
+                    {head}
+                  </div>
+                </div>
+              );
+            })()}
 
             {open.detail.testimonials?.length ? (
               <VideoTestimonials
