@@ -18,6 +18,13 @@ export function SectionReveal({
       el.classList.add("is-in");
       return;
     }
+    // Já está na tela (ou logo abaixo dela) ao montar: aparece na hora.
+    // O fade só vale para o que ainda vai entrar pela rolagem.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 1.15 && rect.bottom > 0) {
+      el.classList.add("is-in");
+      return;
+    }
     el.classList.add("will-reveal");
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -26,7 +33,9 @@ export function SectionReveal({
           io.unobserve(el);
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      // Dispara 15% antes da borda de baixo, para a seção já estar pronta
+      // quando entrar na tela.
+      { threshold: 0, rootMargin: "0px 0px 15% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

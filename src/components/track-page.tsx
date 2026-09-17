@@ -20,7 +20,7 @@ import { SectionReveal } from "@/components/section-reveal";
 import { SectionCta } from "@/components/section-cta";
 import { OfferBar } from "@/components/offer-bar";
 import { MecResourceRail } from "@/components/mec-resource-rail";
-import { ScrollPath } from "@/components/scroll-path";
+import { ScrollPathPinned } from "@/components/scroll-path-pinned";
 import { BentoMosaic } from "@/components/bento-mosaic";
 
 const TSA_FUNNEL: FunnelOption[] = [
@@ -83,7 +83,7 @@ export function AppleProductPage({
   const storyChapter = data.storyTitle ? (
     data.slug === "tsa" && data.storyPoints?.length ? (
       <SectionReveal>
-        <ScrollPath
+        <ScrollPathPinned
           title={data.storyTitle}
           lead={data.storyLead}
           points={data.storyPoints}

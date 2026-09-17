@@ -149,7 +149,7 @@ export function ScrollPath({
       line.style.strokeDashoffset = `${length - lengthAtY(head)}`;
 
       box.stops.forEach((y, index) => {
-        stops[index]?.classList.toggle("is-reached", head >= y - 170);
+        stops[index]?.classList.toggle("is-reached", head >= y - 260);
       });
     };
 

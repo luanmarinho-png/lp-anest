@@ -4643,12 +4643,15 @@ li {
   scroll-margin-top: 5rem;
 }
 
+.section-reveal.will-reveal {
+  transition:
+    opacity 0.35s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+}
+
 .section-reveal.will-reveal:not(.is-in) {
   opacity: 0;
-  transform: translateY(22px) scale(0.992);
-  transition:
-    opacity 0.8s cubic-bezier(0.2, 0, 0, 1),
-    transform 0.8s cubic-bezier(0.2, 0, 0, 1);
+  transform: translateY(14px);
 }
 
 .section-reveal.is-in {
@@ -4920,8 +4923,8 @@ li {
   text-align: center;
   transform: translateY(20px);
   transition:
-    opacity 0.6s cubic-bezier(0.2, 0, 0, 1),
-    transform 0.6s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.35s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.35s cubic-bezier(0.2, 0, 0, 1),
     box-shadow 0.4s ease;
 }
 
@@ -5016,12 +5019,12 @@ li {
     0 16px 36px rgba(35, 35, 35, 0.12);
   opacity: 0;
   text-align: left;
-  transform: translateY(30px) scale(0.965);
-  filter: blur(6px);
+  transform: translateY(18px) scale(0.985);
+  filter: blur(4px);
   transition:
-    opacity 0.7s cubic-bezier(0.2, 0, 0, 1),
-    transform 0.7s cubic-bezier(0.2, 0, 0, 1),
-    filter 0.7s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.4s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.4s cubic-bezier(0.2, 0, 0, 1),
+    filter 0.4s cubic-bezier(0.2, 0, 0, 1),
     box-shadow 0.35s ease,
     border-color 0.35s ease;
 }
@@ -7853,4 +7856,186 @@ html[data-intro="playing"] [data-theme="tsaoral"] .event-bar {
 [data-theme="tsaoral"] .apple-hero,
 [data-theme="tsaoral"] .event-bar {
   transition: opacity 0.7s ease 0.15s;
+}
+
+/* ── Scroll path preso na tela (TSA) ──────────────────────────────────
+   O palco fica fixo por uma altura de tela enquanto a cena rola por
+   baixo; a rolagem troca o card ativo e desenha a linha entre os nós.
+   Técnica: sticky stage + scroll progress (pinned scrollytelling). */
+.scroll-path.is-pinned {
+  padding-top: 0;
+  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.scroll-path-scene {
+  position: relative;
+  /* Cada passo ganha 40svh de rolagem com o palco preso. */
+  height: calc(100svh + var(--steps, 4) * 40svh);
+}
+
+.scroll-path-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  box-sizing: border-box;
+  height: 100svh;
+  align-content: center;
+  padding: 6rem 0 5.5rem;
+}
+
+.scroll-path-stage-inner {
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+}
+
+.scroll-path.is-pinned .scroll-path-title {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+}
+
+.scroll-path.is-pinned .scroll-path-lead {
+  margin-top: 0.8rem;
+}
+
+.scroll-path-board {
+  display: grid;
+  max-width: 50rem;
+  margin: clamp(1.75rem, 3.5vw, 2.75rem) auto 0;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: clamp(0.75rem, 2.5vw, 2rem);
+  align-items: stretch;
+}
+
+.scroll-path-spine {
+  position: relative;
+  display: grid;
+  min-height: 15rem;
+  align-content: space-between;
+  justify-items: center;
+}
+
+.scroll-path-spine .scroll-path-svg {
+  height: 100%;
+}
+
+.scroll-path-spine .scroll-path-dot {
+  cursor: pointer;
+  width: 2.9rem;
+  height: 2.9rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.scroll-path-spine .scroll-path-dot.is-reached {
+  border-color: var(--brand-600);
+  color: var(--brand-600);
+}
+
+.scroll-path-spine .scroll-path-dot.is-active {
+  background: var(--brand-600);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(193, 39, 45, 0.12);
+  transform: scale(1.08);
+}
+
+.scroll-path-spine .scroll-path-dot:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: 3px;
+}
+
+.scroll-path-deck {
+  display: grid;
+  align-items: center;
+}
+
+/* Todos os cards ocupam a mesma célula; só o ativo fica visível, e a
+   célula mede o maior deles para o palco não mudar de altura. */
+.scroll-path-slide {
+  grid-area: 1 / 1;
+  border: 1px solid rgba(35, 35, 35, 0.08);
+  border-radius: 1.75rem;
+  background: #fff;
+  padding: clamp(1.4rem, 2.4vw, 2.1rem);
+  box-shadow: 0 18px 44px rgba(35, 35, 35, 0.07);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.35s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.35s cubic-bezier(0.2, 0, 0, 1),
+    visibility 0s linear 0.35s;
+}
+
+.scroll-path-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.scroll-path-slide-step {
+  color: var(--brand-600);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.scroll-path-slide-step span {
+  color: rgba(35, 35, 35, 0.34);
+}
+
+.scroll-path-slide h3 {
+  margin-top: 0.5rem;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.scroll-path-slide p:not(.scroll-path-slide-step) {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.scroll-path.is-pinned .scroll-path-foot {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+@media (max-width: 700px) {
+  .scroll-path-scene {
+    height: calc(100svh + var(--steps, 4) * 36svh);
+  }
+
+  .scroll-path-stage {
+    padding: 5rem 0 6rem;
+  }
+
+  .scroll-path-board {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .scroll-path-spine {
+    min-height: 13rem;
+  }
+
+  .scroll-path-spine .scroll-path-dot {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  .scroll-path-slide {
+    border-radius: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-path-slide {
+    transition: none;
+  }
 }

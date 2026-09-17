@@ -46,6 +46,23 @@ export function BentoMosaic({
       }
     };
 
+    // Peças já na tela ao montar entram sem animação: quem chega pela
+    // âncora ou recarrega no meio da página não pode ver o mosaico vazio.
+    const visible = tiles.filter(
+      (tile) => tile.getBoundingClientRect().top < window.innerHeight,
+    );
+    if (visible.length > 0) {
+      visible.forEach((tile) => {
+        tile.style.transition = "none";
+      });
+      revealUpTo(tiles.indexOf(visible[visible.length - 1]));
+      requestAnimationFrame(() => {
+        visible.forEach((tile) => {
+          tile.style.transition = "";
+        });
+      });
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,7 +72,7 @@ export function BentoMosaic({
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -12% 0px" },
+      { threshold: 0, rootMargin: "0px 0px 10% 0px" },
     );
 
     tiles.forEach((tile) => observer.observe(tile));
