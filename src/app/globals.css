@@ -1942,9 +1942,15 @@ li {
 
 .track-product--residentes-mec {
   background:
-    url("/images/professors/mec-coordinators-transparent.png") center bottom -1rem /
-      auto 78% no-repeat,
+    url("/images/professors/luan-new.png") right -2rem bottom -8rem / auto 82%
+      no-repeat,
     #f3f3f5;
+}
+
+.track-product--residentes-mec .track-product-copy {
+  align-items: flex-start;
+  width: 62%;
+  text-align: left;
 }
 
 .track-product--tea,
