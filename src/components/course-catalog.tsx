@@ -5,12 +5,13 @@ import {
   CalendarDays,
   CheckCircle2,
   MapPin,
-  Sparkles,
   Users,
 } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
 import { CountUp } from "@/components/count-up";
+import { CourseDays } from "@/components/course-days";
+import { CoursePlans } from "@/components/course-plans";
 import { WHATSAPP_URL } from "@/lib/site";
 import {
   VideoTestimonials,
@@ -406,35 +407,7 @@ export function CourseCatalog({
                   </div>
                 </div>
 
-                <div className="course-days">
-                  {open.detail.schedule.days.map((day) => (
-                    <article key={day.label} className="course-day">
-                      <header>
-                        <p className="course-day-label">{day.label}</p>
-                        <p className="course-day-date">
-                          <CalendarDays
-                            className="size-4"
-                            strokeWidth={2.4}
-                            aria-hidden
-                          />
-                          {day.date}
-                        </p>
-                        <p className="course-day-hours">{day.hours}</p>
-                      </header>
-                      <ol>
-                        {day.blocks.map((block) => (
-                          <li key={block.title}>
-                            {block.time ? <span>{block.time}</span> : null}
-                            <div>
-                              <strong>{block.title}</strong>
-                              {block.body ? <em>{block.body}</em> : null}
-                            </div>
-                          </li>
-                        ))}
-                      </ol>
-                    </article>
-                  ))}
-                </div>
+                <CourseDays days={open.detail.schedule.days} />
               </section>
             ) : null}
 
@@ -445,60 +418,7 @@ export function CourseCatalog({
                   <h3>{open.detail.pricing.title}</h3>
                   <p>{open.detail.pricing.lead}</p>
                 </div>
-                <div className="course-plans">
-                  {open.detail.pricing.plans.map((plan) => (
-                    <article
-                      key={plan.name}
-                      className={plan.featured ? "is-featured" : ""}
-                    >
-                      {plan.badge ? (
-                        <p className="course-plan-badge">
-                          <Sparkles
-                            className="size-3.5"
-                            strokeWidth={2.4}
-                            aria-hidden
-                          />
-                          {plan.badge}
-                        </p>
-                      ) : null}
-                      <h4>{plan.name}</h4>
-                      <p className="course-plan-installment">
-                        <span>12x de</span> {plan.installment}
-                      </p>
-                      <p className="course-plan-cash">{plan.cash}</p>
-                      <ul>
-                        {plan.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                      {plan.note ? (
-                        <p className="course-plan-note">{plan.note}</p>
-                      ) : null}
-                      {plan.secondaryCta ? (
-                        <Link
-                          href={plan.secondaryCta.href}
-                          className="course-plan-secondary"
-                        >
-                          {plan.secondaryCta.label}
-                          <ArrowRight className="size-3.5" strokeWidth={2.4} aria-hidden />
-                        </Link>
-                      ) : null}
-                      <a
-                        href={WHATSAPP_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="course-cta"
-                      >
-                        Quero me inscrever
-                        <ArrowRight
-                          className="size-4"
-                          strokeWidth={2.4}
-                          aria-hidden
-                        />
-                      </a>
-                    </article>
-                  ))}
-                </div>
+                <CoursePlans plans={open.detail.pricing.plans} />
               </section>
             ) : null}
 

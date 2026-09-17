@@ -359,6 +359,15 @@ export function FeatureShowcase() {
                         </span>
                       </button>
                       <span className="feature-control-content">
+                        <span className="feature-control-media">
+                          <Image
+                            src={feature.image}
+                            alt={`${feature.kicker} na plataforma MedCof`}
+                            fill
+                            sizes="92vw"
+                            quality={100}
+                          />
+                        </span>
                         <strong>{feature.title}</strong>
                         <span>{feature.body}</span>
                       </span>
@@ -414,8 +423,9 @@ export function AppShowcase() {
             </p>
             <h2>Sua preparação continua, mesmo sem internet.</h2>
             <p className="app-showcase-lead">
-              No aplicativo para iOS e Android, você resolve todas as questões e
-              acompanha sua preparação completa onde estiver.
+              No aplicativo para iOS e Android, você acompanha sua preparação
+              completa e continua de onde parou, esteja você online ou
+              offline.
             </p>
 
             <div className="offline-highlight">

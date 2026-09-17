@@ -1045,10 +1045,10 @@ export const TRACKS: Record<string, TrackPageContent> = {
         title: "Baixe as aulas e estude offline",
         body: "No aplicativo para iOS e Android você baixa as aulas e assiste no plantão sem sinal.",
         image: {
-          src: "/images/anest-home/app-mobile-medcof-clean-transparent.png",
+          src: "/images/anest-home/tsa-app-mobile-card.png",
           alt: "Aplicativo MedCof Anest com as aulas baixadas no celular",
           fit: "cover",
-          position: "center 15%",
+          position: "center 10%",
         },
       },
       {
@@ -1059,6 +1059,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
         image: {
           src: "/images/anest-home/mockup-questao-comentada-current-qbank-anest-v3.png",
           alt: "Questão comentada no QBank MedCof Anest",
+          fit: "cover",
+          position: "center 40%",
         },
       },
     ],
