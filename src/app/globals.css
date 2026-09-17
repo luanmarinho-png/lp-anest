@@ -3849,10 +3849,12 @@ li {
   text-wrap: balance;
 }
 
+/* 0.78 deixava o cinza das faixas atravessar o vidro e o menu inteiro
+   ficava acinzentado. */
 .global-nav {
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.94);
   color: #1d1d1f;
-  backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(150%) blur(18px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -4915,7 +4917,7 @@ li {
 }
 
 .scroll-path-foot {
-  margin-top: clamp(0.5rem, 1.5vw, 1.25rem);
+  margin-top: 0;
   text-align: center;
 }
 
@@ -6117,7 +6119,7 @@ li {
 .course-detail-head {
   max-width: 44rem;
   margin-inline: auto;
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
   text-align: center;
 }
 
@@ -6137,7 +6139,7 @@ li {
 }
 
 .course-detail-head .fase2-cta {
-  margin-top: 1.85rem;
+  margin-top: 1.5rem;
 }
 
 .course-section {
@@ -6283,12 +6285,45 @@ li {
 /* A marca ganha faixa própria: junto com chips, lead e bullets o
    cabeçalho ficava carregado demais. */
 .course-brand {
+  position: relative;
   display: grid;
   place-items: center;
-  margin: 0 clamp(-2.5rem, -3vw, -1.25rem) clamp(2rem, 4vw, 3rem);
-  border-bottom: 1px solid rgba(35, 35, 35, 0.08);
+  margin: 0 clamp(-2.5rem, -3vw, -1.25rem) clamp(1.25rem, 2.5vw, 2rem);
+  border-bottom: 1px solid rgba(35, 35, 35, 0.07);
   background: #f7f7f9;
-  padding: clamp(2.5rem, 5vw, 4rem) 1.25rem;
+  min-height: clamp(20rem, 42vh, 27rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 1.25rem clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Filetes verticais da marca nas bordas da faixa, em degradê. */
+.course-brand::before,
+.course-brand::after {
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  width: 2px;
+  content: "";
+  pointer-events: none;
+}
+
+.course-brand::before {
+  left: clamp(1.5rem, 6vw, 5rem);
+  background: linear-gradient(
+    180deg,
+    rgba(193, 39, 45, 0),
+    rgba(193, 39, 45, 0.55) 50%,
+    rgba(193, 39, 45, 0)
+  );
+}
+
+.course-brand::after {
+  right: clamp(1.5rem, 6vw, 5rem);
+  background: linear-gradient(
+    180deg,
+    rgba(193, 39, 45, 0),
+    rgba(193, 39, 45, 0.55) 50%,
+    rgba(193, 39, 45, 0)
+  );
 }
 
 .course-logo {
@@ -7323,8 +7358,8 @@ video.course-logo {
 
 /* Chips de data, local e vagas no topo do curso. */
 .course-facts.is-hero {
-  margin-top: 1.4rem;
-  margin-bottom: 0.4rem;
+  margin-top: 0;
+  margin-bottom: 0.3rem;
 }
 
 .course-facts.is-hero span {
@@ -7336,7 +7371,7 @@ video.course-logo {
 }
 
 .course-detail-lead {
-  margin-top: 1.1rem;
+  margin-top: 0.9rem;
 }
 
 /* Com dois planos, os cards não precisam ocupar a largura toda. */

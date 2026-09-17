@@ -43,7 +43,7 @@ function buildCurve({ width, height, stops }: Box, variant: Variant) {
 
   // Tail: a short hook after the last stop, só para a linha não parar seca.
   const side = stops.length % 2 === 0 ? 1 : -1;
-  const tail = Math.min(Math.max(height - prevY, 1), 160);
+  const tail = Math.min(Math.max(height - prevY, 1), 90);
   const endY = prevY + tail;
   d += ` C${cx + swing * side * 0.45} ${prevY + tail * 0.45}, ${
     cx + swing * side * 0.3

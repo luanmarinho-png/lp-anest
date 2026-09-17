@@ -554,6 +554,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     itemsTitle: "Como vamos te ajudar nessa jornada",
     itemsLead:
       "Desenvolvido por anestesiologistas formados pelos maiores centros de referência (H. Sírio-Libanês e HAOC), o MedCof Anest foi desenhado para caber na janela real de estudo do residente.",
+    itemsUnderline: "caber na janela real de estudo do residente",
     items: [
       {
         n: "01",
@@ -726,7 +727,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     storyPoints: [
       {
         n: "01",
-        title: "Seu currículo chega à mesa",
+        title: "Diferencial de mercado",
         body: "Hospitais e grupos de anestesia usam o TEA como filtro de entrada. Sem ele, o currículo para antes de alguém ler.",
       },
       {
@@ -743,6 +744,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     itemsTitle: "Estude para o TEA de forma direcionada",
     itemsLead:
       "Não é necessário estudar tudo, mas sim o que é necessário e o que cai. A revisão espaçada da MedCof entrega o conteúdo da sua prova no ritmo certo.",
+    itemsUnderline: "o que é necessário e o que cai",
     items: [
       {
         n: "01",
@@ -828,7 +830,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
     },
     eyebrow: "TSA",
     title: "Com o método certo, estudar para o TSA fica simples",
-    lead: "A preparação de alta densidade desenhada por anestesiologistas titulados dos maiores hospitais do país: o edital organizado na ordem certa, no recorte que a banca cobra e no ritmo que cabe na sua rotina.",
+    lead: "A preparação de alta densidade desenhada por anestesiologistas titulados dos maiores hospitais do país.",
     heroMobile: "/bg-sba-mac-2.png",
     heroDesktop: "/bg-sba-mac-1.png",
     flow: "story-items-models",
@@ -964,12 +966,13 @@ export const TRACKS: Record<string, TrackPageContent> = {
     itemsTitle: "Feito por quem já passou por essa prova",
     itemsLead:
       "Você estuda o que cai, da forma que é cobrado e de onde você estiver, online ou offline.",
+    itemsUnderline: "o que cai, da forma que é cobrado",
     items: [
       {
         n: "01",
         size: "hero",
         title: "Aulas que partem do caso clínico",
-        body: "O edital inteiro, do jeito que a banca formula: do caso à conduta.",
+        body: "Discussão baseada em casos clínicos e aprofundamento pelas principais referências: Miller e Barash.",
         image: {
           src: "/images/anest-home/mec-aulas-plataforma.jpg",
           alt: "Aula de anestesiologia na plataforma MedCof Anest",
@@ -979,7 +982,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
         n: "02",
         size: "tall",
         title: "Aprofundamento no nível do TSA",
-        body: "ECMO, eco-TE, ROTEM e bloqueios guiados por ultrassom. Onde o curso genérico para.",
+        body: "ECMO, eco-TE, ROTEM e bloqueios guiados por ultrassom.",
         image: {
           src: "/images/anest-home/mockup-aperfeicoamento-current-qbank-anest-v3.png",
           alt: "Módulo de aprofundamento da plataforma MedCof Anest",
@@ -1007,7 +1010,7 @@ export const TRACKS: Record<string, TrackPageContent> = {
         n: "04",
         size: "wide",
         title: "Simulados autorais todo mês",
-        body: "Objetivas e discursivas novas, corrigidas no padrão de resposta da banca.",
+        body: "Questões objetivas e discursivas autorais, feitas por especialistas titulados TSA.",
       },
       {
         n: "05",
@@ -1018,8 +1021,8 @@ export const TRACKS: Record<string, TrackPageContent> = {
       {
         n: "06",
         size: "tall",
-        title: "Estude online ou offline",
-        body: "Aulas, questões e flashcards no celular, com download para o plantão sem sinal.",
+        title: "Baixe as aulas e estude offline",
+        body: "No aplicativo para iOS e Android você baixa as aulas e assiste no plantão sem sinal.",
         image: {
           src: "/images/anest-home/mockup-flashcards-real-platform-anest-v2.png",
           alt: "Flashcards da plataforma MedCof Anest no celular",

@@ -204,15 +204,22 @@ export function CourseCatalog({
                   ))}
                 </ul>
               ) : null}
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="fase2-cta"
-              >
-                {open.detail.ctaLabel ?? "Quero me inscrever"}
-                <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
-              </a>
+              {open.detail.pricing ? (
+                <a href="#investimento" className="fase2-cta">
+                  {open.detail.ctaLabel ?? "Quero me inscrever"}
+                  <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
+                </a>
+              ) : (
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="fase2-cta"
+                >
+                  {open.detail.ctaLabel ?? "Quero me inscrever"}
+                  <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
+                </a>
+              )}
             </header>
 
             {open.detail.testimonials?.length ? (
@@ -392,7 +399,7 @@ export function CourseCatalog({
             ) : null}
 
             {open.detail.pricing ? (
-              <section className="course-pricing">
+              <section id="investimento" className="course-pricing">
                 <div className="course-schedule-head">
                   <p className="fase2-eyebrow">Investimento</p>
                   <h3>{open.detail.pricing.title}</h3>

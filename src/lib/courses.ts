@@ -294,8 +294,8 @@ export const COURSES: Course[] = [
         ],
       },
       pricing: {
-        title: "Quanto custa o Hands On",
-        lead: "Dois dias de prática presencial, com o Anest US Online completo incluso.",
+        title: "Garanta sua vaga na turma de janeiro",
+        lead: "São 25 lugares, de 5 a 8 por preceptor. Quem entra leva os dois dias presenciais e o Anest US Online completo.",
         plans: [
           {
             name: "Hands On Anest US",
@@ -354,8 +354,8 @@ export const COURSES: Course[] = [
       curriculum: CURRICULUM,
       sections: ANEST_US_SECTIONS,
       pricing: {
-        title: "Quanto custa o Anest US Online",
-        lead: "Acesso ao curso completo, com os 27 bloqueios e os 5 usos práticos do ultrassom.",
+        title: "Comece hoje pelo Anest US Online",
+        lead: "Acesso imediato aos 27 bloqueios e aos 5 usos práticos do ultrassom, no seu ritmo.",
         plans: [
           {
             name: "Anest US Online",
