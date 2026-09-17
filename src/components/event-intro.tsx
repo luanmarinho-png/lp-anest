@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { frameHasAlpha, useAlphaVideo } from "@/lib/alpha-video";
 
 /**
  * Opening vignette: the mark fills the screen, plays once at a slower
@@ -20,14 +22,26 @@ export function EventIntro({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [done, setDone] = useState(false);
+  const [opaque, setOpaque] = useState(false);
+  const alpha = useAlphaVideo();
 
   useEffect(() => {
+    // Sem vídeo montado (marca estática) o efeito anterior já limpou a
+    // marcação, e o hero segue sem esperar por vinheta nenhuma.
     const video = videoRef.current;
     if (!video) return;
 
+    // O quadro pode chegar antes da hidratação, então a checagem roda
+    // agora se já houver imagem e fica escutando se ainda não houver.
+    const check = () => {
+      if (!frameHasAlpha(video)) setOpaque(true);
+    };
+    if (video.readyState >= 2) check();
+    video.addEventListener("loadeddata", check);
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       video.pause();
-      return;
+      return () => video.removeEventListener("loadeddata", check);
     }
 
     // Marca o documento enquanto a vinheta roda: o CSS segura o hero até
@@ -41,14 +55,34 @@ export function EventIntro({
     };
     video.addEventListener("loadedmetadata", apply);
     return () => {
+      video.removeEventListener("loadeddata", check);
       video.removeEventListener("loadedmetadata", apply);
       delete document.documentElement.dataset.intro;
     };
-  }, [rate]);
+  }, [rate, alpha, opaque]);
 
   useEffect(() => {
     if (done) delete document.documentElement.dataset.intro;
   }, [done]);
+
+  // Onde o alpha não é suportado o vídeo entraria como um retângulo preto.
+  // A marca estática fica no lugar, já no tamanho de logo, e o hero segue
+  // direto sem esperar por uma vinheta que não vai rodar.
+  if (!alpha || opaque) {
+    return (
+      <div className="event-intro-stage is-static">
+        <Image
+          src={poster}
+          alt={alt}
+          width={900}
+          height={507}
+          quality={100}
+          className="event-intro"
+          priority
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={`event-intro-stage${done ? " is-done" : ""}`}>

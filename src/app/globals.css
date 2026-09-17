@@ -6980,6 +6980,13 @@ video.course-logo {
     padding 0.7s cubic-bezier(0.2, 0, 0, 1);
 }
 
+/* Marca parada onde a vinheta não roda: fica no tamanho de logo, sem o
+   recolhimento animado. */
+.event-intro-stage.is-static {
+  width: min(26rem, 74%);
+  transition: none;
+}
+
 .event-intro {
   display: block;
   width: 100%;
