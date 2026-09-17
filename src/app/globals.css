@@ -263,18 +263,12 @@ li {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: url("/images/brand/hero-test-ether-dome-v2.png") right
+  background: url("/images/brand/hero-anesthesiologist-lineart.png") right
     center / auto 100% no-repeat;
   content: "";
-  opacity: 0.4;
+  opacity: 0.07;
   pointer-events: none;
-  mask-image: linear-gradient(
-    90deg,
-    transparent 30%,
-    rgba(0, 0, 0, 0.12) 48%,
-    rgba(0, 0, 0, 0.45) 65%,
-    #000 92%
-  );
+  mask-image: linear-gradient(90deg, transparent 58%, #000 88%);
   animation: store-art-settle 3.2s cubic-bezier(0.2, 0, 0, 1) 0.2s both;
 }
 
@@ -283,10 +277,10 @@ li {
     opacity: 0;
   }
   35% {
-    opacity: 0.55;
+    opacity: 0.18;
   }
   100% {
-    opacity: 0.4;
+    opacity: 0.07;
   }
 }
 
@@ -294,17 +288,6 @@ li {
   [data-theme="store"] .apple-hero::after {
     animation: none;
   }
-}
-
-/* Esmaece o topo do traço: sem isso a arte cortava em linha reta contra
-   o branco da seção, acima do título. */
-[data-theme="store"] .apple-hero::before {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 26%);
-  content: "";
-  pointer-events: none;
 }
 
 [data-theme="store"] .apple-hero > * {
@@ -3764,11 +3747,11 @@ li {
     transform: none;
   }
 
-  /* A arte de fundo não cabe ao lado do texto numa tela estreita: em
-     vez de brigar com o título, some no mobile. */
   [data-theme="store"] .apple-hero::before,
   [data-theme="store"] .apple-hero::after {
-    display: none;
+    background-size: auto 78%;
+    opacity: 0.07;
+    mask-image: linear-gradient(90deg, transparent 38%, #000 82%);
   }
 
   .feature-showcase {
