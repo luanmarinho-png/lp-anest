@@ -171,7 +171,7 @@ export default function Page() {
 
       <ScrollPath
         id="diagnostico"
-        title="Muita gente boa reprova na oral. A gente sabe ensinar essa prova."
+        title="Muito anestesiologista tem medo da prova oral. A gente pega na sua mão e te ensina."
         lead="Não é falta de conhecimento. É falta de treino no formato que a banca cobra."
         points={DIAGNOSIS}
         variant="ladder"
